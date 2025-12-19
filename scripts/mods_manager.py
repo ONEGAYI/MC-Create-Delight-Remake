@@ -8,6 +8,8 @@ import shutil
 from datetime import datetime
 
 # ================= 配置区域 =================
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)  # 切换工作目录到脚本所在目录
 # 数据库文件名
 DB_NAME = '../docs/mods_metadata.db'
 # 默认扫描的文件夹路径 (你可以修改这里，或者运行时指定)
@@ -625,6 +627,132 @@ class AssetManager:
                 pass
             return False
 
+    def export_to_csv(self, output_path=None, table_name='files'):
+        """
+        [功能 10] 导出数据库到CSV文件
+        支持指定表名导出，兼容Excel打开
+
+        Args:
+            output_path: 输出文件路径（默认: ../docs/mods_metadata.csv）
+            table_name: 要导出的表名（默认: files）
+        """
+        import csv
+        import os
+
+        try:
+            # 参数处理和验证
+            if output_path is None:
+                output_path = '../docs/mods_metadata.csv'
+
+            # 检查表是否存在
+            self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            tables = [row[0] for row in self.cursor.fetchall()]
+            if table_name not in tables:
+                print(f"❌ 表 '{table_name}' 不存在")
+                print(f"可用表: {', '.join(tables)}")
+                return False
+
+            # 确保输出目录存在
+            output_dir = os.path.dirname(os.path.abspath(output_path))
+            os.makedirs(output_dir, exist_ok=True)
+
+            # 获取表的字段信息
+            self.cursor.execute(f"PRAGMA table_info({table_name})")
+            columns = self.cursor.fetchall()
+
+            # 构建查询语句 - 针对files表的特殊处理
+            if table_name == 'files':
+                query = """
+                SELECT COALESCE(number, '') as number,
+                       filename,
+                       COALESCE(env, '') as env,
+                       COALESCE(tags, '') as tags,
+                       COALESCE(description, '') as description
+                FROM files
+                ORDER BY
+                    CASE
+                        WHEN number IS NULL THEN 2
+                        ELSE 1
+                    END,
+                    number,
+                    filename
+                """
+                headers = ['编号', '名称', '环境', '标签', '描述']
+            else:
+                # 通用表处理
+                column_names = [col[1] for col in columns]
+                headers = column_names
+                query = f"SELECT * FROM {table_name}"
+
+            # 执行查询
+            self.cursor.execute(query)
+            rows = self.cursor.fetchall()
+
+            if not rows:
+                print(f"❌ 表 '{table_name}' 中没有记录可导出")
+                return False
+
+            # 写入CSV（UTF-8 BOM编码）
+            with open(output_path, 'w', encoding='utf-8-sig', newline='') as csvfile:
+                writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
+
+                # 写入标题行
+                writer.writerow(headers)
+
+                # 写入数据行
+                for row in rows:
+                    # 转换数据
+                    if table_name == 'files':
+                        # files表的特殊处理
+                        number = row[0] if row[0] else ''
+                        filename = row[1] if row[1] else ''
+                        env = row[2] if row[2] else ''
+                        tags = row[3] if row[3] else ''
+                        description = row[4] if row[4] else ''
+
+                        # 处理包含逗号的字段 - 使用双引号包围
+                        data_row = [number, filename, env, tags, description]
+                        formatted_row = []
+
+                        for value in data_row:
+                            # 先转换为字符串再检查
+                            value_str = str(value)
+                            if value and (',' in value_str or '"' in value_str or '\n' in value_str):
+                                # 转义双引号并移除换行符
+                                value_str = value_str.replace('"', '""').replace('\n', ' ').replace('\r', '')
+                                formatted_row.append(f'"{value_str}"')
+                            else:
+                                formatted_row.append(value_str)
+
+                        writer.writerow(formatted_row)
+                    else:
+                        # 通用表处理
+                        data_row = list(row)
+                        formatted_row = []
+
+                        for value in data_row:
+                            if value and (',' in str(value) or '"' in str(value) or '\n' in str(value)):
+                                value = str(value).replace('"', '""').replace('\n', ' ').replace('\r', '')
+                                formatted_row.append(f'"{value}"')
+                            else:
+                                formatted_row.append(value if value is not None else '')
+
+                        writer.writerow(formatted_row)
+
+            print(f"✅ 已导出表 '{table_name}' 到: {output_path}")
+            print(f"📊 导出记录数: {len(rows)}")
+
+            return True
+
+        except PermissionError:
+            print(f"❌ 权限错误: 无法写入文件 {output_path}")
+            return False
+        except Exception as e:
+            print(f"❌ 导出失败: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
+
 # ================= 命令行接口逻辑 =================
 def main():
     parser = argparse.ArgumentParser(description="本地文件资产管理脚本")
@@ -680,6 +808,14 @@ def main():
     backup_group.add_argument('-l', '--load', action='store_true', help='从备份恢复数据库')
     parser_backup.add_argument('-d', '--dir', type=str, default=None, help='自定义备份目录路径')
 
+    # 11. Export: 导出CSV
+    parser_export = subparsers.add_parser('export', help='导出数据库到CSV文件')
+    parser_export.add_argument('-d', '--dir', type=str,
+                             default='../docs/mods_metadata.csv',
+                             help='指定导出路径（默认: docs/mods_metadata.csv）')
+    parser_export.add_argument('-t', '--table', type=str, default='files',
+                             help='指定要导出的表名（默认: files）')
+
     args = parser.parse_args()
 
     # 初始化管理器
@@ -724,6 +860,11 @@ def main():
             if not success:
                 print("❌ 恢复失败")
                 sys.exit(1)
+    elif args.command == 'export':
+        manager.export_to_csv(
+            output_path=args.dir,
+            table_name=args.table
+        )
     else:
         parser.print_help()
 

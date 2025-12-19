@@ -31,6 +31,18 @@
   - 正则表达式（使用 -r 参数）
 - 结果显示文件名、SHA、字段值和相对路径
 
+### 5. 数据库备份与恢复
+- 支持数据库备份到指定目录
+- 自动生成带时间戳的备份文件
+- 支持从备份文件恢复数据库
+- 支持列出所有备份文件
+
+### 6. CSV数据导出
+- 将数据库表导出为CSV格式
+- 支持UTF-8 BOM编码（兼容Excel）
+- 自动处理包含逗号的字段（使用双引号包围）
+- 支持指定表名和导出路径
+
 ## 安装与配置
 
 ### 环境要求
@@ -160,6 +172,55 @@ python mods_manager.py search env "'客户端'"
 python mods_manager.py search filename "^[A-Z].*Mod$" -r
 ```
 
+#### 10. backup - 备份与恢复
+数据库备份和恢复功能。
+
+```bash
+# 备份数据库（使用默认路径 ../docs/bak/）
+python mods_manager.py backup --save
+
+# 备份到指定目录
+python mods_manager.py backup --save --dir "D:\backups"
+
+# 从备份恢复（会自动选择最新备份）
+python mods_manager.py backup --load
+
+# 从指定目录恢复
+python mods_manager.py backup --load --dir "D:\backups"
+```
+
+**参数说明**：
+- `--save, -s`: 保存数据库备份（必需参数，与--load互斥）
+- `--load, -l`: 从备份恢复数据库（必需参数，与--save互斥）
+- `--dir, -d`: 自定义备份目录路径（可选，默认：数据库同目录下的bak文件夹）
+
+#### 11. export - 导出CSV
+将数据库表导出为CSV文件。
+
+```bash
+# 使用默认设置导出（默认导出files表到 ../docs/mods_metadata.csv）
+python mods_manager.py export
+
+# 导出到指定路径
+python mods_manager.py export --dir "D:\exports\mods_data.csv"
+
+# 导出指定表名
+python mods_manager.py export --table files
+
+# 组合使用：导出指定表到指定路径
+python mods_manager.py export -d "D:\exports\custom.csv" -t files
+```
+
+**参数说明**：
+- `--dir, -d`: 指定导出路径（默认：../docs/mods_metadata.csv）
+- `--table, -t`: 指定要导出的表名（默认：files）
+
+**输出格式**：
+- 使用UTF-8 BOM编码，确保Excel正确打开
+- CSV列标题：编号,名称,环境,标签,描述（针对files表）
+- 自动处理包含逗号的字段，使用双引号包围
+- 自动创建输出目录（如果不存在）
+
 ## 使用场景示例
 
 ### 场景 1：建立模组数据库
@@ -198,6 +259,29 @@ python mods_manager.py search description "Create"
 
 # 3. 更新字段名称
 python mods_manager.py rename_field env environment
+```
+
+### 场景 4：数据备份与恢复
+```bash
+# 1. 定期备份数据库
+python mods_manager.py backup --save
+
+# 2. 导出到CSV进行数据分析
+python mods_manager.py export --dir "monthly_report.csv"
+
+# 3. 恢复之前的备份（如有需要）
+python mods_manager.py backup --load
+```
+
+### 场景 5：多人协作与数据共享
+```bash
+# 1. 导出最新的模组列表为CSV
+python mods_manager.py export --dir "shared/mods_list.csv"
+
+# 2. 团队成员编辑CSV文件（在Excel中）
+
+# 3. 使用update_from_modlist.py批量更新数据库
+python update_from_modlist.py
 ```
 
 ## 数据库结构
@@ -250,3 +334,5 @@ A: 使用 `-r` 参数启用正则表达式模式，支持标准的 Python 正则
 - **v1.1**: 添加搜索功能，支持正则表达式
 - **v1.2**: 添加字段重命名和删除功能
 - **v1.3**: 优化批量操作的用户体验
+- **v1.4**: 添加数据库备份与恢复功能
+- **v1.5**: 添加CSV导出功能，支持Excel兼容格式
