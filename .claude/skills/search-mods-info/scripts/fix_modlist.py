@@ -318,6 +318,90 @@ def swap_mod_numbers(json_file, swap_pairs, output_file=None):
     return successful_swaps, failed_swaps
 
 
+def insert_mod_at_position(json_file, insert_position, content=None, output_file=None):
+    """
+    在指定位置插入模组，更新所有编号更大的编号
+
+    Args:
+        json_file: JSON文件路径
+        insert_position: 插入位置的编号
+        content: 插入内容，格式为 "{name; env; tags; description}"，用分号分隔
+                 如果为None或空，则所有字段为空字符串
+        output_file: 输出文件路径，默认覆盖原文件
+
+    Returns:
+        bool: 插入是否成功
+    """
+    # 检查JSON文件是否存在
+    if not os.path.exists(json_file):
+        print(f"错误: 找不到JSON文件 {json_file}")
+        return False
+
+    # 读取JSON文件
+    try:
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"错误: 读取JSON文件时出错 - {e}")
+        return False
+
+    # 检查JSON结构
+    if 'mods' not in data:
+        print("错误: JSON文件中缺少 'mods' 字段")
+        return False
+
+    # 解析插入内容
+    if content:
+        parts = [part.strip() for part in content.split(';')]
+        # 确保4个字段
+        while len(parts) < 4:
+            parts.append('')
+        name, env, tags, description = parts[:4]
+    else:
+        name = env = tags = description = ''
+
+    # 创建新模组条目
+    new_mod = {
+        "number": insert_position,
+        "name": name,
+        "env": env,
+        "tags": tags,
+        "description": description
+    }
+
+    # 检查插入位置是否已存在
+    existing_mods = {mod['number']: mod for mod in data['mods']}
+    if insert_position in existing_mods:
+        print(f"警告: 位置 {insert_position} 已存在模组 '{existing_mods[insert_position]['name']}'")
+        choice = input("是否覆盖? (y/N): ")
+        if choice.lower() != 'y':
+            print("取消插入操作")
+            return False
+
+    # 更新所有编号 >= insert_position 的模组编号
+    updated_count = 0
+    for mod in data['mods']:
+        if mod['number'] >= insert_position:
+            mod['number'] += 1
+            updated_count += 1
+
+    # 插入新模组
+    data['mods'].append(new_mod)
+
+    # 保存文件
+    output_path = output_file or json_file
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"成功: 在位置 {insert_position} 插入了新模组")
+        print(f"更新了 {updated_count} 个模组的编号")
+        print(f"插入内容: 名称='{name}', 环境='{env}', 标签='{tags}', 描述='{description}'")
+        return True
+    except Exception as e:
+        print(f"错误: 保存JSON文件时出错 - {e}")
+        return False
+
+
 def check_number_range(json_file, start_num, end_num):
     """
     检查指定范围内的编号是否在JSON中存在且内容完整
@@ -442,11 +526,16 @@ def main():
   %(prog)s --swap "[1-30, 10-9]"        # 交换多对模组编号
   %(prog)s --swap "[1-30]" -w           # 交换并自动更新markdown
   %(prog)s --swap "[1-30]" -j custom.json -o output.json  # 使用自定义文件
+  %(prog)s --insert 51                   # 在51号位置插入空模组
+  %(prog)s --insert 52 -j mods.json     # 在52号位置插入空模组并指定JSON文件
+  %(prog)s --insert 53 --insert-content "TestMod; 双端类; #测试; 测试模组"  # 插入带内容的模组
 
 ⚠️  重要提示:
   - 使用 --swap 参数时，如果不指定 -j 输出文件，默认不会覆盖源JSON文件
   - 多次swap操作需要指定 -j 参数覆盖源文件，否则每次swap都基于原始数据
   - 推荐做法: --swap "[1-30, 10-9]" -j source.json -o source.json
+  - 使用 --insert 参数时，必须指定 -j 参数来覆盖源JSON文件，否则不会修改源文件
+  - --insert 会自动更新所有大于等于插入位置的模组编号
         """
     )
 
@@ -467,6 +556,10 @@ def main():
                         help='检查编号范围的起始编号')
     parser.add_argument('--check-number-to', type=int,
                         help='检查编号范围的结束编号')
+    parser.add_argument('--insert', type=int,
+                        help='在指定编号位置插入新模组')
+    parser.add_argument('--insert-content', type=str,
+                        help='插入内容，格式为"name; env; tags; description"，用分号分隔')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
 
     # 解析参数
@@ -499,9 +592,43 @@ def main():
         if args.check_number_from is not None:
             print("错误: --swap 参数不能与 --check-number-from/to 同时使用")
             sys.exit(1)
+        if args.insert is not None:
+            print("错误: --swap 参数不能与 --insert 同时使用")
+            sys.exit(1)
 
-    # 执行相应功能，--swap 优先级最高
-    if args.swap:
+    # 检查 --insert 参数
+    if args.insert is not None:
+        if args.extract:
+            print("错误: --insert 参数不能与 -e/--extract 同时使用")
+            sys.exit(1)
+        if args.check_number_from is not None:
+            print("错误: --insert 参数不能与 --check-number-from/to 同时使用")
+            sys.exit(1)
+        if args.swap:
+            print("错误: --insert 参数不能与 --swap 同时使用")
+            sys.exit(1)
+        if args.insert <= 0:
+            print("错误: 插入位置必须大于0")
+            sys.exit(1)
+
+    # 执行相应功能
+    # 插入功能优先级最高
+    if args.insert is not None:
+        json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
+        output_file = args.output if args.output else json_file
+
+        print(f"正在在位置 {args.insert} 插入新模组...")
+        print(f"JSON 源文件: {json_file}")
+        print(f"JSON 输出文件: {output_file}")
+
+        success = insert_mod_at_position(json_file, args.insert, args.insert_content, output_file)
+        if success:
+            print(f"✅ 已成功在位置 {args.insert} 插入模组")
+        else:
+            print(f"❌ 插入失败")
+            sys.exit(1)
+    # --swap 优先级第二
+    elif args.swap:
         json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
 
         # 如果同时使用 -w，-o 参数指向的是 markdown 文件，不是 JSON 文件
@@ -587,6 +714,20 @@ def main():
         success = check_number_range(json_file, args.check_number_from, args.check_number_to)
 
         if not success:
+            sys.exit(1)
+    elif args.extract:
+        input_file = args.input if args.input else DEFAULT_MODLIST
+        output_file = args.output if args.output else DEFAULT_MODLIST_JSON
+
+        print(f"正在提取表格数据...")
+        print(f"MD 源文件: {input_file}")
+        print(f"JSON 输出文件: {output_file}")
+
+        success = extract_table_to_json(input_file, output_file)
+        if success:
+            print(f"✅ 已成功提取表格数据到 {output_file}")
+        else:
+            print(f"❌ 提取失败")
             sys.exit(1)
     else:
         parser.print_help()

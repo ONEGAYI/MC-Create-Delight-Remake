@@ -13,6 +13,9 @@
     ```
 4. 最后再次使用compare脚本检查
 
+## 注意事项
+- `CLAUDE.md`, 模组列表的更新提交时只需说明更新了相关文档(文档名称)即可，不需要完整列出具体改动
+
 ## 可用工具
 注意: 这些工具都位于`.claude\skills\search-mods-info\scripts`
 
