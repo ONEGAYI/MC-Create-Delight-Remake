@@ -1,5 +1,3 @@
-**建档情况** 210 / 340
-
 <mod-table>
 
 编号 | 名称 | 环境 | 标签 | 描述
@@ -274,75 +272,75 @@
 268|radium-mc1.20.1-0.12.4+git.26c9d8e| 双端类 | #性能优化 | Lithium模组的Forge非官方分支，优化游戏性能
 269|refurbished_furniture-forge-1.20.1-1.0.14| 双端类 | #装饰与建筑 | MrCrayfish家具模组的重制版，添加新家具
 270|renderjs-forge-2001.2.1| 客户端 | #库与依赖 | KubeJS的渲染支持库，用于绘制HUD和物品渲染
-271| resourcefulconfig-forge-1.20.1-2.1.3 |  |  | 
-272| resourcefullib-forge-1.20.1-2.1.29 |  |  | 
-273| Resourcify (1.20.1-forge)-1.7.4 |  |  | 
-274| rhino-forge-2001.2.3-build.10 |  |  | 
-275| ritchiesprojectilelib-2.1.0+mc.1.20.1-forge |  |  | 
-276| RunicLib-forge-1.20.1-4.3.4 |  |  | 
-277| screenshot_viewer-1.3.2-forge-mc1.20.1 |  |  | 
-278| Searchables-forge-1.20.1-1.0.3 |  |  | 
-279| seasonals-1.20.1-5.0.2 |  |  | 
-280| seasonhud-forge-1.20.1-1.13.10 |  |  | 
-281| servercore-forge-1.5.2+1.20.1 |  |  | 
-282| shadowizardlib-1.20.1-1.2.5 |  |  | 
-283| ShoulderSurfing-Forge-1.20.1-4.14.1 |  |  | 
-284| silentsdelight-forge-1.0.1-1.20.1 |  |  | 
-285| SimpleBackups-1.20.1-3.1.16 |  |  | 
-286| skinlayers3d-forge-1.9.0-mc1.20.1 |  |  | 
-287| smsn-forge-1.2.9-1.20.1 |  |  | 
-288| sodiumextras-forge-1.0.7-1.20.1 |  |  | 
-289| solapplepie-1.20.1-2.3.0 |  |  | 
-290| solcarrot-1.20.1-1.15.1 |  |  | 
-291| some-assembly-required-1.20.1-4.2.1 |  |  | 
-292| sophisticatedbackpacks-1.20.1-3.23.26.1315 |  |  | 
-293| sophisticatedbackpackscreateintegration-1.20.1-0.1.3.11 |  |  | 
-294| sophisticatedcore-1.20.1-1.2.83.1111 |  |  | 
-295| soul-fire-d-forge-1.20.1-4.0.11 |  |  | 
-296| spark-1.10.53-forge |  |  | 
-297| supermartijn642configlib-1.1.8-forge-mc1.20 |  |  | 
-298| supermartijn642corelib-1.1.18-forge-mc1.20.1 |  |  | 
-299| supplementaries-1.20-3.1.37 |  |  | 
-300| tacz-1.20.1-1.1.4-hotfix-all |  |  | 
-301| taczaddon-1.20.1-1.1.4-for1.1.4 |  |  | 
-302| tectonic-3.0.12-forge-1.20.1 |  |  | 
-303| tenshilib-1.20.1-1.7.6-forge |  |  | 
-304| Terralith_1.20.x_v2.5.4 |  |  | 
-305| tetra-1.20.1-6.11.0 |  |  | 
-306| tetracelium-1.20.1-1.3.1 |  |  | 
-307| tetracompat-1.0.0-all |  |  | 
-308| tetratic-combat-expanded-1.20-2.8.3 |  |  | 
-309| the_bumblezone-7.8.2+1.20.1-forge |  |  | 
-310| Tips-Forge-1.20.1-12.1.8 |  |  | 
-311| titanium-1.20.1-3.8.32 |  |  | 
-312| torchmaster-20.1.9 |  |  | 
-313| totw_modded-forge-1.20.1-1.0.6 |  |  | 
-314| Towns-and-Towers-1.12-Fabric+Forge |  |  | 
-315| traderefresh-2.4.5 |  |  | 
-316| trailandtales_delight-1.3-all |  |  | 
-317| trashcans-1.0.18b-forge-mc1.20 |  |  | 
-318| trashslot-forge-1.20-15.1.2 |  |  | 
-319| TravelersTitles-1.20-Forge-4.0.2 |  |  | 
-320| vanillin-forge-1.20.1-1.1.3 |  |  | 
-321| vintage_kubejs-1.20.1-1.0.0rc-2 |  |  | 
-322| vintagedelight-0.1.6 |  |  | 
-323| vintageimprovements-1.20.1-0.3.5.0 |  |  | 
-324| visual_keybinder-1.20.1 - 0.1.7 |  |  | 
-325| vvaddon-1.20.1-alpha3.0.1 |  |  | 
-326| watut-forge-1.20.1-1.2.3 |  |  | 
-327| waystones-forge-1.20.1-14.1.17 |  |  | 
-328| world_preview-forge-1.20.1-1.3.1 |  |  | 
-329| Xaeros_Minimap_25.2.10_Forge_1.20 |  |  | 
-330| xaeros_waystones_compability-1.0 |  |  | 
-331| XaerosWorldMap_1.39.12_Forge_1.20 |  |  | 
-332| YeetusExperimentus-Forge-2.3.1-build.6+mc1.20.1 |  |  | 
-333| yet_another_config_lib_v3-3.6.6+1.20.1-forge |  |  | 
-334| youkaishomecoming-2.4.16 |  |  | 
-335| YungsApi-1.20-Forge-4.0.6 |  |  | 
-336| YungsBetterEndIsland-1.20-Forge-2.0.6 |  |  | 
-337| YungsBetterMineshafts-1.20-Forge-4.0.4 |  |  | 
-338| YungsBetterWitchHuts-1.20-Forge-3.0.3 |  |  | 
-339| YungsExtras-1.20-Forge-4.0.3 |  |  | 
-340| Zeta-1.0-30 |  |  |
+271|resourcefulconfig-forge-1.20.1-2.1.3| 双端类 | #库与依赖 | 制作跨平台配置文件的模组库
+272|resourcefullib-forge-1.20.1-2.1.29| 双端类 | #库与依赖 | 为其他模组提供底层支持和通用功能库
+273|Resourcify (1.20.1-forge)-1.7.4| 客户端 | #界面增强 | 游戏内资源包、数据包和着色器浏览器及更新器
+274|rhino-forge-2001.2.3-build.10| 双端类 | #库与依赖 | JavaScript脚本引擎支持库（KubeJS相关）
+275|ritchiesprojectilelib-2.1.0+mc.1.20.1-forge| 双端类 | #库与依赖 | 弹射物功能扩展库
+276|RunicLib-forge-1.20.1-4.3.4| 双端类 | #库与依赖 | Rune系列模组核心库
+277|screenshot_viewer-1.3.2-forge-mc1.20.1| 客户端 | #界面增强 | 游戏内截图查看器
+278|Searchables-forge-1.20.1-1.0.3| 客户端 | #界面增强 | 容器物品搜索功能
+279|seasonals-1.20.1-5.0.2| 服务端类 | #世界扩展 | 添加四季变化系统，影响植被和天气
+280|seasonhud-forge-1.20.1-1.13.10| 客户端 | #界面增强 | 显示当前季节和剩余时间的小UI
+281|servercore-forge-1.5.2+1.20.1| 服务端类 | #性能优化 | 优化服务端性能，减少卡顿和延迟
+282|shadowizardlib-1.20.1-1.2.5| 双端类 | #库与依赖 | 提供API支持，作为其他模组的依赖库
+283|ShoulderSurfing-Forge-1.20.1-4.14.1| 客户端 | #界面增强 | 改进第三人称视角，提供更多视角选项
+284|silentsdelight-forge-1.0.1-1.20.1| 双端类 | #食物与农业 | 扩展农夫乐事，添加新食物和厨具
+285|SimpleBackups-1.20.1-3.1.16| 服务端类 | #辅助工具 | 自动备份服务器世界，提供备份管理
+286|skinlayers3d-forge-1.9.0-mc1.20.1| 客户端 | #界面增强 | 将玩家的皮肤第二层渲染为3D效果
+287|smsn-forge-1.2.9-1.20.1| 客户端 | #辅助工具 | 阻止模组网络连接，防止加载缓慢或崩溃
+288|sodiumextras-forge-1.0.7-1.20.1| 客户端 | #性能优化 | Sodium的附加功能模组，添加更多渲染选项
+289|solapplepie-1.20.1-2.3.0| 双端类 | #食物与农业 | 奖励玩家制作大型多样化餐食
+290|solcarrot-1.20.1-1.15.1| 双端类 | #食物与农业 | 通过食用不同食物永久增加最大生命值
+291|some-assembly-required-1.20.1-4.2.1| 双端类 | #食物与农业 | 让玩家可以设计和制作自己的三明治
+292|sophisticatedbackpacks-1.20.1-3.23.26.1315| 双端类 | #辅助工具 | 可放置、升级和定制的高级背包模组
+293|sophisticatedbackpackscreateintegration-1.20.1-0.1.3.11| 双端类 | #整合与联动[Sophisticated Backpacks & Create] | 让高级背包能在Create机械装置中使用
+294|sophisticatedcore-1.20.1-1.2.83.1111| 双端类 | #库与依赖 | Sophisticated系列模组的核心库
+295|soul-fire-d-forge-1.20.1-4.0.11| 双端类 | #魔法与特殊 | 增强灵魂火的功能，添加新的火焰效果
+296|spark-1.10.53-forge| 双端类 | #性能优化 | Minecraft性能分析工具，用于客户端和服务端
+297|supermartijn642configlib-1.1.8-forge-mc1.20| 双端类 | #库与依赖 | SuperMartijn642的配置文件库
+298|supermartijn642corelib-1.1.18-forge-mc1.20.1| 双端类 | #库与依赖 | SuperMartijn642的核心库，提供基础实现
+299|supplementaries-1.20-3.1.37| 双端类 | #装饰与建筑 | 添加罐子、指示牌、水龙头等装饰和自动化物品
+300|tacz-1.20.1-1.1.4-hotfix-all| 双端类 | #装备与战斗 | 添加各种现代枪械的武器模组
+301|taczaddon-1.20.1-1.1.4-for1.1.4| 双端类 | #装备与战斗 | TACZ枪械模组的扩展插件，提供额外的枪械配件和改造支持
+302|tectonic-3.0.12-forge-1.20.1| 服务端 | #世界扩展 | 革命性的世界生成模组，创造大陆级地形、巨大山脉、地下河流和深邃海洋
+303|tenshilib-1.20.1-1.7.6-forge| 双端类 | #库与依赖 | 为开发者提供的库模组，包含实体动画系统、武器AOE攻击工具和实用方法
+304|Terralith_1.20.x_v2.5.4| 服务端 | #世界扩展 | 添加95+新生物群系，更新所有原版生物群系，包含峡谷、浮岛、深海沟等地形
+305|tetra-1.20.1-6.11.0| 双端类 | #装备与战斗 | 模块化工具武器系统，通过工作台创建可定制的装备，结合探索与科技元素
+306|tetracelium-1.20.1-1.3.1| 双端类 | #库与依赖 | Tetra官方兼容性模组，支持将其他模组物品转换为Tetra物品，并添加新材料支持
+307|tetracompat-1.0.0-all| 双端类 | #库与依赖 | 增强Tetra与其他模组的兼容性，支持多种第三方模组的Tetra集成
+308|tetratic-combat-expanded-1.20-2.8.3| 双端类 | #装备与战斗 | Tetra与Better Combat的兼容模组，为模块化武器提供增强的战斗系统支持
+309|the_bumblezone-7.8.2+1.20.1-forge| 双端类 | #世界扩展 | 蜜蜂维度模组，通过投掷末影珍珠到蜂巢进入，充满蜜蜂相关方块、结构和独特装备
+310|Tips-Forge-1.20.1-12.1.8| 客户端 | #界面增强 | 在游戏加载界面显示实用提示，支持模组包和模组添加自定义提示内容
+311|titanium-1.20.1-3.8.32| 双端类 | #库与依赖 | HRZN工作室的库模组，为horizon模组提供共享代码
+312|torchmaster-20.1.9| 双端类 | #辅助工具 | 控制怪物生成的特殊火把，添加巨型火把阻止敌对生物生成
+313|totw_modded-forge-1.20.1-1.0.6| 双端类 | #世界扩展 | 受塞尔达传说启发的塔楼结构，在多维度生成高塔
+314|Towns-and-Towers-1.12-Fabric+Forge| 服务端 | #世界扩展 | 新增50多种村庄结构，兼容各地形生成模组
+315|traderefresh-2.4.5| 服务端 | #辅助工具 | 刷新村民交易内容，帮助快速获得更好交易组合
+316|trailandtales_delight-1.3-all| 双端类 | #食物与农业 | 为农夫乐事添加1.20更新相关的新食物
+317|trashcans-1.0.18b-forge-mc1.20| 双端类 | #辅助工具 | 多种功能的垃圾桶方块，处理多余物品、液体和能量
+318|trashslot-forge-1.20-15.1.2| 客户端 | #界面增强 | 在物品栏界面添加垃圾槽，方便删除不需要的物品
+319|TravelersTitles-1.20-Forge-4.0.2| 客户端 | #界面增强 | 进入生物群系和维度时显示RPG风格标题
+320|vanillin-forge-1.20.1-1.1.3| 双端类 | #库与依赖 | 花之密语模组的库模组，提供共享代码支持
+321|vintage_kubejs-1.20.1-1.0.0rc-2| 双端类 | #辅助工具 | 为复古改进添加KubeJS脚本支持，允许自定义配方
+322|vintagedelight-0.1.6| 双端类 | #食物与农业 | 农民乐事扩展，添加腌制和奶酪制作机制
+323|vintageimprovements-1.20.1-0.3.5.0| 双端类 | #工业自动化 | Create模组扩展，添加新机器、材料和化学元素
+324|visual_keybinder-1.20.1 - 0.1.7| 客户端 | #界面增强 | 可视化按键绑定工具，帮助直观管理和配置快捷键
+325|vvaddon-1.20.1-alpha3.0.1| 双端类 | #整合与联动 | Valkyrien Skies 2扩展，添加Create兼容和后坐力支持
+326|watut-forge-1.20.1-1.2.3| 双端类 | #辅助工具 | 显示玩家状态的视觉化工具
+327|waystones-forge-1.20.1-14.1.17| 双端类 | #交通与运输 | 快速传送系统
+328|world_preview-forge-1.20.1-1.3.1| 客户端 | #辅助工具 | 世界种子预览工具
+329|Xaeros_Minimap_25.2.10_Forge_1.20| 客户端 | #界面增强 | 界面小地图显示
+330|xaeros_waystones_compability-1.0| 双端类 | #整合与联动 | 传送石与小地图联动
+331|XaerosWorldMap_1.39.12_Forge_1.20| 客户端 | #界面增强 | 全屏世界地图显示
+332|YeetusExperimentus-Forge-2.3.1-build.6+mc1.20.1| 客户端 | #辅助工具 | 禁用实验性警告弹窗
+333|yet_another_config_lib_v3-3.6.6+1.20.1-forge| 双端类 | #库与依赖 | 模组配置界面库
+334|youkaishomecoming-2.4.16| 双端类 | #食物与农业, #世界扩展 | 日式食物与东方内容
+335|YungsApi-1.20-Forge-4.0.6| 双端类 | #库与依赖 | YUNG模组核心库
+336|YungsBetterEndIsland-1.20-Forge-2.0.6| 服务端 | #世界扩展 | 末地岛屿改选
+337|YungsBetterMineshafts-1.20-Forge-4.0.4| 服务端 | #世界扩展 | 废弃矿洞改进
+338|YungsBetterWitchHuts-1.20-Forge-3.0.3| 服务端 | #世界扩展 | 女巫小屋改进
+339|YungsExtras-1.20-Forge-4.0.3| 服务端 | #世界扩展 | 额外小型结构
+340|Zeta-1.0-30| 双端类 | #库与依赖 | 模块化模组框架库
 
 </mod-table>
