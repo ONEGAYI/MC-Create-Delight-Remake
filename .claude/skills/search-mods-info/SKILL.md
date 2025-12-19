@@ -16,20 +16,3 @@ allowed-tools: Write, Edit
 
 完成 mod-list.md 的更新后，请使用 `scripts/compare_modlist.py -c` 来确保准确无误
 
-## 可以使用的工具
-1. `scripts/classify_statistics.py`
-   - 分类统计脚本
-   - 统计新分类体系中各分类的模组数量分布
-
-2. `scripts/update_modlist_numbers.py`
-   - 模组列表行号更新脚本
-   - 自动为mods-list.md中`<mod-table>`标签内的表格更新行号
-
-3. `scripts/compare_modlist.py`
-   - 模组列表对比脚本
-   > options:
-   >    -h, --help            show this help message and exit
-   >    -n, --number NUMBER   显示N个模组名称（从起始位置开始）
-   >    -c, --compare COMPARE
-   >                          比较N个模组的一致性（从起始位置开始）
-   >    -s, --start START     起始位置（从1开始，默认为1）

@@ -442,6 +442,11 @@ def main():
   %(prog)s --swap "[1-30, 10-9]"        # 交换多对模组编号
   %(prog)s --swap "[1-30]" -w           # 交换并自动更新markdown
   %(prog)s --swap "[1-30]" -j custom.json -o output.json  # 使用自定义文件
+
+⚠️  重要提示:
+  - 使用 --swap 参数时，如果不指定 -j 输出文件，默认不会覆盖源JSON文件
+  - 多次swap操作需要指定 -j 参数覆盖源文件，否则每次swap都基于原始数据
+  - 推荐做法: --swap "[1-30, 10-9]" -j source.json -o source.json
         """
     )
 
@@ -457,7 +462,7 @@ def main():
     parser.add_argument('-j', '--json-file', type=str,
                         help=f'JSON文件路径 (用于-w或检查模式，默认: {DEFAULT_MODLIST_JSON})')
     parser.add_argument('--swap', type=str,
-                        help='交换指定编号的模组，格式："[1-30, 10-9]" (支持多对交换)')
+                        help='交换指定编号的模组，格式："[1-30, 10-9]" (支持多对交换)。注意：默认不会覆盖源JSON文件，需配合-j参数')
     parser.add_argument('--check-number-from', type=int,
                         help='检查编号范围的起始编号')
     parser.add_argument('--check-number-to', type=int,
@@ -561,6 +566,20 @@ def main():
 
         # 如果有失败的交换，退出码为1
         if failed_swaps:
+            sys.exit(1)
+    elif args.write:
+        json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
+        output_file = args.output if args.output else DEFAULT_MODLIST
+
+        print(f"正在将 JSON 数据写入 markdown 文件...")
+        print(f"JSON 源文件: {json_file}")
+        print(f"MD 输出文件: {output_file}")
+
+        success = json_to_md(json_file, output_file)
+        if success:
+            print(f"✅ 已成功将 JSON 数据写入 {output_file}")
+        else:
+            print(f"❌ 写入失败")
             sys.exit(1)
     elif args.check_number_from is not None:
         json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON

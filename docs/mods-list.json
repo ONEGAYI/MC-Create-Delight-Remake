@@ -15,14 +15,14 @@
       "description": "联动Team Abnormals的模组与农夫乐事"
     },
     {
-      "number": 4,
+      "number": 3,
       "name": "Ad-Astra-Giselle-Addon-forge-1.20.1-6.20",
       "env": "双端类",
       "tags": "#工业自动化, #整合与联动[Ad Astra & Giselle]",
       "description": "Ad Astra扩展，添加便利物品和兼容性"
     },
     {
-      "number": 3,
+      "number": 4,
       "name": "ad_astra-forge-1.20.1-1.15.20",
       "env": "双端类",
       "tags": "#交通与运输, #工业自动化",
@@ -43,14 +43,14 @@
       "description": "美化进度弹窗，用发光窗口取代默认提示"
     },
     {
-      "number": 8,
+      "number": 7,
       "name": "AE2-Things-1.2.1",
       "env": "双端类",
       "tags": "#工业自动化, #整合与联动[AE2]",
       "description": "AE2扩展，添加额外功能和物品"
     },
     {
-      "number": 7,
+      "number": 8,
       "name": "ae2ct-1.20.1-1.1.0",
       "env": "双端类",
       "tags": "#工业自动化, #整合与联动[AE2 & Create Tech]",
