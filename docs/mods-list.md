@@ -2,16 +2,16 @@
 
 <mod-table>
 
-编号 | 名称 | 环境 | 标签 | 描述 |
-:---|:---:|:---:|:---:|:---:|
+编号 | 名称 | 环境 | 标签 | 描述
+:---|:---:|:---:|:---:|:---:
 1| 0World2Create-Universal-1.19-1.20.X-1.0.0 | 客户端 | #工业自动化 | 修复旁观模式下生物抽搐问题
 2| abnormals_delight-1.20.1-5.0.0 | 双端类 | #食物与农业, #整合与联动[Team Abnormals & Farmer's Delight] | 联动Team Abnormals的模组与农夫乐事
-4| Ad-Astra-Giselle-Addon-forge-1.20.1-6.20 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Giselle] | Ad Astra扩展，添加便利物品和兼容性
 3| ad_astra-forge-1.20.1-1.15.20 | 双端类 | #交通与运输, #工业自动化 | 星际探索科技模组，可建造火箭和空间站
+4| Ad-Astra-Giselle-Addon-forge-1.20.1-6.20 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Giselle] | Ad Astra扩展，添加便利物品和兼容性
 5| adtetra-2.1.0 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Tetra] | 允许使用Ad Astra材料制作Tetra工具
 6| AdvancementPlaques-1.20.1-forge-1.6.9 | 客户端 | #界面增强 | 美化进度弹窗，用发光窗口取代默认提示
-8| AE2-Things-1.2.1 | 双端类 | #工业自动化, #整合与联动[AE2] | AE2扩展，添加额外功能和物品
 7| ae2ct-1.20.1-1.1.0 | 双端类 | #工业自动化, #整合与联动[AE2 & Create Tech] | AE2扩展，连接终端功能增强
+8| AE2-Things-1.2.1 | 双端类 | #工业自动化, #整合与联动[AE2] | AE2扩展，添加额外功能和物品
 9| ae2wtlib-15.2.3-forge | 双端类 | #库与依赖, #工业自动化, #整合与联动[AE2 & Wireless Terminal] | AE2无线终端库，为其他模组提供支持
 10| alex_cave_addon-5.1.0-1.20.1 | 双端类 | #世界扩展, #整合与联动[Alex's Caves] | Alex's Caves扩展，增强Boss行为
 11| AlexCaves-Delight-Addon-1.0 | 双端类 | #食物与农业, #整合与联动[Alex's Caves & Farmer's Delight] | Alex's Caves与农夫乐事联动食物
@@ -19,38 +19,38 @@
 13| alexscavestrimmed-2.0.0 | 双端类 | #世界扩展 | Alex's Caves的轻量优化版本
 14| alexsdelight-1.5 | 双端类 | #食物与农业, #整合与联动[Alex's Mobs & Farmer's Delight] | Alex's Mobs与农夫乐事联动食物
 15| alexsmobs-1.22.9 | 双端类 | #世界扩展 | 添加大量新生物和相关物品
-16| alltheleaks-1.0.2+1.20.1-forge| 双端类 | #性能优化 | 修复各种内存泄漏问题，提升游戏性能
+16| alltheleaks-1.0.2+1.20.1-forge | 双端类 | #性能优化 | 修复各种内存泄漏问题，提升游戏性能
 17| AlwaysEat-5.2 | 客户端 | #辅助工具 | 允许在饥饿值满时继续吃东西
 18| amendments-1.20-2.2.1 | 双端类 | #辅助工具 | 增强原版游戏体验，添加新特性
 19| ApothicAttributes-1.20.1-1.3.3 | 双端类 | #装备与战斗 | 为装备添加额外属性槽位
-20| appleskin-forge-mc1.20.1-2.5.1| 客户端 | #界面增强 | 显示详细的饥饿值和饱和度信息
-21| appliedenergistics2-forge-15.4.8| 双端类 | #工业自动化 | 数字物品存储系统，提供高效存储方案
+20| appleskin-forge-mc1.20.1-2.5.1 | 客户端 | #界面增强 | 显示详细的饥饿值和饱和度信息
+21| appliedenergistics2-forge-15.4.8 | 双端类 | #工业自动化 | 数字物品存储系统，提供高效存储方案
 22| architectury-9.2.14-forge | 双端类 | #库与依赖 | 跨模组API，提供模组间兼容性支持
 23| art_of_forging-1.8.4 | 双端类 | #装备与战斗 | 增强锻造系统，添加高级锻造功能
 24| astikorcarts-1.20.1-1.1.1 | 双端类 | #交通与运输 | 添加多种装饰性和功能性马车
 25| AttributeFix-Forge-1.20.1-17.0.3 | 双端类 | #装备与战斗 | 修复属性计算问题，提升平衡性
 26| bakeries | 双端类 | #食物与农业 | 添加烘焙食物和烹饪机制
-27| balm-forge-1.20.1-7.3.34-all| 双端类 | #库与依赖 | 跨平台模组API库，为其他模组提供支持
+27| balm-forge-1.20.1-7.3.34-all | 双端类 | #库与依赖 | 跨平台模组API库，为其他模组提供支持
 28| BeeFix | 双端类 | #辅助工具 | 修复蜜蜂相关问题的模组
 29| BetterAdvancements-NeoForge | 客户端 | #界面增强 | 美化进度界面显示
-30| bettercombat-forge-1.8.6+1.20.1| 双端类 | #装备与战斗 | 改进战斗系统
-31| BetterCompatibilityChecker-forge-4.0.8+mc1.20.1| 客户端 | #辅助工具 | 检查模组兼容性
+30| bettercombat-forge-1.8.6+1.20.1 | 双端类 | #装备与战斗 | 改进战斗系统
+31| BetterCompatibilityChecker-forge-4.0.8+mc1.20.1 | 客户端 | #辅助工具 | 检查模组兼容性
 32| BetterF3-7.0.2-Forge | 客户端 | #界面增强 | 增强调试信息显示
 33| biomemusic | 客户端 | #界面增强, #世界扩展 | 根据生物群系播放音乐
 34| biomereplacer-2.1-hippo | 双端类 | #世界扩展 | 替换和调整生物群系
 35| blueprint | 双端类 | #库与依赖 | Team Abnormals模组的共享库
-36| blueprintfix-forge-1.0.0-1.20.1| 双端类 | #库与依赖 | 修复Blueprint和Continuity在Forge上的材质问题
-37| Bookshelf-Forge-1.20.1-20.2.13| 双端类 | #库与依赖 | 提供代码、框架和实用工具的库模组，改善Minecraft内容创建体验
-38| botarium-forge-1.20.1-2.3.4| 双端类 | #库与依赖 | 跨平台API，简化物品、流体和能量的传输与存储
-39| Bountiful-6.0.4+1.20.1-forge| 双端类 | #辅助工具 | 添加赏金板，完成收集方块和物品的任务获得奖励
+36| blueprintfix-forge-1.0.0-1.20.1 | 双端类 | #库与依赖 | 修复Blueprint和Continuity在Forge上的材质问题
+37| Bookshelf-Forge-1.20.1-20.2.13 | 双端类 | #库与依赖 | 提供代码、框架和实用工具的库模组，改善Minecraft内容创建体验
+38| botarium-forge-1.20.1-2.3.4 | 双端类 | #库与依赖 | 跨平台API，简化物品、流体和能量的传输与存储
+39| Bountiful-6.0.4+1.20.1-forge | 双端类 | #辅助工具 | 添加赏金板，完成收集方块和物品的任务获得奖励
 40| BrewinAndChewin | 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | Farmer's Delight扩展模组，添加酿酒桶和发酵机制
 41| butchercraft | 双端类 | #食物与农业 | 屠宰动物获取更多肉类和资源，注重卫生安全
-42| caelus-forge-3.2.0+1.20.1| 双端类 | #交通与运输 | 将鞘翅飞行机制抽象为通用属性，供开发者使用
-43| carryon-forge-1.20.1-2.1.2.7| 双端类 | #辅助工具 | 允许玩家拿起方块实体和生物并携带移动
+42| caelus-forge-3.2.0+1.20.1 | 双端类 | #交通与运输 | 将鞘翅飞行机制抽象为通用属性，供开发者使用
+43| carryon-forge-1.20.1-2.1.2.7 | 双端类 | #辅助工具 | 允许玩家拿起方块实体和生物并携带移动
 44| casualness_delight | 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | Farmer's Delight扩展，添加欧式美食和中式料理
-45| catalogue-forge-1.20.1-1.8.0| 双端类 | #辅助工具 | 替换Forge模组列表菜单，提供现代化界面和更好的搜索功能
+45| catalogue-forge-1.20.1-1.8.0 | 双端类 | #辅助工具 | 替换Forge模组列表菜单，提供现代化界面和更好的搜索功能
 46| cavedelight | 双端类 | #食物与农业, #整合与联动[Farmer's Delight & Alex's Caves] | Farmer's Delight与Alex's Caves的联动模组，添加洞穴主题食物
-47| charmofundying-forge-6.5.0+1.20.1| 双端类 | #辅助工具, #魔法与特殊 | 让不死图腾可放置在饰品槽中，无需手持即可生效
+47| charmofundying-forge-6.5.0+1.20.1 | 双端类 | #辅助工具, #魔法与特殊 | 让不死图腾可放置在饰品槽中，无需手持即可生效
 48| chat_heads | 客户端类 | #界面增强 | 在聊天消息旁显示玩家头像，便于识别聊天者身份
 49| chefs-delight | 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | 为Farmer's Delight添加厨师和厨师村民职业及交易
 50| citadel | 双端类 | #库与依赖 | Alex's Mods系列的轻量级库模组，提供基础功能支持
