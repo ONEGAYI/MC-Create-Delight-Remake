@@ -3,6 +3,8 @@ import sqlite3
 import hashlib
 import argparse
 import sys
+import re
+import shutil
 from datetime import datetime
 
 # ================= 配置区域 =================
@@ -400,8 +402,6 @@ class AssetManager:
                 self.cursor.execute(f"SELECT sha, filename, {field}, filepath FROM files WHERE {field} IS NOT NULL AND {field} != ''")
                 all_rows = self.cursor.fetchall()
 
-                # 在Python中进行正则匹配（SQLite默认可能没有启用REGEXP）
-                import re
                 pattern = re.compile(target, re.IGNORECASE if not target.isupper() else 0)
                 matched_rows = []
 
@@ -463,6 +463,168 @@ class AssetManager:
         except Exception as e:
             print(f"❌ 搜索失败: {e}")
 
+    def backup_database(self, backup_dir=None):
+        """
+        [功能 8] 备份数据库
+        将当前数据库备份到指定目录
+        """
+        try:
+            # 获取数据库文件路径
+            db_abs_path = os.path.abspath(self.db_path)
+            db_dir = os.path.dirname(db_abs_path)
+            db_name = os.path.basename(db_abs_path).replace('.db', '')
+
+            # 确定备份目录
+            if backup_dir is None:
+                backup_dir = os.path.join(db_dir, 'bak')
+
+            # 创建备份目录
+            os.makedirs(backup_dir, exist_ok=True)
+
+            # 生成备份文件名（带时间戳）
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            backup_filename = f"{db_name}_{timestamp}.db"
+            backup_path = os.path.join(backup_dir, backup_filename)
+
+            # 执行备份
+            shutil.copy2(db_abs_path, backup_path)
+
+            print(f"✅ 数据库已备份到: {backup_path}")
+
+            # 列出所有备份文件
+            backups = self.list_backups(backup_dir)
+            print(f"📁 当前共有 {len(backups)} 个备份文件")
+
+            return backup_path
+
+        except Exception as e:
+            print(f"❌ 备份失败: {e}")
+            return None
+
+    def list_backups(self, backup_dir=None):
+        """
+        列出所有备份文件
+        按时间戳排序，最新的在前
+        """
+        try:
+            # 获取数据库文件路径
+            db_abs_path = os.path.abspath(self.db_path)
+            db_dir = os.path.dirname(db_abs_path)
+            db_name = os.path.basename(db_abs_path).replace('.db', '')
+
+            # 确定备份目录
+            if backup_dir is None:
+                backup_dir = os.path.join(db_dir, 'bak')
+
+            # 如果备份目录不存在，返回空列表
+            if not os.path.exists(backup_dir):
+                return []
+
+            # 查找所有备份文件
+            backups = []
+            pattern = f"{db_name}_*.db"
+
+            for filename in os.listdir(backup_dir):
+                if filename.startswith(db_name + "_") and filename.endswith('.db'):
+                    filepath = os.path.join(backup_dir, filename)
+                    # 提取时间戳
+                    timestamp_part = filename[len(db_name)+1:-3]  # 去掉前缀和.db
+                    try:
+                        # 尝试解析时间戳
+                        timestamp = datetime.strptime(timestamp_part, '%Y%m%d_%H%M%S')
+                        backups.append({
+                            'path': filepath,
+                            'filename': filename,
+                            'timestamp': timestamp,
+                            'size': os.path.getsize(filepath)
+                        })
+                    except ValueError:
+                        # 如果时间戳格式不对，仍然保留但排在后面
+                        backups.append({
+                            'path': filepath,
+                            'filename': filename,
+                            'timestamp': None,
+                            'size': os.path.getsize(filepath)
+                        })
+
+            # 按时间戳排序，有时间戳的在前，时间戳越新越前
+            backups.sort(key=lambda x: (x['timestamp'] is None, x['timestamp']), reverse=True)
+
+            return backups
+
+        except Exception as e:
+            print(f"❌ 列出备份失败: {e}")
+            return []
+
+    def restore_database(self, backup_dir=None, backup_file=None):
+        """
+        [功能 9] 恢复数据库
+        从备份文件恢复数据库
+        """
+        try:
+            # 获取数据库文件路径
+            db_abs_path = os.path.abspath(self.db_path)
+
+            # 确定备份目录
+            if backup_dir is None:
+                db_dir = os.path.dirname(db_abs_path)
+                backup_dir = os.path.join(db_dir, 'bak')
+
+            # 如果没有指定备份文件，选择最新的
+            if backup_file is None:
+                backups = self.list_backups(backup_dir)
+                if not backups:
+                    print("❌ 没有找到可用的备份文件")
+                    return False
+
+                backup_file = backups[0]['path']
+                print(f"📋 自动选择最新备份: {os.path.basename(backup_file)}")
+            else:
+                # 如果是文件名，拼接完整路径
+                if not os.path.isabs(backup_file):
+                    backup_file = os.path.join(backup_dir, backup_file)
+
+                if not os.path.exists(backup_file):
+                    print(f"❌ 备份文件不存在: {backup_file}")
+                    return False
+
+            # 关闭当前数据库连接
+            if self.conn:
+                self.conn.close()
+                self.conn = None
+
+            # 执行恢复
+            shutil.copy2(backup_file, db_abs_path)
+
+            # 重新建立数据库连接
+            self.conn = sqlite3.connect(self.db_path)
+            self.conn.row_factory = sqlite3.Row
+            self.cursor = self.conn.cursor()
+
+            print(f"✅ 数据库已从备份恢复: {backup_file}")
+
+            # 验证恢复后的数据库
+            try:
+                self.cursor.execute("SELECT COUNT(*) FROM files")
+                count = self.cursor.fetchone()[0]
+                print(f"📊 恢复完成，数据库中共有 {count} 条记录")
+            except:
+                print("⚠️ 警告：恢复后的数据库可能没有文件表，请先运行 sync 命令")
+
+            return True
+
+        except Exception as e:
+            print(f"❌ 恢复失败: {e}")
+            # 尝试重新建立连接
+            try:
+                if not self.conn:
+                    self.conn = sqlite3.connect(self.db_path)
+                    self.conn.row_factory = sqlite3.Row
+                    self.cursor = self.conn.cursor()
+            except:
+                pass
+            return False
+
 # ================= 命令行接口逻辑 =================
 def main():
     parser = argparse.ArgumentParser(description="本地文件资产管理脚本")
@@ -511,6 +673,13 @@ def main():
     parser_search.add_argument('target', type=str, help='搜索目标值')
     parser_search.add_argument('-r', '--regex', action='store_true', help='使用正则表达式模式')
 
+    # 10. Backup: 备份和恢复数据库
+    parser_backup = subparsers.add_parser('backup', help='数据库备份和恢复')
+    backup_group = parser_backup.add_mutually_exclusive_group(required=True)
+    backup_group.add_argument('-s', '--save', action='store_true', help='保存数据库备份')
+    backup_group.add_argument('-l', '--load', action='store_true', help='从备份恢复数据库')
+    parser_backup.add_argument('-d', '--dir', type=str, default=None, help='自定义备份目录路径')
+
     args = parser.parse_args()
 
     # 初始化管理器
@@ -534,6 +703,27 @@ def main():
         manager.rename_field(args.old_name, args.new_name)
     elif args.command == 'search':
         manager.search_items(args.field, args.target, args.regex)
+    elif args.command == 'backup':
+        if args.save:
+            # 备份数据库
+            backup_path = manager.backup_database(args.dir)
+            if backup_path:
+                # 显示备份列表
+                backups = manager.list_backups(args.dir)
+                if backups:
+                    print("\n📋 所有备份文件:")
+                    for i, backup in enumerate(backups[:10], 1):  # 只显示前10个
+                        timestamp_str = backup['timestamp'].strftime('%Y-%m-%d %H:%M:%S') if backup['timestamp'] else "未知时间"
+                        size_str = f"{backup['size']/1024:.1f} KB" if backup['size'] < 1024*1024 else f"{backup['size']/1024/1024:.1f} MB"
+                        print(f"  {i}. {backup['filename']} - {timestamp_str} ({size_str})")
+                    if len(backups) > 10:
+                        print(f"  ... 还有 {len(backups)-10} 个备份")
+        elif args.load:
+            # 恢复数据库
+            success = manager.restore_database(args.dir)
+            if not success:
+                print("❌ 恢复失败")
+                sys.exit(1)
     else:
         parser.print_help()
 
