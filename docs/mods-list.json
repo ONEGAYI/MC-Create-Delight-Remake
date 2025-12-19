@@ -869,6 +869,13 @@
       "description": "基于Sodium的性能优化模组，大幅提升游戏帧率和渲染效率"
     },
     {
+      "number": 125,
+      "name": "EnchantmentDescriptions-Forge-1.20.1-17.1.19",
+      "env": "客户端",
+      "tags": "#界面增强",
+      "description": "为所有附魔添加详细的中文描述，方便玩家了解附魔效果"
+    },
+    {
       "number": 126,
       "name": "endergetic-1.20.1-5.0.1",
       "env": "双端类",

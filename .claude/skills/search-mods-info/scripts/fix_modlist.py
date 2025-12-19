@@ -58,14 +58,18 @@ def extract_table_to_json(input_file=None, output_file=None):
         "mods": []
     }
 
-    # 解析表格行
+        # 解析表格行
     for line in lines:
         # 跳过空行
         if not line.strip():
             continue
 
-        # 跳过表头行
-        if any(keyword in line for keyword in ['编号', '名称', '环境', '标签', '描述', ':---']):
+        # [修复] 跳过表头行
+        # 原来的代码会导致包含"描述"、"环境"等词的正常数据行被跳过
+        # 例如编号125的描述是"为所有附魔添加详细的中文描述..."，会被误判
+        if ':---' in line:  # 跳过分割线
+            continue
+        if line.strip().startswith('编号') and '|' in line: # 跳过标题行
             continue
 
         # 分割行内容
@@ -113,6 +117,112 @@ def extract_table_to_json(input_file=None, output_file=None):
         return False
 
 
+def check_number_range(json_file, start_num, end_num):
+    """
+    检查指定范围内的编号是否在JSON中存在且内容完整
+
+    Args:
+        json_file: JSON文件路径
+        start_num: 起始编号
+        end_num: 结束编号
+
+    Returns:
+        bool: 检查是否通过（无错误时返回True）
+    """
+    # 检查JSON文件是否存在
+    if not os.path.exists(json_file):
+        print(f"错误: 找不到JSON文件 {json_file}")
+        return False
+
+    # 读取JSON文件
+    try:
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"错误: 读取JSON文件时出错 - {e}")
+        return False
+
+    # 检查JSON结构
+    if 'mods' not in data:
+        print("错误: JSON文件中缺少 'mods' 字段")
+        return False
+
+    # 创建编号到模组数据的映射
+    mod_dict = {}
+    for mod in data['mods']:
+        if 'number' in mod:
+            mod_dict[mod['number']] = mod
+
+    # 统计信息
+    total_check = end_num - start_num + 1
+    missing_numbers = []
+    incomplete_mods = []
+
+    print(f"正在检查编号范围 {start_num} 到 {end_num}...")
+    print(f"总共需要检查 {total_check} 个编号")
+
+    # 检查每个编号
+    for num in range(start_num, end_num + 1):
+        if num not in mod_dict:
+            missing_numbers.append(num)
+        else:
+            mod = mod_dict[num]
+            # 检查内容完整性
+            missing_fields = []
+
+            if not mod.get('name', '').strip():
+                missing_fields.append('名称')
+            if not mod.get('env', '').strip():
+                missing_fields.append('环境')
+            if not mod.get('tags', '').strip():
+                missing_fields.append('标签')
+            if not mod.get('description', '').strip():
+                missing_fields.append('描述')
+
+            if missing_fields:
+                incomplete_mods.append({
+                    'number': num,
+                    'name': mod.get('name', ''),
+                    'missing_fields': missing_fields
+                })
+
+    # 输出检查结果
+    print(f"\n========== 检查结果 ==========")
+    print(f"检查范围: {start_num} - {end_num}")
+    print(f"总编号数: {total_check}")
+    print(f"存在的编号: {total_check - len(missing_numbers)}")
+    print(f"缺失的编号: {len(missing_numbers)}")
+    print(f"内容不完整的编号: {len(incomplete_mods)}")
+
+    # 输出具体错误信息
+    if missing_numbers:
+        print(f"\n❌ 缺失的编号 ({len(missing_numbers)} 个):")
+        for i, num in enumerate(missing_numbers, 1):
+            print(f"  {i}. 编号 {num}: 完全缺失")
+
+    if incomplete_mods:
+        print(f"\n⚠️  内容不完整的编号 ({len(incomplete_mods)} 个):")
+        for i, mod_info in enumerate(incomplete_mods, 1):
+            num = mod_info['number']
+            name = mod_info['name'] or '(无名称)'
+            fields = ', '.join(mod_info['missing_fields'])
+            print(f"  {i}. 编号 {num} ({name}): 缺少 {fields}")
+
+    # 总结
+    success_count = total_check - len(missing_numbers) - len(incomplete_mods)
+    error_rate = ((len(missing_numbers) + len(incomplete_mods)) / total_check) * 100
+
+    print(f"\n✅ 完整的编号: {success_count} 个 ({(success_count/total_check)*100:.1f}%)")
+    print(f"❌ 错误总数: {len(missing_numbers) + len(incomplete_mods)} 个 ({error_rate:.1f}%)")
+
+    if missing_numbers or incomplete_mods:
+        print(f"\n⚠️  检查未通过，发现 {len(missing_numbers) + len(incomplete_mods)} 个问题")
+        return False
+    else:
+        print(f"\n✅ 检查通过！所有编号都存在且内容完整")
+        return True
+
+
 def main():
     """主函数 - 命令行入口"""
     parser = argparse.ArgumentParser(
@@ -123,6 +233,7 @@ def main():
   %(prog)s -e                           # 使用默认路径提取表格
   %(prog)s -e -i input.md -o out.json   # 指定输入输出文件
   %(prog)s -e -i custom.md              # 指定输入文件，使用默认输出
+  %(prog)s --check-number-from 1 --check-number-to 50    # 检查1-50号编号
         """
     )
 
@@ -133,6 +244,12 @@ def main():
                         help=f'输入的markdown文件路径 (默认: {DEFAULT_MODLIST})')
     parser.add_argument('-o', '--output', type=str,
                         help=f'输出的JSON文件路径 (默认: {DEFAULT_MODLIST_JSON})')
+    parser.add_argument('--check-number-from', type=int,
+                        help='检查编号范围的起始编号')
+    parser.add_argument('--check-number-to', type=int,
+                        help='检查编号范围的结束编号')
+    parser.add_argument('-j', '--json-file', type=str,
+                        help=f'用于检查的JSON文件路径 (默认: {DEFAULT_MODLIST_JSON})')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
 
     # 解析参数
@@ -142,6 +259,15 @@ def main():
     if len(sys.argv) == 1:
         parser.print_help()
         return
+
+    # 参数验证
+    if (args.check_number_from is not None) != (args.check_number_to is not None):
+        print("错误: --check-number-from 和 --check-number-to 必须同时提供")
+        sys.exit(1)
+
+    if args.check_number_from is not None and args.check_number_from > args.check_number_to:
+        print("错误: 起始编号不能大于结束编号")
+        sys.exit(1)
 
     # 执行相应功能
     if args.extract:
@@ -155,6 +281,13 @@ def main():
             print("表格提取完成！")
         else:
             print("表格提取失败！")
+            sys.exit(1)
+    elif args.check_number_from is not None:
+        json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
+
+        success = check_number_range(json_file, args.check_number_from, args.check_number_to)
+
+        if not success:
             sys.exit(1)
     else:
         parser.print_help()
