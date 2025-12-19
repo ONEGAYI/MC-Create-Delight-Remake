@@ -10,6 +10,7 @@ allowed-tools: Write, Edit
 ## 注意事项
 - 你应该优先使用 `exa` MCP 工具进行搜索
 - 你应该尽量调用 agent 完成搜索，并将使用 `exa` 的信息提示给他
+- 使用agent的时候，要求他只能进行搜索，并将最后结果汇报给你，最终由你进行总结更新
 
 ## 流程
 你必须先阅读 `references/how-to-search-mod-info.md` 来了解具体的搜索流程

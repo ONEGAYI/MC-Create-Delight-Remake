@@ -106,8 +106,8 @@
 100| createrailwaysnavigator-forge-1.20.1-beta-0.8.4-C6 | 客户端类 | #工业自动化 | 为Create铁路系统添加导航功能
 101| createstuffadditionsfix-forge-1.20.1-0.0.0.1 | 双端类 | #工业自动化 | 修复create-stuff-additions的一些问题
 102| createultimine-1.20.1-forge-1.1.1 | 客户端类 | #工业自动化 | 添加连锁挖矿功能，提高挖掘效率
-103| createutilities-0.3.2+1.20.1 |  |  | 
-104| CreativeCore_FORGE_v2.12.32_mc1.20.1 |  |  | 
+103|createutilities-0.3.2+1.20.1| 双端类 | #工业自动化, #交通与运输 | Create生态的扩展模组，添加虚空传输功能，可远距离传输动力、物品和流体
+104|CreativeCore_FORGE_v2.12.32_mc1.20.1| 双端类 | #库与依赖 | CreativeMD开发的核心库模组，为其他模组提供GUI-API、数据包系统等基础功能
 105| creeperoverhaul-3.0.2-forge | 双端类 | #辅助工具 | 重新设计苦力怕的外观，添加多种变种
 106| cristellib-1.1.6-forge | 双端类 | #库与依赖 | 提供核心功能库，供其他模组使用
 107| Crystal-Clear-2.0-Beta-forge | 双端类 | #装饰与建筑, #整合与联动[Create] | 为Create添加玻璃外壳和透明管道装饰
@@ -115,7 +115,7 @@
 109| CullLessLeaves-Reforged-1.20.1-1.0.5 | 客户端 | #性能优化 | 优化树叶渲染，提升9%的游戏帧率性能
 110| culturaldelights-0.16.5 | 双端类 | #食物与农业 | 添加世界各地的特色食物和农作物
 111| cupboard-1.20.1-2.7 | 双端类 | #辅助工具 | 添加可存储物品的橱柜和储物方块
-112| curios-forge-5.14.1+1.20.1 |  |  | 
+112|curios-forge-5.14.1+1.20.1| 双端类 | #库与依赖, #装备与战斗 | 灵活的配件/装备API，允许开发者添加额外的装备槽位，玩家可配置这些槽位
 113| curiouslanterns-1.20.1-1.3.7 | 双端类 | #辅助工具 | 允许将灯笼装备在腰间配件槽位，提供手持照明
 114| CustomMachinery-forge-1.20.1-0.10.7 | 双端类 | #工业自动化 | 允许创建自定义机器，支持数据和脚本配置
 115| customportalapi-0.0.1-forge-1.20 | 双端类 | #辅助工具 | 提供自定义传送门API，简化维度传送门创建
@@ -155,35 +155,35 @@
 149| forge-dungeonsdelight-1.20.1-1.2.6 | 双端类 | #食物与农业, #世界扩展, #整合与联动[Farmer's Delight] | 地牢美食，将地牢生物转化为食材，添加冒险风格食物
 150| framework-forge-1.20.1-0.7.15 | 双端类 | #库与依赖 | 框架库模组，为其他模组提供API支持和基础框架
 151| fruitsdelight-1.1.1 | 双端类 | #食物与农业 | 水果乐事，添加各种水果、果冻和果汁等食品
-152| frycooks_delight-1.20.1-1.0.1 |  |  | 
-153| ftb-chunks-forge-2001.3.6 |  |  | 
-154| ftb-essentials-forge-2001.2.3 |  |  | 
-155| ftb-library-forge-2001.2.10 |  |  | 
-156| ftb-quests-forge-2001.4.14 |  |  | 
-157| ftb-ranks-forge-2001.1.7 |  |  | 
-158| ftb-teams-forge-2001.3.1 |  |  | 
-159| ftb-ultimine-forge-2001.1.7 |  |  | 
-160| ftb-xmod-compat-forge-2.1.3 |  |  | 
-161| ftbquestlocalizer-1.20.1-forge-3.2.2 |  |  | 
-162| functionalstorage-1.20.1-1.2.13 |  |  | 
-163| GatewaysToEternity-1.20.1-4.2.6 |  |  | 
+152|frycooks_delight-1.20.1-1.0.1| 双端类 | #食物与农业 | 农夫乐事风格的油炸食物模组，添加炸鸡、炸鱼、甜甜圈等油炸食品
+153|ftb-chunks-forge-2001.3.6| 双端类 | #辅助工具, #界面增强 | FTB区块模组，允许玩家声明区块、保护建筑，并提供小地图和大地图功能
+154|ftb-essentials-forge-2001.2.3| 双端类 | #辅助工具 | FTB基础功能模组，为服务器添加大量实用的管理和便利指令
+155|ftb-library-forge-2001.2.10| 双端类 | #库与依赖 | FTB团队的库模组，为FTB系列模组提供GUI框架和通用功能支持
+156|ftb-quests-forge-2001.4.14| 双端类 | #辅助工具, #界面增强 | FTB任务系统模组，提供轻量级的团队任务管理和自定义任务功能
+157|ftb-ranks-forge-2001.1.7| 服务端 | #辅助工具 | FTB权限管理模组，提供精细的权限和等级管理系统
+158|ftb-teams-forge-2001.3.1| 服务端 | #辅助工具 | FTB团队系统模组，允许玩家创建和管理团队，支持团队协作功能
+159|ftb-ultimine-forge-2001.1.7| 双端类 | #辅助工具 | FTB连锁挖矿模组，支持大面积连锁挖掘同类型方块，提高挖矿效率
+160|ftb-xmod-compat-forge-2.1.3| 双端类 | #整合与联动 | FTB跨模组兼容性补丁，使FTB模组与其他模组更好地集成
+161|ftbquestlocalizer-1.20.1-forge-3.2.2| 双端类 | #界面增强, #辅助工具 | FTB任务本地化模组，为任务内容提供多语言支持
+162|functionalstorage-1.20.1-1.2.13| 双端类 | #工业自动化, #装饰与建筑 | 功能存储模组，提供大容量的分类存储系统和自动化存取功能
+163|GatewaysToEternity-1.20.1-4.2.6| 双端类 | #魔法与特殊, #装备与战斗 | 永恒之门模组，添加传送门系统和Boss挑战内容
 164| geckolib-forge-1.20.1-4.7.4 | 双端类 | #库与依赖 | 动画库，为实体、方块和物品提供3D动画支持
-165| Glodium-1.20-1.5-forge |  |  | 
-166| guideme-20.1.12 |  |  | 
-167| hamsters-forge-1.0.3-1.20.1 |  |  | 
-168| hotai-1.0 |  |  | 
-169| hotbath-1.20.1-2.0.1 |  |  | 
-170| hotdog_delight-0.3 |  |  | 
+165|Glodium-1.20-1.5-forge| 双端类 | #库与依赖 | Glodium库模组，为特定模组提供API支持和功能集成
+166|guideme-20.1.12| 双端类 | #界面增强 | 向导模组，提供游戏内引导和教程系统，帮助玩家学习游戏机制
+167|hamsters-forge-1.0.3-1.20.1| 双端类 | #世界扩展, #装饰与建筑 | 仓鼠模组，添加可爱的仓鼠宠物和相关的交互内容
+168|hotai-1.0| 客户端 | #界面增强 | 热AI模组，提供游戏内AI助手功能，帮助玩家解答问题
+169|hotbath-1.20.1-2.0.1| 双端类 | #食物与农业 | 热水浴模组，添加浴缸和温泉功能，提供恢复和放松效果
+170|hotdog_delight-0.3| 双端类 | #食物与农业 | 热狗乐事模组，添加各种热狗和相关食物，扩展烹饪系统
 171| iceandfire-2.1.13-1.20.1-beta-5 | 双端类 | #世界扩展, #装备与战斗, #魔法与特殊 | 冰与火，添加龙、神话生物和魔法内容
-172| Iceberg-1.20.1-forge-1.1.25 |  |  | 
-173| Icterine-forge-1.20.0-1-1.3.0 |  |  | 
-174| idas_forge-1.12.0+1.20.1 |  |  | 
-175| IMBlocker-5.3.1-forge+1.17-1.20.4 |  |  | 
-176| immersive_aircraft-1.3.3+1.20.1-forge |  |  | 
-177| immersive_paintings-0.6.8+1.20.1-forge |  |  | 
-178| improvedmobs-1.20.1-1.13.6-forge |  |  | 
-179| integrated_api-1.5.3+1.20.1-forge |  |  | 
-180| integrated_stronghold-1.1.2+1.20.1-forge |  |  | 
+172|Iceberg-1.20.1-forge-1.1.25| 双端类 | #库与依赖 | 为模组开发者提供事件、助手和实用工具的库
+173|Icterine-forge-1.20.0-1-1.3.0| 双端类 | #性能优化 | 优化成就系统特别是物品栏变化触发器
+174|idas_forge-1.12.0+1.20.1| 双端类 | #世界扩展, #装饰与建筑 | 添加详细的地牢和结构，集成多种模组方块
+175|IMBlocker-5.3.1-forge+1.17-1.20.4| 客户端 | #界面增强, #辅助工具 | 隐藏输入法，修复亚洲玩家输入法冲突问题
+176|immersive_aircraft-1.3.3+1.20.1-forge| 双端类 | #交通与运输 | 添加多种飞机，提供空中交通体验
+177|immersive_paintings-0.6.8+1.20.1-forge| 双端类 | #装饰与建筑 | 增强画框系统，支持自定义大小和资源包画
+178|improvedmobs-1.20.1-1.13.6-forge| 服务端 | #装备与战斗, #世界扩展 | 增强怪物AI，使怪物更聪明更具挑战性
+179|integrated_api-1.5.3+1.20.1-forge| 双端类 | #库与依赖 | Integrated系列模组的API库
+180|integrated_stronghold-1.1.2+1.20.1-forge| 双端类 | #世界扩展, #装饰与建筑 | 添加要塞和地下结构
 181| integrated_villages-1.3.0+1.20.1-forge | 双端类 | #世界扩展, #装饰与建筑 | 彻底改造村庄，集成装饰模组添加详细建筑
 182| interiors-0.5.6+forge-mc1.20.1-local | 客户端 | #装饰与建筑 | 添加室内装饰方块，美化建筑内部空间
 183| iris_shader_folder-1.1.1-forge | 客户端 | #界面增强, #辅助工具 | 管理和整理光影包菜单，提升选择体验
@@ -191,7 +191,7 @@
 185| ItemBorders-1.20.1-forge-1.2.2 | 客户端 | #界面增强 | 为物品栏添加彩色边框，让稀有物品更醒目
 186| ItemPhysicLite_FORGE_v1.6.6_mc1.20.1 | 客户端 | #界面增强 | 为掉落物添加物理效果，仅客户端视觉
 187| Jade-1.20.1-Forge-11.13.2 | 客户端 | #界面增强 | 方块信息显示，WAILA类模组
-188| JadeAddons-1.20.1-Forge-5.5.0 |  |  | 
+188|JadeAddons-1.20.1-Forge-5.5.0| 双端类 | #界面增强, #辅助工具 | 为Jade模组添加其他模组的集成支持
 189| Jadens-Nether-Expansion-2.3.5 | 双端类 | #世界扩展, #装饰与建筑 | 扩展下界维度，添加新内容和改进
 190| jearchaeology-1.20.1-1.0.4 | 客户端 | #辅助工具, #界面增强 | JEI插件，显示考古学相关信息
 191| jecharacters-1.20.1-forge-4.5.16 | 客户端 | #辅助工具, #界面增强 | 支持中文拼音搜索，方便中文玩家
@@ -218,62 +218,62 @@
 212| lithostitched-forge-1.20.1-1.4.11 | 双端类 | #库与依赖 | 世界生成的配置和兼容性增强库
 213| lootjs-forge-1.20.1-2.13.0 | 双端类 | #辅助工具, #整合与联动[KubeJS] | 用KubeJS修改战利品系统的模组
 214| lootr-forge-1.20-0.7.35.92 | 双端类 | #辅助工具 | 多人游戏中的实例化战利品箱模组
-215| lucent-1.20.1-1.5.5 |  |  | 
-216| luncheon-meat-s-delight-1.0.4-forge-1.20.1 |  |  | 
-217| Lychee-1.20.1-Forge-5.1.21 |  |  | 
-218| man_of_many_planes-0.2.0+1.20.1-forge |  |  | 
-219| mcwifipnp-1.7.6-1.20.1-forge |  |  | 
-220| MEED-1.20.1-7.3 |  |  | 
-221| megacells-forge-2.4.6-1.20.1 |  |  | 
-222| melody_forge_1.0.3_MC_1.20.1-1.20.4 |  |  | 
-223| midnightlib-forge-1.4.2 |  |  | 
-224| MineMenu-1.20.1-1.12.3 |  |  | 
-225| miners_delight-1.20.1-1.2.3 |  |  | 
-226| modernfix-forge-5.24.4+mc1.20.1 |  |  | 
-227| ModernUI-Forge-1.20.1-3.11.1.6-universal |  |  | 
-228| moestweaks-forge-1.20.1-1.1.2 |  |  | 
-229| moonlight-1.20-2.16.8-forge |  |  | 
-230| morejs-forge-1.20.1-0.10.1 |  |  | 
-231| MouseTweaks-forge-mc1.20.1-2.25.1 |  |  | 
-232| multiblocked2-1.20.1-1.0.36 |  |  | 
-233| mutil-1.20.1-6.2.0 |  |  | 
-234| MyNethersDelight-1.20.1-0.1.8 |  |  | 
-235| mysterious_mountain_lib-1.5.23-1.20.1 |  |  | 
-236| NaturesCompass-1.20.1-1.11.2-forge |  |  | 
-237| neapolitan-1.20.1-5.1.0 |  |  | 
-238| nebulusbetterportals-1.0.8-forge-1.20.1 |  |  | 
-239| Neruina-2.1.2-forge+1.20.1 |  |  | 
-240| netmusic-1.1.8-forge+mc1.20.1 |  |  | 
-241| NoChatReports-FORGE-1.20.1-v2.2.2 |  |  | 
-242| Obscure-Tooltips-2.2 |  |  | 
-243| oceanic_delight-1.0.3-forge-1.20.1 |  |  | 
-244| oculus-mc1.20.1-1.8.0 |  |  | 
-245| OneEnoughItem-Forge-1.0.5.1 |  |  | 
-246| overloadedarmorbar-1.20.1-1 |  |  | 
-247| packetfixer-3.3.0-1.18-1.20.4-merged |  |  | 
-248| pattern_schematics-1.2.3+forge-1.20.1 |  |  | 
-249| petrolpark-1.20.1-1.4.11 |  |  | 
-250| petrolsparts-1.20.1-1.2.3-all |  |  | 
-251| PickUpNotifier-v8.0.0-1.20.1-Forge |  |  | 
-252| Placebo-1.20.1-8.6.3 |  |  | 
-253| player-animation-lib-forge-1.0.2-rc1+1.20 |  |  | 
-254| polyeng-forge-0.1.1-1.20.1 |  |  | 
-255| polymorph-forge-0.49.10+1.20.1 |  |  | 
-256| ponderjs-1.20.1-2.0.6 |  |  | 
-257| powerfuljs-1.6.1 |  |  | 
-258| PresenceFootsteps-1.20.1-1.9.1-beta.1 |  |  | 
-259| Prism-1.20.1-forge-1.0.5 |  |  | 
-260| probejs-6.0.1-forge |  |  | 
-261| protection_pixel-1.1.7-forge-1.20.1 |  |  | 
-262| PuzzlesLib-v8.1.33-1.20.1-Forge |  |  | 
-263| quality_food-1.20.1-2.2.6-all |  |  | 
-264| Quark-4.0-462 |  |  | 
-265| QuarkOddities-1.20.1 |  |  | 
-266| questsadditions-1.4.7 |  |  | 
-267| radiantgear-forge-2.2.0+1.20.1 |  |  | 
-268| radium-mc1.20.1-0.12.4+git.26c9d8e |  |  | 
-269| refurbished_furniture-forge-1.20.1-1.0.14 |  |  | 
-270| renderjs-forge-2001.2.1 |  |  | 
+215|lucent-1.20.1-1.5.5| 客户端 | #性能优化 | 动态光照API模组，为其他模组提供平滑的动态照明效果
+216|luncheon-meat-s-delight-1.0.4-forge-1.20.1| 双端类 | #食物与农业, #整合与联动[Farmer's Delight & Create] | 添加午餐肉罐头，支持Create批量生产
+217|Lychee-1.20.1-Forge-5.1.21| 双端类 | #库与依赖 | 允许使用JSON配方定义世界内合成和交互的系统
+218|man_of_many_planes-0.2.0+1.20.1-forge| 双端类 | #交通与运输, #整合与联动[Immersive Aircraft & Create] | Immersive Aircraft扩展，添加Create主题飞机
+219|mcwifipnp-1.7.6-1.20.1-forge| 客户端 | #辅助工具 | 局域网世界即插即用，无需服务器即可与朋友联机
+220|MEED-1.20.1-7.3| 双端类 | #界面增强 | JEED扩展插件，为70+模组提供300+状态效果描述
+221|megacells-forge-2.4.6-1.20.1| 双端类 | #工业自动化 | AE2扩展模组，提供更大的存储单元和合成系统
+222|melody_forge_1.0.3_MC_1.20.1-1.20.4| 客户端 | #库与依赖 | 基于OpenAL的音频库，为其他模组提供背景音乐功能
+223|midnightlib-forge-1.4.2| 双端类 | #库与依赖 | TeamMidnightDust团队公共库，提供配置API和工具
+224|MineMenu-1.20.1-1.12.3| 客户端 | #界面增强 | 径向菜单模组，提供圆形菜单来存储命令和按键绑定
+225|miners_delight-1.20.1-1.2.3| 双端类 | #食物与农业, #整合与联动[Farmer's Delight & Miner's Delight] | 农夫乐事扩展，专注于洞穴烹饪和新的洞穴作物
+226|modernfix-forge-5.24.4+mc1.20.1| 双端类 | #性能优化, #辅助工具 | 一体化性能优化模组，改善内存占用、启动速度和世界加载
+227|ModernUI-Forge-1.20.1-3.11.1.6-universal| 双端类 | #界面增强, #库与依赖 | 嵌入式现代化UI系统，提供文本布局引擎和小部件API
+228|moestweaks-forge-1.20.1-1.1.2| 双端类 | #辅助工具, #性能优化 | 可配置的原版行为调整模组，包含游戏机制优化和性能提升功能
+229|moonlight-1.20-2.16.8-forge| 双端类 | #库与依赖 | 动态资源包工具、自定义地图标记、村民AI系统和流体系统
+230|morejs-forge-1.20.1-0.10.1| 双端类 | #辅助工具, #库与依赖 | KubeJS扩展模组，添加更多事件和实用工具
+231|MouseTweaks-forge-mc1.20.1-2.25.1| 客户端 | #界面增强, #辅助工具 | 改进鼠标操作，新增物品拖动机制和滚轮快速移动功能
+232|multiblocked2-1.20.1-1.0.36| 双端类 | #工业自动化, #辅助工具 | 可视化自定义多方块机器模组，灵活创建机器结构
+233|mutil-1.20.1-6.2.0| 双端类 | #库与依赖 | mickelus的通用工具库，为其模组提供共享代码
+234|MyNethersDelight-1.20.1-0.1.8| 双端类 | #食物与农业, #世界扩展 | 下界美食扩展模组，添加新的下界食物和烹饪系统
+235|mysterious_mountain_lib-1.5.23-1.20.1| 双端类 | #库与依赖 | MMF-Group模组库，提供基础方块、物品类等编码工具
+236|NaturesCompass-1.20.1-1.11.2-forge| 双端类 | #辅助工具 | 生物群系定位指南针，可找到任意生物群系
+237|neapolitan-1.20.1-5.1.0| 双端类 | #食物与农业 | 添加巧克力、香草、草莓等食物和特殊效果奶昔
+238|nebulusbetterportals-1.0.8-forge-1.20.1| 双端类 | #世界扩展 | 为主世界添加13种精致的废弃传送门，内含丰富战利品
+239|Neruina-2.1.2-forge+1.20.1| 服务端 | #性能优化 | 防止tick相关崩溃导致世界损坏的修复模组
+240|netmusic-1.1.8-forge+mc1.20.1| 双端类 | #装饰与建筑 | 可直接播放网易云音乐的网络CD播放器
+241|NoChatReports-FORGE-1.20.1-v2.2.2| 双端类 | #界面增强 | 禁用聊天报告功能，保护玩家隐私
+242|Obscure-Tooltips-2.2| 客户端 | #界面增强 | 增强工具提示显示效果，提供更好的物品信息展示
+243|oceanic_delight-1.0.3-forge-1.20.1| 双端类 | #食物与农业 | Farmer's Delight的海洋扩展模组，添加海洋生物食物
+244|oculus-mc1.20.1-1.8.0| 客户端 | #性能优化 | VR渲染支持模组，提供虚拟现实游戏体验
+245|OneEnoughItem-Forge-1.0.5.1| 双端类 | #辅助工具 | 解决物品重复问题，将重复物品替换为唯一指定代表物品
+246|overloadedarmorbar-1.20.1-1| 客户端 | #界面增强 | 护甲值超过20时显示不同颜色图标，更好的装甲显示
+247|packetfixer-3.3.0-1.18-1.20.4-merged| 双端类 | #性能优化 | 修复数据包和NBT相关错误，提高大型模组包稳定性
+248|pattern_schematics-1.2.3+forge-1.20.1| 双端类 | #工业自动化 | Create模组的蓝图重复放置工具，支持批量建造
+249|petrolpark-1.20.1-1.4.11| 双端类 | #库与依赖 | petrolpark开发团队的库模组，为其多个模组提供基础功能
+250|petrolsparts-1.20.1-1.2.3-all| 双端类 | #工业自动化 | 为Create添加独特的动力组件，包含新齿轮和液压传输
+251|PickUpNotifier-v8.0.0-1.20.1-Forge| 客户端 | #辅助工具 | 显示物品拾取通知，方便玩家管理拾取物品
+252|Placebo-1.20.1-8.6.3| 双端类 | #库与依赖 | Shadows_of_Fire的共享代码库，为其多个模组提供基础功能
+253|player-animation-lib-forge-1.0.2-rc1+1.20| 双端类 | #库与依赖 | 为Minecraft提供玩家模型动画功能的API库
+254|polyeng-forge-0.1.1-1.20.1| 双端类 | #工业自动化, #整合与联动 | 为AE2添加Polymorph支持的扩展模组
+255|polymorph-forge-0.49.10+1.20.1| 双端类 | #辅助工具, #工业自动化 | 解决合成配方冲突，允许玩家选择合成结果
+256|ponderjs-1.20.1-2.0.6| 客户端 | #辅助工具, #整合与联动 | 使用KubeJS创建自定义Create ponder教程场景
+257|powerfuljs-1.6.1| 双端类 | #库与依赖, #整合与联动 | KubeJS的Forge能力系统集成，支持Curios和FE
+258|PresenceFootsteps-1.20.1-1.9.1-beta.1| 客户端 | #界面增强, #辅助工具 | 增强游戏音效，为不同方块添加独特的脚步声
+259|Prism-1.20.1-forge-1.0.5| 客户端 | #库与依赖, #装饰与建筑 | 提供颜色相关功能的库模组，支持模组开发
+260|probejs-6.0.1-forge| 双端类 | #辅助工具, #库与依赖 | 增强KubeJS脚本体验，为VSCode提供智能提示和类型支持
+261|protection_pixel-1.1.7-forge-1.20.1| 双端类 | #装备与战斗 | 机械动力附加模组，提供蒸汽朋克风格装甲
+262|PuzzlesLib-v8.1.33-1.20.1-Forge| 双端类 | #库与依赖 | Fuzs模组的核心库，提供模组加载器抽象层
+263|quality_food-1.20.1-2.2.6-all| 双端类 | #食物与农业 | 为食物添加品质系统，提升营养和饱和度
+264|Quark-4.0-462| 双端类 | #辅助工具 | 模块化模组，添加大量小型原版风格功能
+265|QuarkOddities-1.20.1| 双端类 | #装饰与建筑 | Quark的附属模组，添加背包、管道等特殊功能
+266|questsadditions-1.4.7| 双端类 | #辅助工具 | FTB任务系统的扩展，添加新任务类型和奖励
+267|radiantgear-forge-2.2.0+1.20.1| 双端类 | #界面增强 | Curios/Trinkets API与动态光源模组的兼容桥
+268|radium-mc1.20.1-0.12.4+git.26c9d8e| 双端类 | #性能优化 | Lithium模组的Forge非官方分支，优化游戏性能
+269|refurbished_furniture-forge-1.20.1-1.0.14| 双端类 | #装饰与建筑 | MrCrayfish家具模组的重制版，添加新家具
+270|renderjs-forge-2001.2.1| 客户端 | #库与依赖 | KubeJS的渲染支持库，用于绘制HUD和物品渲染
 271| resourcefulconfig-forge-1.20.1-2.1.3 |  |  | 
 272| resourcefullib-forge-1.20.1-2.1.29 |  |  | 
 273| Resourcify (1.20.1-forge)-1.7.4 |  |  | 
@@ -343,6 +343,6 @@
 337| YungsBetterMineshafts-1.20-Forge-4.0.4 |  |  | 
 338| YungsBetterWitchHuts-1.20-Forge-3.0.3 |  |  | 
 339| YungsExtras-1.20-Forge-4.0.3 |  |  | 
-340| Zeta-1.0-30 |  |  | 
+340| Zeta-1.0-30 |  |  |
 
 </mod-table>
