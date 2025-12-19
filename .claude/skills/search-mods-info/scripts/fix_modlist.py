@@ -75,16 +75,15 @@ def extract_table_to_json(input_file=None, output_file=None):
                 # 如果不是数字，跳过这一行
                 continue
 
-            # 只有名称不为空才添加
-            if name:
-                mod_data = {
-                    "number": number,
-                    "name": name,
-                    "env": env,
-                    "tags": tags,
-                    "description": description
-                }
-                result["mods"].append(mod_data)
+            # 即使名称为空，只要有编号就添加
+            mod_data = {
+                "number": number,
+                "name": name,
+                "env": env,
+                "tags": tags,
+                "description": description
+            }
+            result["mods"].append(mod_data)
 
     # 保存JSON文件
     try:
