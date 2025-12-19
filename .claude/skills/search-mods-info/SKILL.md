@@ -14,20 +14,19 @@ allowed-tools: Write, Edit, Bash(python D:\games\MC\.minecraft\versions\Create-D
 
 ## 环境变量
 1. 数据库文件夹 = `D:\games\MC\.minecraft\versions\Create-Delight-Remake\docs\`
-2. 模组管理器脚本 = `D:\games\MC\.minecraft\versions\Create-Delight-Remake\scripts\mods_manager.py`
-3. updated_names.txt = `D:\games\MC\.minecraft\versions\Create-Delight-Remake\.claude\skills\search-mods-info\configs\updated_names.txt`
 
 ## 流程
 1. 阅读`references/how-to-use-mods-manager.md`了解模组管理器使用方式
 2. 备份数据库
-3. 同步模组文件夹(sync)
+3. 初始化
+   - 使用 `scripts/reset_updated_info.py` 还原 `updated_info.csv`
 4. 获取未完成建档的模组(check)
-   - 对 number 字段 check 即可
-   - 此时你会获得已通过的项数，你之后的编号从这个基础上加1开始排
-   - 将模组名字一个一行写入`updated_names.txt` (覆写模式)
+   - 使用 `scripts/check_missing_fields.py` 后在 `configs/updated_missing_names.txt` 获取，一行一个
 5. 根据需建档模组列表，构建信息搜索计划
 6. 阅读`references/how-to-search-mod-info.md`了解模组信息搜索方式
 7. 使用搜索工具进行搜索(优先使用 agent + `exa`)
 8. 归纳总结信息，更新数据库(update)
-   - 更新的字段包括: env, tags, description, number
-   - update 需要模组的 SHA，先使用名字搜索
+    - 更新的字段包括: env, tags, description, number
+    - 将信息按照 `configs/updated_info.csv` 的表头填在下方
+      - 使用 `<safely-jump>` 占位可以跳过某个字段的更新
+      > 如 `{{sha}},{{filename}},<safely-jump>,{{tags}},{{description}},{{number}}` 会跳过 `tags` 的更新

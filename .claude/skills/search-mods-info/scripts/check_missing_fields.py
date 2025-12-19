@@ -33,17 +33,14 @@ def get_missing_items(manager, field):
 
     return missing_items
 
-def save_missing_sha(missing_items, output_path):
-    """保存缺失项的 SHA"""
+def save_missing_to_csv(missing_items, output_path):
+    """保存缺失项到 CSV 格式"""
     with open(output_path, 'w', encoding='utf-8') as f:
+        # 写入表头
+        f.write("sha,name,env,tags,description\n")
+        # 写入数据
         for item in missing_items:
-            f.write(f"{item['sha']}\n")
-
-def save_missing_names(missing_items, output_path):
-    """保存缺失项的文件名"""
-    with open(output_path, 'w', encoding='utf-8') as f:
-        for item in missing_items:
-            f.write(f"{item['filename']}\n")
+            f.write(f"{item['sha']},{item['filename']},,,,\n")
 
 def main():
     # 初始化数据库管理器
@@ -57,8 +54,7 @@ def main():
     field = 'number'
 
     # 输出文件路径
-    sha_output = os.path.join(os.path.dirname(__file__), '..', 'configs', 'updated_missing_sha.txt')
-    names_output = os.path.join(os.path.dirname(__file__), '..', 'configs', 'updated_missing_names.txt')
+    csv_output = os.path.join(os.path.dirname(__file__), '..', 'configs', 'updated_info.csv')
 
     # 获取缺失项
     print(f"检查缺失 '{field}' 字段的项...")
@@ -66,26 +62,20 @@ def main():
 
     if not missing_items:
         print(f"✨ 所有文件的 '{field}' 字段都已填写完整！")
-        # 创建空文件
-        with open(sha_output, 'w', encoding='utf-8') as f:
-            pass
-        with open(names_output, 'w', encoding='utf-8') as f:
-            pass
-        print(f"已创建空文件: {sha_output}")
-        print(f"已创建空文件: {names_output}")
+        # 创建空 CSV 文件（只包含表头）
+        with open(csv_output, 'w', encoding='utf-8') as f:
+            f.write("sha,name,env,tags,description\n")
+        print(f"已创建空文件: {csv_output}")
         return
 
     print(f"\n🟠 共有 {len(missing_items)} 个文件缺失 '{field}' 字段:")
     for item in missing_items:
         print(f"   [SHA: {item['sha'][:8]}] {item['filename']}")
 
-    # 分别保存 SHA 和文件名
-    save_missing_sha(missing_items, sha_output)
-    save_missing_names(missing_items, names_output)
+    # 保存为 CSV 格式
+    save_missing_to_csv(missing_items, csv_output)
 
-    print(f"\n结果已保存:")
-    print(f"  SHA 文件: {sha_output} ({len(missing_items)} 项)")
-    print(f"  文件名文件: {names_output} ({len(missing_items)} 项)")
+    print(f"\n结果已保存到: {csv_output} ({len(missing_items)} 项)")
 
 if __name__ == '__main__':
     main()
