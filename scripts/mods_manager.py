@@ -166,14 +166,25 @@ class AssetManager:
                 print(f"❌ 数据库中不存在字段: {field}")
                 return
 
+            # 获取总数
+            self.cursor.execute("SELECT COUNT(*) as total FROM files")
+            total_count = self.cursor.fetchone()['total']
+
+            # 获取缺失项
             sql = f"SELECT sha, filename FROM files WHERE {field} IS NULL OR {field} = ''"
             self.cursor.execute(sql)
             rows = self.cursor.fetchall()
 
+            # 计算统计信息
+            missing_count = len(rows)
+            passed_count = total_count - missing_count
+
+            print(f"检查了 '{field}' 字段，通过检查的有: {passed_count} / {total_count}")
+
             if not rows:
                 print(f"✨ 所有文件的 '{field}' 字段都已填写完整！")
             else:
-                print(f"\n🟠 共有 {len(rows)} 个文件缺失 '{field}':")
+                print(f"\n🟠 共有 {missing_count} 个文件缺失 '{field}':")
                 for row in rows:
                     print(f"   [SHA: {row['sha'][:8]}] {row['filename']}")
         except Exception as e:
