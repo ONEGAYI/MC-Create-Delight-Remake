@@ -51,7 +51,7 @@ def main():
     manager = mods_manager.AssetManager(db_path, folder_path)
 
     # 检查的字段
-    field = 'number'
+    field = 'description'
 
     # 输出文件路径
     csv_output = os.path.join(os.path.dirname(__file__), '..', 'configs', 'updated_info.csv')

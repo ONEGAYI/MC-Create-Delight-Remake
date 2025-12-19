@@ -3,7 +3,8 @@
     "allow": [
       "Skill(search-mods-info)",
       "Skill(table-converter)",
-      "Bash(python scripts/check_missing_fields.py:*)"
+      "Bash(python scripts/check_missing_fields.py:*)",
+      "Bash(python:*)"
     ]
   }
 }

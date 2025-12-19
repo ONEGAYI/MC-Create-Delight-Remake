@@ -50,7 +50,7 @@ class BatchUpdateManager:
         self.error_records = []
 
         # 可更新的字段（sha 和 filename 仅用于识别，不更新）
-        self.updatable_fields = {'env', 'tags', 'description'}
+        self.updatable_fields = {'env', 'tags', 'description', 'updated_at'}
 
         # 特殊占位符
         self.skip_placeholder = '<safely-jump>'
