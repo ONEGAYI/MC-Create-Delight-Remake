@@ -5,9 +5,9 @@
 编号 | 名称 | 环境 | 标签 | 描述
 :---|:---:|:---:|:---:|:---:
 1| 0World2Create-Universal-1.19-1.20.X-1.0.0 | 客户端 | #工业自动化 | 修复旁观模式下生物抽搐问题
-2| abnormals_delight-1.20.1-5.0.0 | 双端类 | #食物与农业, #整合与联动[Team Abnormals & Farmer's Delight] | 联动Team Abnormals的模组与农夫乐事
+2| Ad-Astra-Giselle-Addon-forge-1.20.1-6.20 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Giselle] | Ad Astra扩展，添加便利物品和兼容性
 3| ad_astra-forge-1.20.1-1.15.20 | 双端类 | #交通与运输, #工业自动化 | 星际探索科技模组，可建造火箭和空间站
-4| Ad-Astra-Giselle-Addon-forge-1.20.1-6.20 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Giselle] | Ad Astra扩展，添加便利物品和兼容性
+4| abnormals_delight-1.20.1-5.0.0 | 双端类 | #食物与农业, #整合与联动[Team Abnormals & Farmer's Delight] | 联动Team Abnormals的模组与农夫乐事
 5| adtetra-2.1.0 | 双端类 | #工业自动化, #整合与联动[Ad Astra & Tetra] | 允许使用Ad Astra材料制作Tetra工具
 6| AdvancementPlaques-1.20.1-forge-1.6.9 | 客户端 | #界面增强 | 美化进度弹窗，用发光窗口取代默认提示
 7| ae2ct-1.20.1-1.1.0 | 双端类 | #工业自动化, #整合与联动[AE2 & Create Tech] | AE2扩展，连接终端功能增强

@@ -214,6 +214,110 @@ def json_to_md(json_file=None, output_file=None):
         return False
 
 
+def parse_swap_string(swap_str):
+    """
+    解析交换字符串格式："[1-30, 10-9]"
+    返回：[(1, 30), (10, 9)]
+
+    Args:
+        swap_str: 交换字符串，格式如 "[1-30, 10-9]"
+
+    Returns:
+        list: 交换对列表，如 [(1, 30), (10, 9)]
+    """
+    # 去除空格和方括号
+    swap_str = swap_str.strip()
+    if swap_str.startswith('[') and swap_str.endswith(']'):
+        swap_str = swap_str[1:-1]
+
+    # 分割交换对
+    pairs = []
+    for pair_str in swap_str.split(','):
+        pair_str = pair_str.strip()
+        if not pair_str:
+            continue
+
+        # 解析 from-to 格式
+        if '-' in pair_str:
+            try:
+                from_num, to_num = map(int, pair_str.split('-', 1))
+                if from_num <= 0 or to_num <= 0:
+                    print(f"警告: 跳过无效的交换对 '{pair_str}' (编号必须大于0)")
+                    continue
+                pairs.append((from_num, to_num))
+            except ValueError:
+                print(f"警告: 跳过无效的交换对 '{pair_str}' (格式错误)")
+        else:
+            print(f"警告: 跳过格式错误的交换对 '{pair_str}' (缺少连字符)")
+
+    return pairs
+
+
+def swap_mod_numbers(json_file, swap_pairs, output_file=None):
+    """
+    只交换编号字段，其他字段保持不变
+
+    Args:
+        json_file: JSON文件路径
+        swap_pairs: 交换对列表，如 [(1, 30), (10, 9)]
+        output_file: 输出文件路径，默认覆盖原文件
+
+    Returns:
+        tuple: (successful_swaps, failed_swaps)
+    """
+    # 检查JSON文件是否存在
+    if not os.path.exists(json_file):
+        print(f"错误: 找不到JSON文件 {json_file}")
+        return [], []
+
+    # 读取 JSON
+    try:
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"错误: 读取JSON文件时出错 - {e}")
+        return [], []
+
+    # 检查JSON结构
+    if 'mods' not in data:
+        print("错误: JSON文件中缺少 'mods' 字段")
+        return [], []
+
+    # 创建编号到模组对象的映射
+    mod_dict = {}
+    for mod in data['mods']:
+        if 'number' in mod:
+            mod_dict[mod['number']] = mod
+
+    # 执行交换
+    successful_swaps = []
+    failed_swaps = []
+
+    for from_num, to_num in swap_pairs:
+        # 检查编号存在
+        if from_num not in mod_dict:
+            failed_swaps.append((from_num, to_num, f"编号 {from_num} 不存在"))
+            continue
+        if to_num not in mod_dict:
+            failed_swaps.append((from_num, to_num, f"编号 {to_num} 不存在"))
+            continue
+
+        # 只交换编号字段
+        mod_dict[from_num]['number'], mod_dict[to_num]['number'] = to_num, from_num
+        successful_swaps.append((from_num, to_num))
+
+    # 保存文件
+    output_path = output_file or json_file
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"错误: 保存JSON文件时出错 - {e}")
+        return successful_swaps, failed_swaps + [(0, 0, f"保存失败: {e}")]
+
+    return successful_swaps, failed_swaps
+
+
 def check_number_range(json_file, start_num, end_num):
     """
     检查指定范围内的编号是否在JSON中存在且内容完整
@@ -334,6 +438,10 @@ def main():
   %(prog)s -w -j in.json -o out.md      # 指定JSON输入和MD输出文件
   %(prog)s -w -j custom.json            # 指定JSON文件，使用默认MD输出
   %(prog)s --check-number-from 1 --check-number-to 50    # 检查1-50号编号
+  %(prog)s --swap "[1-30]"              # 交换编号1和30的模组
+  %(prog)s --swap "[1-30, 10-9]"        # 交换多对模组编号
+  %(prog)s --swap "[1-30]" -w           # 交换并自动更新markdown
+  %(prog)s --swap "[1-30]" -j custom.json -o output.json  # 使用自定义文件
         """
     )
 
@@ -348,6 +456,8 @@ def main():
                         help=f'输出文件路径 (根据模式决定是JSON还是MD)')
     parser.add_argument('-j', '--json-file', type=str,
                         help=f'JSON文件路径 (用于-w或检查模式，默认: {DEFAULT_MODLIST_JSON})')
+    parser.add_argument('--swap', type=str,
+                        help='交换指定编号的模组，格式："[1-30, 10-9]" (支持多对交换)')
     parser.add_argument('--check-number-from', type=int,
                         help='检查编号范围的起始编号')
     parser.add_argument('--check-number-to', type=int,
@@ -376,30 +486,81 @@ def main():
         print("错误: -e/--extract 和 -w/--write 参数不能同时使用")
         sys.exit(1)
 
-    # 执行相应功能
-    if args.extract:
-        input_file = args.input if args.input else DEFAULT_MODLIST
-        output_file = args.output if args.output else DEFAULT_MODLIST_JSON
-
-        print(f"正在从 {input_file} 提取表格数据...")
-        success = extract_table_to_json(input_file, output_file)
-
-        if success:
-            print("表格提取完成！")
-        else:
-            print("表格提取失败！")
+    # 检查 --swap 与其他参数的互斥性
+    if args.swap:
+        if args.extract:
+            print("错误: --swap 参数不能与 -e/--extract 同时使用")
             sys.exit(1)
-    elif args.write:
+        if args.check_number_from is not None:
+            print("错误: --swap 参数不能与 --check-number-from/to 同时使用")
+            sys.exit(1)
+
+    # 执行相应功能，--swap 优先级最高
+    if args.swap:
         json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
-        output_file = args.output if args.output else DEFAULT_MODLIST
 
-        print(f"正在将 {json_file} 中的数据写入 {output_file}...")
-        success = json_to_md(json_file, output_file)
-
-        if success:
-            print("表格写入完成！")
+        # 如果同时使用 -w，-o 参数指向的是 markdown 文件，不是 JSON 文件
+        if args.write:
+            # 交换输出到临时 JSON 文件，然后再写入 markdown
+            import tempfile
+            temp_json = tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False, encoding='utf-8')
+            temp_json.close()
+            swap_output_file = temp_json.name
+            md_output_file = args.output if args.output else DEFAULT_MODLIST
         else:
-            print("表格写入失败！")
+            # 只进行交换，-o 参数指向的是 JSON 输出文件
+            swap_output_file = args.output if args.output else json_file
+            md_output_file = None
+
+        print(f"正在从 {json_file} 交换模组编号...")
+        print(f"交换规则: {args.swap}")
+
+        # 解析交换字符串
+        swap_pairs = parse_swap_string(args.swap)
+        if not swap_pairs:
+            print("错误: 没有有效的交换对")
+            sys.exit(1)
+
+        print(f"解析到 {len(swap_pairs)} 个交换对")
+        for i, (from_num, to_num) in enumerate(swap_pairs, 1):
+            print(f"  {i}. {from_num} ↔ {to_num}")
+
+        # 执行交换
+        successful_swaps, failed_swaps = swap_mod_numbers(json_file, swap_pairs, swap_output_file)
+
+        # 输出结果
+        print(f"\n========== 交换结果 ==========")
+        print(f"总交换对: {len(swap_pairs)}")
+        print(f"成功交换: {len(successful_swaps)}")
+        print(f"失败交换: {len(failed_swaps)}")
+
+        if successful_swaps:
+            print(f"\n✅ 成功的交换:")
+            for i, (from_num, to_num) in enumerate(successful_swaps, 1):
+                print(f"  {i}. 编号 {from_num} ↔ {to_num}")
+
+        if failed_swaps:
+            print(f"\n❌ 失败的交换:")
+            for i, (from_num, to_num, reason) in enumerate(failed_swaps, 1):
+                print(f"  {i}. 编号 {from_num} ↔ {to_num} ({reason})")
+
+        # 如果需要同时写入 markdown
+        if args.write:
+            print(f"\n正在更新 markdown 文件: {md_output_file}...")
+            success = json_to_md(swap_output_file, md_output_file)
+            if success:
+                print("✅ Markdown 文件已更新")
+                # 清理临时文件
+                os.unlink(swap_output_file)
+            else:
+                print("❌ Markdown 文件更新失败")
+                # 保留临时文件以便调试
+                print(f"临时 JSON 文件保存在: {swap_output_file}")
+        elif args.output:
+            print(f"\n✅ 交换结果已保存到: {swap_output_file}")
+
+        # 如果有失败的交换，退出码为1
+        if failed_swaps:
             sys.exit(1)
     elif args.check_number_from is not None:
         json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
