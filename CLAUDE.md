@@ -62,7 +62,10 @@
                             JSON文件路径 (用于-w或检查模式，默认:
                             D:\games\MC\.minecraft\versions\Create-Delight-
                             Remake\docs\mods-list.json)
-    --swap SWAP           交换指定编号的模组，格式："[1-30, 10-9]" (支持多对交换)  
+    --swap SWAP           交换指定编号的模组，格式："[1-30, 10-9]" (支持多对交换)
+    --insert INSERT       在指定编号位置插入新模组
+    --insert-content INSERT_CONTENT
+                            插入内容，格式为"name; env; tags; description"，用分号分隔
     --check-number-from CHECK_NUMBER_FROM
                             检查编号范围的起始编号
     --check-number-to CHECK_NUMBER_TO
@@ -81,9 +84,14 @@
     fix_modlist.py --swap "[1-30, 10-9]"        # 交换多对模组编号
     fix_modlist.py --swap "[1-30]" -w           # 交换并自动更新markdown
     fix_modlist.py --swap "[1-30]" -j custom.json -o output.json  # 使用自定义文件
+    fix_modlist.py --insert 51                  # 在51号位置插入空模组
+    fix_modlist.py --insert 52 -j mods.json     # 在52号位置插入空模组并指定JSON文件
+    fix_modlist.py --insert 53 --insert-content "TestMod; 双端类; #测试; 测试模组"  # 插入带内容的模组
 
-   ⚠️ 重要提示 - swap功能使用说明:
+   ⚠️ 重要提示:
    - swap功能默认不会覆盖源JSON文件，每次swap都基于原始数据
    - 多次swap操作必须指定-j参数覆盖源文件: --swap "[1-30]" -j source.json -o source.json
    - 推荐一次性交换所有需要的模组: --swap "[1-30, 10-9, 5-15]"
+   - 使用 --insert 参数时，必须指定 -j 参数来覆盖源JSON文件，否则不会修改源文件
+   - --insert 会自动更新所有大于等于插入位置的模组编号
     ```

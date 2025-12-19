@@ -351,7 +351,7 @@
       "description": "Alex's Mods系列的轻量级库模组，提供基础功能支持"
     },
     {
-      "number": 61,
+      "number": 70,
       "name": "clientcommands",
       "env": "客户端类",
       "tags": "#辅助工具",
@@ -414,7 +414,7 @@
       "description": "添加带连接纹理的新类型玻璃方块"
     },
     {
-      "number": 70,
+      "number": 61,
       "name": "constructionwand",
       "env": "双端类",
       "tags": "#辅助工具",
