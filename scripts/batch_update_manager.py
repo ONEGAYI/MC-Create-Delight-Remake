@@ -50,7 +50,7 @@ class BatchUpdateManager:
         self.error_records = []
 
         # 可更新的字段（sha 和 filename 仅用于识别，不更新）
-        self.updatable_fields = {'env', 'tags', 'description', 'number'}
+        self.updatable_fields = {'env', 'tags', 'description'}
 
         # 特殊占位符
         self.skip_placeholder = '<safely-jump>'
@@ -75,7 +75,7 @@ class BatchUpdateManager:
                 reader = csv.DictReader(f)
 
                 # 验证必要的列
-                required_columns = ['sha', 'filename', 'env', 'tags', 'description', 'number']
+                required_columns = ['sha', 'filename', 'env', 'tags', 'description']
                 if not all(col in reader.fieldnames for col in required_columns):
                     missing = [col for col in required_columns if col not in reader.fieldnames]
                     print(f"✗ CSV 文件缺少必要的列: {missing}")
@@ -96,13 +96,18 @@ class BatchUpdateManager:
                         continue
 
                     # 清理数据
+                    updated_at = row.get('updated_at', '').strip()
+                    # 如果 updated_at 为空，则自动填充当前时间戳
+                    if not updated_at:
+                        updated_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
                     cleaned_row = {
                         'sha': sha,
+                        'updated_at': updated_at,
                         'filename': row.get('filename', '').strip(),
                         'env': row.get('env', '').strip(),
                         'tags': row.get('tags', '').strip(),
-                        'description': row.get('description', '').strip(),
-                        'number': row.get('number', '').strip()
+                        'description': row.get('description', '').strip()
                     }
 
                     csv_data.append(cleaned_row)
@@ -343,7 +348,7 @@ class BatchUpdateManager:
         """显示预览数据"""
         print("\n数据预览:")
         print("-" * 80)
-        print(f"{'SHA':<12} {'文件名':<40} {'环境':<10} {'标签':<20} {'编号':<5}")
+        print(f"{'SHA':<12} {'文件名':<40} {'环境':<10} {'标签':<20}")
         print("-" * 80)
 
         for record in csv_data[:5]:
@@ -351,8 +356,7 @@ class BatchUpdateManager:
             filename = record['filename'][:37] + "..." if len(record['filename']) > 40 else record['filename']
             env = record['env'][:7] + "..." if len(record['env']) > 10 else record['env']
             tags = record['tags'][:17] + "..." if len(record['tags']) > 20 else record['tags']
-            number = record['number'][:2] + "..." if len(record['number']) > 5 else record['number']
-            print(f"{sha:<12} {filename:<40} {env:<10} {tags:<20} {number:<5}")
+            print(f"{sha:<12} {filename:<40} {env:<10} {tags:<20}")
 
         if len(csv_data) > 5:
             print(f"... 还有 {len(csv_data) - 5} 条记录")

@@ -87,12 +87,22 @@ python mods_manager.py sync
 
 # 指定路径同步
 python mods_manager.py sync --folder "D:\path\to\mods"
+
+# 自动确认删除（无需用户交互）
+python mods_manager.py sync --force
+
+# 组合使用：指定路径并自动确认
+python mods_manager.py sync --folder "D:\path\to\mods" --force
 ```
 
 功能：
 - 检测新增文件并添加到数据库
 - 检测已删除文件并询问是否清理
 - 更新重命名或移动文件的路径信息
+
+**参数说明**：
+- `--folder`: 指定扫描的文件夹路径（可选，默认：`../mods`）
+- `--force`: 自动确认删除数据库中缺失文件的记录，无需用户交互（适用于自动化脚本）
 
 #### 2. add_field - 添加字段
 为数据库表添加新的自定义字段。
@@ -228,6 +238,9 @@ python mods_manager.py export -d "D:\exports\custom.csv" -t files
 # 1. 同步所有模组文件
 python mods_manager.py sync
 
+# 或者在自动化脚本中使用
+python mods_manager.py sync --force
+
 # 2. 添加自定义字段
 python mods_manager.py add_field env
 python mods_manager.py add_field tags
@@ -336,3 +349,4 @@ A: 使用 `-r` 参数启用正则表达式模式，支持标准的 Python 正则
 - **v1.3**: 优化批量操作的用户体验
 - **v1.4**: 添加数据库备份与恢复功能
 - **v1.5**: 添加CSV导出功能，支持Excel兼容格式
+- **v1.6**: 为sync命令添加--force参数，支持自动确认删除数据库记录，适用于自动化脚本

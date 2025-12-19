@@ -68,7 +68,7 @@ class AssetManager:
             else:
                 print(f"❌ 添加字段失败: {e}")
 
-    def sync_folder(self):
+    def sync_folder(self, auto_confirm=False):
         """
         [功能 2] 文件夹更新检查
         - 识别新增
@@ -143,7 +143,11 @@ class AssetManager:
             for sha in removed_shas:
                 print(f"   - {db_shas[sha]['filename']} (SHA: {sha[:8]}...)")
             
-            confirm = input("\n⚠️ 是否从数据库中删除这些记录? (输入 'yes' 确认): ")
+            if auto_confirm:
+                print("\n🔧 自动确认模式：删除缺失文件的数据库记录。")
+                confirm = 'yes'
+            else:
+                confirm = input("\n⚠️ 是否从数据库中删除这些记录? (输入 'yes' 确认): ")
             if confirm.lower() == 'yes':
                 for sha in removed_shas:
                     self.cursor.execute("DELETE FROM files WHERE sha = ?", (sha,))
@@ -772,6 +776,7 @@ def main():
     # 1. Sync: 同步文件夹到数据库
     parser_sync = subparsers.add_parser('sync', help='同步文件夹内容到数据库')
     parser_sync.add_argument('--folder', type=str, default=DEFAULT_FOLDER, help='指定扫描文件夹路径')
+    parser_sync.add_argument('--force', action='store_true', help='自动确认删除数据库中缺失文件的记录，无需用户确认')
 
     # 2. Add Field: 添加新字段
     parser_add = subparsers.add_parser('add_field', help='添加新的信息字段')
@@ -833,7 +838,7 @@ def main():
     manager = AssetManager(DB_NAME, args.folder if hasattr(args, 'folder') else DEFAULT_FOLDER)
 
     if args.command == 'sync':
-        manager.sync_folder()
+        manager.sync_folder(auto_confirm=args.force)
     elif args.command == 'add_field':
         manager.add_custom_field(args.name, args.type)
     elif args.command == 'check':

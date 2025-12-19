@@ -35,9 +35,9 @@ def get_missing_items(manager, field):
 
 def save_missing_to_csv(missing_items, output_path):
     """保存缺失项到 CSV 格式"""
-    with open(output_path, 'w', encoding='utf-8') as f:
-        # 写入表头
-        f.write("sha,name,env,tags,description\n")
+    with open(output_path, 'a', encoding='utf-8') as f:
+        # # 写入表头
+        # f.write("sha,updated_at,filename,env,tags,description\n")
         # 写入数据
         for item in missing_items:
             f.write(f"{item['sha']},{item['filename']},,,,\n")
@@ -63,9 +63,9 @@ def main():
     if not missing_items:
         print(f"✨ 所有文件的 '{field}' 字段都已填写完整！")
         # 创建空 CSV 文件（只包含表头）
-        with open(csv_output, 'w', encoding='utf-8') as f:
-            f.write("sha,name,env,tags,description\n")
-        print(f"已创建空文件: {csv_output}")
+        # with open(csv_output, 'w', encoding='utf-8') as f:
+        #     f.write("sha,name,env,tags,description\n")
+        # print(f"已创建空文件: {csv_output}")
         return
 
     print(f"\n🟠 共有 {len(missing_items)} 个文件缺失 '{field}' 字段:")
