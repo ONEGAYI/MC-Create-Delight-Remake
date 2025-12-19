@@ -376,6 +376,93 @@ class AssetManager:
             print(f"❌ 重命名字段失败: {e}")
             self.conn.rollback()
 
+    def search_items(self, field, target, use_regex=False):
+        """
+        [功能 7] 搜索数据库中的项
+        field: 要搜索的字段名
+        target: 搜索目标值
+        use_regex: 是否使用正则表达式
+        """
+        try:
+            # 检查字段是否存在
+            self.cursor.execute("PRAGMA table_info(files)")
+            columns = self.cursor.fetchall()
+            col_names = [col[1] for col in columns]
+
+            if field not in col_names:
+                print(f"❌ 字段 '{field}' 不存在")
+                print(f"\n可用字段: {', '.join(col_names)}")
+                return
+
+            # 构建SQL查询
+            if use_regex:
+                # 使用SQLite的REGEXP函数
+                self.cursor.execute(f"SELECT sha, filename, {field}, filepath FROM files WHERE {field} IS NOT NULL AND {field} != ''")
+                all_rows = self.cursor.fetchall()
+
+                # 在Python中进行正则匹配（SQLite默认可能没有启用REGEXP）
+                import re
+                pattern = re.compile(target, re.IGNORECASE if not target.isupper() else 0)
+                matched_rows = []
+
+                for row in all_rows:
+                    field_value = str(row[2]) if row[2] is not None else ""
+                    if pattern.search(field_value):
+                        matched_rows.append(row)
+
+                matched_count = len(matched_rows)
+            else:
+                # 使用LIKE进行模糊匹配
+                if target.startswith("'") and target.endswith("'"):
+                    # 如果用引号包围，进行精确匹配
+                    search_target = target.strip("'")
+                    sql = f"SELECT sha, filename, {field}, filepath FROM files WHERE {field} = ?"
+                    self.cursor.execute(sql, (search_target,))
+                else:
+                    # 否则进行模糊匹配
+                    search_target = f"%{target}%"
+                    sql = f"SELECT sha, filename, {field}, filepath FROM files WHERE {field} IS NOT NULL AND {field} != '' AND {field} LIKE ?"
+                    self.cursor.execute(sql, (search_target,))
+
+                matched_rows = self.cursor.fetchall()
+                matched_count = len(matched_rows)
+
+            # 显示结果
+            if matched_count == 0:
+                print(f"❌ 没有找到匹配项 (字段: {field}, 搜索值: {target})")
+                if use_regex:
+                    print("💡 提示: 正则表达式可能需要调整")
+                else:
+                    print("💡 提示: 尝试使用更简单的搜索词或添加引号进行精确匹配")
+            else:
+                mode = "正则表达式" if use_regex else ("模糊" if not target.startswith("'") else "精确")
+                print(f"\n🔍 搜索结果 (模式: {mode}匹配, 字段: {field})")
+                print(f"{'='*80}")
+                print(f"共找到 {matched_count} 个匹配项:")
+                print(f"{'='*80}")
+
+                for i, row in enumerate(matched_rows, 1):
+                    sha = row['sha'][:8] + "..."
+                    filename = row['filename']
+                    field_value = str(row[field]) if row[field] is not None else "(空)"
+                    filepath = row['filepath']
+
+                    print(f"\n{i:3d}. 【{filename}】")
+                    print(f"     SHA: {sha}")
+                    print(f"     {field}: {field_value}")
+                    # 只显示相对路径，减少输出长度
+                    rel_path = filepath.replace(DEFAULT_FOLDER, ".") if filepath.startswith(DEFAULT_FOLDER) else filepath
+                    print(f"     路径: {rel_path}")
+
+                print(f"\n{'='*80}")
+                print(f"总计: {matched_count} 个匹配项")
+
+        except re.error as e:
+            print(f"❌ 正则表达式错误: {e}")
+            print("💡 提示: 请检查正则表达式语法")
+        except Exception as e:
+            print(f"❌ 搜索失败: {e}")
+
 # ================= 命令行接口逻辑 =================
 def main():
     parser = argparse.ArgumentParser(description="本地文件资产管理脚本")
@@ -418,6 +505,12 @@ def main():
     parser_rename.add_argument('old_name', type=str, help='原字段名')
     parser_rename.add_argument('new_name', type=str, help='新字段名')
 
+    # 9. Search: 搜索数据库
+    parser_search = subparsers.add_parser('search', help='搜索数据库中的项')
+    parser_search.add_argument('field', type=str, help='要搜索的字段名')
+    parser_search.add_argument('target', type=str, help='搜索目标值')
+    parser_search.add_argument('-r', '--regex', action='store_true', help='使用正则表达式模式')
+
     args = parser.parse_args()
 
     # 初始化管理器
@@ -439,6 +532,8 @@ def main():
         manager.delete_field(args.name)
     elif args.command == 'rename_field':
         manager.rename_field(args.old_name, args.new_name)
+    elif args.command == 'search':
+        manager.search_items(args.field, args.target, args.regex)
     else:
         parser.print_help()
 
