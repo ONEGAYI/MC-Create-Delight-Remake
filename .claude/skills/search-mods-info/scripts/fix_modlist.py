@@ -117,6 +117,103 @@ def extract_table_to_json(input_file=None, output_file=None):
         return False
 
 
+def json_to_md(json_file=None, output_file=None):
+    """
+    将JSON文件中的模组数据写入到markdown文件的表格中
+
+    Args:
+        json_file: 输入的JSON文件路径，默认使用DEFAULT_MODLIST_JSON
+        output_file: 输出的markdown文件路径，默认使用DEFAULT_MODLIST
+    """
+    # 使用默认路径
+    if json_file is None:
+        json_file = DEFAULT_MODLIST_JSON
+    if output_file is None:
+        output_file = DEFAULT_MODLIST
+
+    # 检查JSON文件是否存在
+    if not os.path.exists(json_file):
+        print(f"错误: 找不到JSON文件 {json_file}")
+        return False
+
+    # 读取JSON文件
+    try:
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"错误: 读取JSON文件时出错 - {e}")
+        return False
+
+    # 检查JSON结构
+    if 'mods' not in data:
+        print("错误: JSON文件中缺少 'mods' 字段")
+        return False
+
+    # 读取markdown文件
+    try:
+        with open(output_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"错误: 读取markdown文件时出错 - {e}")
+        return False
+
+    # 查找<mod-table>标签
+    table_start_pattern = r'<mod-table>'
+    table_end_pattern = r'</mod-table>'
+
+    start_match = re.search(table_start_pattern, content)
+    end_match = re.search(table_end_pattern, content)
+
+    if not start_match or not end_match:
+        print("错误: 未找到<mod-table>标签")
+        return False
+
+    # 构建新的表格内容
+    # 获取所有模组并按编号排序
+    mods = data['mods']
+    mods_sorted = sorted(mods, key=lambda x: x.get('number', 0))
+
+    # 构建表格行
+    table_lines = []
+
+    # 添加表头
+    table_lines.append("编号 | 名称 | 环境 | 标签 | 描述")
+    table_lines.append(":---|:---:|:---:|:---:|:---:")
+
+    # 添加数据行
+    for mod in mods_sorted:
+        number = mod.get('number', '')
+        name = mod.get('name', '')
+        env = mod.get('env', '')
+        tags = mod.get('tags', '')
+        description = mod.get('description', '')
+
+        # 构建表格行
+        line = f"{number}| {name} | {env} | {tags} | {description}"
+        table_lines.append(line)
+
+    # 创建新的表格内容
+    new_table_content = '\n'.join(table_lines)
+
+    # 替换原有表格内容
+    # 保留<mod-table>标签，在标签后添加两个空行再插入新表格
+    before_table = content[:start_match.end()]
+    after_table = content[end_match.start():]
+
+    # 构建新内容，在<mod-table>后添加两个空行（保持原始格式）
+    new_content = before_table + '\n\n' + new_table_content + '\n' + after_table
+
+    # 写入文件
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"成功: 已将 {len(mods_sorted)} 个模组数据写入 {output_file}")
+        return True
+    except Exception as e:
+        print(f"错误: 写入markdown文件时出错 - {e}")
+        return False
+
+
 def check_number_range(json_file, start_num, end_num):
     """
     检查指定范围内的编号是否在JSON中存在且内容完整
@@ -233,6 +330,9 @@ def main():
   %(prog)s -e                           # 使用默认路径提取表格
   %(prog)s -e -i input.md -o out.json   # 指定输入输出文件
   %(prog)s -e -i custom.md              # 指定输入文件，使用默认输出
+  %(prog)s -w                           # 使用默认路径将JSON写入MD
+  %(prog)s -w -j in.json -o out.md      # 指定JSON输入和MD输出文件
+  %(prog)s -w -j custom.json            # 指定JSON文件，使用默认MD输出
   %(prog)s --check-number-from 1 --check-number-to 50    # 检查1-50号编号
         """
     )
@@ -240,16 +340,18 @@ def main():
     # 添加参数
     parser.add_argument('-e', '--extract', action='store_true',
                         help='提取<mod-table>表格数据并保存为JSON格式')
+    parser.add_argument('-w', '--write', action='store_true',
+                        help='将JSON数据写入到markdown文件的表格中')
     parser.add_argument('-i', '--input', type=str,
                         help=f'输入的markdown文件路径 (默认: {DEFAULT_MODLIST})')
     parser.add_argument('-o', '--output', type=str,
-                        help=f'输出的JSON文件路径 (默认: {DEFAULT_MODLIST_JSON})')
+                        help=f'输出文件路径 (根据模式决定是JSON还是MD)')
+    parser.add_argument('-j', '--json-file', type=str,
+                        help=f'JSON文件路径 (用于-w或检查模式，默认: {DEFAULT_MODLIST_JSON})')
     parser.add_argument('--check-number-from', type=int,
                         help='检查编号范围的起始编号')
     parser.add_argument('--check-number-to', type=int,
                         help='检查编号范围的结束编号')
-    parser.add_argument('-j', '--json-file', type=str,
-                        help=f'用于检查的JSON文件路径 (默认: {DEFAULT_MODLIST_JSON})')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
 
     # 解析参数
@@ -269,6 +371,11 @@ def main():
         print("错误: 起始编号不能大于结束编号")
         sys.exit(1)
 
+    # 检查 -e 和 -w 互斥
+    if args.extract and args.write:
+        print("错误: -e/--extract 和 -w/--write 参数不能同时使用")
+        sys.exit(1)
+
     # 执行相应功能
     if args.extract:
         input_file = args.input if args.input else DEFAULT_MODLIST
@@ -281,6 +388,18 @@ def main():
             print("表格提取完成！")
         else:
             print("表格提取失败！")
+            sys.exit(1)
+    elif args.write:
+        json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
+        output_file = args.output if args.output else DEFAULT_MODLIST
+
+        print(f"正在将 {json_file} 中的数据写入 {output_file}...")
+        success = json_to_md(json_file, output_file)
+
+        if success:
+            print("表格写入完成！")
+        else:
+            print("表格写入失败！")
             sys.exit(1)
     elif args.check_number_from is not None:
         json_file = args.json_file if args.json_file else DEFAULT_MODLIST_JSON
