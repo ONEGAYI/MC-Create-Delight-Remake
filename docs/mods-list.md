@@ -54,32 +54,32 @@
 48| chat_heads-0.13.18-forge-1.20 | 客户端类 | #界面增强 | 在聊天消息旁显示玩家头像，便于识别聊天者身份
 49| chefs-delight-1.0.3-forge-1.20.1 | 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | 为Farmer's Delight添加厨师和厨师村民职业及交易
 50| citadel-2.6.2-1.20.1 | 双端类 | #库与依赖 | Alex's Mods系列的轻量级库模组，提供基础功能支持
-51| cloth-config-11.1.136-forge |  |  | 
+51| cloth-config-11.1.136-forge | 双端类 | #库与依赖 | 为其他模组提供配置界面API的依赖库
 52| Clumps-forge-1.20.1-12.0.0.4 | 双端类 | #性能优化 | 将经验球聚合在一起，减少游戏延迟
 53| CobbleForDays-1.8.0 | 双端类 | #辅助工具 | 添加多级圆石生成器，提供自动化圆石生产
-54| cobweb-forge-1.20.1-1.0.1 |  |  | 
-55| collectorsreap-1.20.1-1.3.4 |  |  | 
-56| colorfulhearts-forge-1.20.1-4.3.16 |  |  | 
-57| colorwheel-forge-0.2.3+mc1.20.1 |  |  | 
-58| colorwheel_patcher-forge-0.2.4+mc1.20.1 |  |  | 
-59| comforts-forge-6.4.0+1.20.1 |  |  | 
-60| configured-forge-1.20.1-2.2.3 |  |  | 
+54| cobweb-forge-1.20.1-1.0.1 | 双端类 | #库与依赖 | Crystal Nest开发团队的库模组，提供统一的配置系统
+55| collectorsreap-1.20.1-1.3.4 | 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | Farmer's Delight附属模组，新增野生食物收集系统
+56| colorfulhearts-forge-1.20.1-4.3.16 | 客户端类 | #界面增强 | 用彩色心形代替多行血量显示，节省UI空间
+57| colorwheel-forge-0.2.3+mc1.20.1 | 客户端类 | #性能优化, #界面增强 | 使Create模组与Iris光影兼容，提升游戏性能
+58| colorwheel_patcher-forge-0.2.4+mc1.20.1 | 客户端类 | #辅助工具, #性能优化 | 自动打补丁使光影包兼容Colorwheel模组
+59| comforts-forge-6.4.0+1.20.1 | 双端类 | #装饰与建筑, #辅助工具 | 添加睡眠袋和吊床，可便携使用且不改变重生点
+60| configured-forge-1.20.1-2.2.3 | 双端类 | #界面增强, #辅助工具 | 提供模组配置GUI界面，方便修改各种模组设置
 61| constructionwand-1.20.1-2.11 | 双端类 | #辅助工具 | 建筑法杖，可一次性放置多个方块，让建造更轻松
-62| Controlling-forge-1.20.1-12.0.2 |  |  | 
-63| copycats-3.0.2+mc.1.20.1-forge |  |  | 
-64| corn_delight-1.1.9-1.20.1 |  |  | 
-65| coroutil-forge-1.20.1-1.3.7 |  |  | 
-66| cosmeticarmorreworked-1.20.1-v1a | 客户端类 | #界面增强 | 允许同时显示盔甲和装饰性盔甲
-67| cosmopolitan-1.20.1-1.1.0 | 双端类 | #装饰与建筑 | 添加了美化世界的建筑方块和装饰品
-68| CrabbersDelight-1.20.1-1.1.7e |  |  | 
-69| cratedelight-25.08.08-1.20-forge | 双端类 | #食物与农业, #整合与联动[Farmer's Delight & Create] | 添加了与农夫乐事兼容的食物存储方案
-70| Create More Recipes-1.20.1-1.2.1 |  |  | 
+62|Controlling-forge-1.20.1-12.0.2| 双端类 | #辅助工具 | 提供键位绑定配置和控制的实用工具
+63|copycats-3.0.2+mc.1.20.1-forge| 双端类 | #装饰与建筑 | 提供可以模仿其他方块外观的复制方块
+64|corn_delight-1.1.9-1.20.1| 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | 农夫乐事的玉米主题扩展，添加玉米作物和食物
+65|coroutil-forge-1.20.1-1.3.7| 双端类 | #库与依赖 | Corosus的通用工具库，为其模组提供共享代码
+66|cosmeticarmorreworked-1.20.1-v1a| 客户端类 | #界面增强 | 允许同时显示盔甲和装饰性盔甲
+67|cosmopolitan-1.20.1-1.1.0| 双端类 | #装饰与建筑 | 添加了美化世界的建筑方块和装饰品
+68|CrabbersDelight-1.20.1-1.1.7e| 双端类 | #食物与农业, #整合与联动[Farmer's Delight] | 农夫乐事的扩展，添加海鲜类食物和烹饪配方
+69|cratedelight-25.08.08-1.20-forge| 双端类 | #食物与农业, #整合与联动[Farmer's Delight & Create] | 添加了与农夫乐事兼容的食物存储方案
+70|Create More Recipes-1.20.1-1.2.1| 双端类 | #食物与农业, #整合与联动[Create] | 为Create添加更多配方，扩展合成可能性
 71| create-1.20.1-6.0.6 | 双端类 | #工业自动化 | 添加了各种自动化机械和动力传输系统
-72| Create-Better-Storages-Forge-1.20.1-1.1a.Release-all |  |  | 
-73| create-confectionery1.20.1_v1.1.0 |  |  | 
-74| Create-Delight-Core-1.20.1-2.2.0 |  |  | 
-75| create-new-age-forge-1.20.1-1.1.4 | 双端类 | #工业自动化 | 为Create添加现代科技元素和设备
-76| create-stuff-additions1.20.1_v2.1.0 |  |  | 
+72|Create-Better-Storages-Forge-1.20.1-1.1a.Release-all| 双端类 | #装饰与建筑, #辅助工具 | 为Create扩展更大容量的存储解决方案
+73|create-confectionery1.20.1_v1.1.0| 双端类 | #食物与农业 | 为Create添加糖果和甜点制作功能
+74|Create-Delight-Core-1.20.1-2.2.0| 双端类 | #食物与农业, #整合与联动[Create & Farmer's Delight] | Create与农夫乐事的联动核心模组
+75|create-new-age-forge-1.20.1-1.1.4| 双端类 | #工业自动化, #装备与战斗 | 为Create添加原子能和高级科技内容
+76|create-stuff-additions1.20.1_v2.1.0| 双端类 | #装备与战斗, #交通与运输 | 添加使用Create动力的装备和工具
 77| create_central_kitchen-1.20.1-for-create-6.0.4-1.4.1 | 双端类 | #工业自动化 | 将多种食物模组与动力机械联动
 78| create_compatible_storage-2.5.1 | 双端类 | #工业自动化 | 为动力机械添加兼容的存储容器
 79| create_connected-1.1.7-mc1.20.1-all | 双端类 | #工业自动化 | 让动力机械的方块连接时更美观

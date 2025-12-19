@@ -239,25 +239,46 @@ def compare_mods(mods_dir, md_file, count, start=1):
     else:
         print("✓ 所有模组都匹配！")
 
-    # 如果需要，可以输出详细的对比信息
-    print("\n详细对比:")
+    # 输出详细对比信息（仅显示有问题的模组）
+    print("\n详细对比（仅显示问题项）:")
     print("-" * 60)
+    has_issues = False
     for i in range(start_index, end_index):
         mod_file = mods[i]
         clean_name = clean_mod_name(mod_file)
         position = i + 1
 
         status = "✓"
+        issue_details = []
+
         if position in modlist_dict:
             expected = clean_mod_name(modlist_dict[position])
             if expected != clean_name:
                 status = "✗"
+                issue_details.append(f"名称不匹配: 期望 '{expected}'")
         else:
             status = "?"
+            issue_details.append("模组不在modlist中")
 
-        print(f"{position:3d}. {status} {mod_file}")
-        if position in modlist_dict:
-            print(f"     modlist: {modlist_dict[position]}")
+        # 检查模组是否在modlist的其他位置
+        found_elsewhere = False
+        for pos, mod_in_list in modlist_dict.items():
+            if clean_mod_name(mod_in_list) == clean_name and pos != position:
+                found_elsewhere = True
+                issue_details.append(f"在modlist中位置为 {pos}")
+                break
+
+        if status != "✓" or found_elsewhere:
+            has_issues = True
+            print(f"{position:3d}. {status} {mod_file}")
+            if position in modlist_dict:
+                print(f"     modlist: {modlist_dict[position]}")
+            for detail in issue_details:
+                print(f"     问题: {detail}")
+            print()
+
+    if not has_issues:
+        print("无详细问题需要显示")
 
 
 def main():
