@@ -170,27 +170,17 @@ def get_actual_mod_names(mods_dir, count, start=1):
 
 def clean_mod_name(mod_name):
     """
-    清理模组名称，移除版本后缀和.jar扩展名
+    清理模组名称，只移除.jar扩展名，保留完整的模组文件名
 
     Args:
         mod_name: 原始模组文件名
 
     Returns:
-        清理后的模组名称
+        清理后的模组名称（不含.jar后缀）
     """
+    # 只移除.jar扩展名，保留完整的模组文件名
     if mod_name.endswith('.jar'):
         mod_name = mod_name[:-4]
-
-    patterns = [
-        r'-\d+\.\d+(\.\d+)?[-\d\w.]*',
-        r'_\d+\.\d+(\.\d+)?[-\d\w.]*',
-        r'-forge-\d+\.\d+',
-        r'-neoforge-\d+\.\d+',
-        r'-mc\d+\.\d+',
-    ]
-
-    for pattern in patterns:
-        mod_name = re.sub(pattern, '', mod_name)
 
     return mod_name
 

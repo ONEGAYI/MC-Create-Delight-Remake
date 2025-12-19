@@ -98,10 +98,15 @@ def extract_modlist_from_md(md_file):
     position = 1
 
     for line in lines:
-        # 跳过空行和表头行
+        # 跳过空行
         if not line.strip():
             continue
-        if any(keyword in line for keyword in ['编号', '名称', '环境', '标签', '描述', ':---']):
+            
+        # [修复] 优化表头过滤逻辑
+        # 原逻辑会误删描述中包含"描述"的行 (如 EnchantmentDescriptions)
+        if ':---' in line:  # 跳过分割线
+            continue
+        if line.strip().startswith('编号'):  # 跳过表头
             continue
 
         # 分割行内容
@@ -118,7 +123,6 @@ def extract_modlist_from_md(md_file):
                 position += 1
 
     return mod_dict
-
 
 def list_mods(mods_dir, count, start=1):
     """
