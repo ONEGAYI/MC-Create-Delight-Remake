@@ -1,0 +1,18 @@
+/*
+
+!/mods/
+!.claude
+!scripts
+!docs
+
+!CLAUDE.md
+!.gitignore
+# 不允许配置文件
+/.claude/settings.local.json
+
+# 忽略备份
+*bak
+docs/backups
+/.claude/skills/search-mods-info/configs
+
+*__pycache__*
