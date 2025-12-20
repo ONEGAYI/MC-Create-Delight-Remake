@@ -1,12 +1,14 @@
 /*
 
-!/mods/
+!/mods
 !.claude
 !scripts
 !docs
+!kubejs
 
 !CLAUDE.md
 !.gitignore
+!MC git 仓库连接.bat
 # 不允许配置文件
 /.claude/settings.local.json
 
