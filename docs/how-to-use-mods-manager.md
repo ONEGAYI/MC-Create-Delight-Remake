@@ -69,7 +69,7 @@ python scripts/mods_manager.py batch_write env "客户端"
 python scripts/mods_manager.py batch_write env "服务端" --where "filename LIKE '%server%'"
 ```
 
-### 搜索功能
+### 数据查询
 
 #### 1. 模糊搜索（默认）
 ```bash
@@ -86,6 +86,26 @@ python scripts/mods_manager.py search env "'客户端'"
 ```bash
 # 搜索以大写字母开头并以Mod结尾的文件
 python scripts/mods_manager.py search filename "^[A-Z].*Mod$" -r
+```
+
+#### 4. 根据SHA显示完整信息
+```bash
+# 使用12位及以上SHA前缀查看模组所有字段信息
+python scripts/mods_manager.py show 015f6d95e1f2
+
+# 输出示例：
+# 🔍 找到 1 个匹配项:
+# ================================================================================
+#
+# 1. 【overloadedarmorbar-1.20.1-1.jar】
+#    SHA: 015f6d95e1f2f0dc98e70c9375cf21ccfc8214f308ff65aec4f696d6420b773a
+#    filepath: ../mods\overloadedarmorbar-1.20.1-1.jar
+#    env: 客户端
+#    tags: #界面增强
+#    description: 护甲值超过20时显示不同颜色图标，更好的装甲显示
+#
+# ================================================================================
+# 总计: 1 个匹配项
 ```
 
 ### 数据管理
@@ -187,7 +207,10 @@ python scripts/mods_manager.py sync
 # 2. 搜索特定模组
 python scripts/mods_manager.py search description "Create"
 
-# 3. 导出数据进行分析
+# 3. 查看模组完整信息（使用SHA前缀）
+python scripts/mods_manager.py show 015f6d95e1f2
+
+# 4. 导出数据进行分析
 python scripts/mods_manager.py export
 ```
 

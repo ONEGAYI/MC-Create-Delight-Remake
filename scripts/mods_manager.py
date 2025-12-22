@@ -459,7 +459,7 @@ class AssetManager:
                 print(f"{'='*80}")
 
                 for i, row in enumerate(matched_rows, 1):
-                    sha = row['sha'][:8] + "..."
+                    sha = row['sha'][:12] + "..."
                     filename = row['filename']
                     field_value = str(row[field]) if row[field] is not None else "(空)"
                     filepath = row['filepath']
@@ -768,63 +768,127 @@ class AssetManager:
             traceback.print_exc()
             return False
 
+    def show_by_sha(self, sha_prefix):
+        """
+        [功能 11] 根据SHA前缀显示完整信息
+        sha_prefix: SHA前缀（至少12位）
+        """
+        try:
+            # 验证SHA长度
+            if len(sha_prefix) < 12:
+                print("❌ SHA前缀长度不足，请提供至少12位SHA")
+                return
+
+            # 查询匹配的记录
+            self.cursor.execute("SELECT * FROM files WHERE sha LIKE ?", (sha_prefix + '%',))
+            rows = self.cursor.fetchall()
+
+            if len(rows) == 0:
+                print(f"❌ 没有找到SHA以 '{sha_prefix}' 开头的记录")
+                return
+
+            # 获取所有字段名
+            self.cursor.execute("PRAGMA table_info(files)")
+            columns = self.cursor.fetchall()
+            col_names = [col[1] for col in columns]
+
+            # 显示结果
+            print(f"\n🔍 找到 {len(rows)} 个匹配项:")
+            print(f"{'='*80}")
+
+            for i, row in enumerate(rows, 1):
+                filename = row['filename']
+                print(f"\n{i}. 【{filename}】")
+                print(f"   SHA: {row['sha']}")
+
+                # 显示其他字段（排除 sha 和 filename，因为已经显示了）
+                for col in col_names:
+                    if col not in ['sha', 'filename']:
+                        value = row[col]
+                        if value is not None and value != '':
+                            print(f"   {col}: {value}")
+
+            print(f"\n{'='*80}")
+            print(f"总计: {len(rows)} 个匹配项")
+
+        except Exception as e:
+            print(f"❌ 查询失败: {e}")
+
 # ================= 命令行接口逻辑 =================
 def main():
-    parser = argparse.ArgumentParser(description="本地文件资产管理脚本")
+    parser = argparse.ArgumentParser(
+        description="本地文件资产管理脚本",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+命令分组:
+  数据同步    sync            同步文件夹内容到数据库
+
+  字段管理    add_field       添加新的信息字段
+              delete_field    删除指定的字段
+              rename_field    重命名指定的字段
+              info            查看当前所有字段
+
+  数据编辑    update          更新单个文件的字段
+              batch_write     批量写入字段
+
+  数据查询    search          搜索数据库中的项
+              show            根据SHA前缀显示完整信息
+
+  数据维护    check           检查某字段缺失的项
+              backup          数据库备份和恢复
+              export          导出数据库到CSV文件
+        """)
     subparsers = parser.add_subparsers(dest='command', help='可用命令')
 
-    # 1. Sync: 同步文件夹到数据库
+    # ========== 数据同步 ==========
     parser_sync = subparsers.add_parser('sync', help='同步文件夹内容到数据库')
     parser_sync.add_argument('--folder', type=str, default=DEFAULT_FOLDER, help='指定扫描文件夹路径')
     parser_sync.add_argument('--force', action='store_true', help='自动确认删除数据库中缺失文件的记录，无需用户确认')
 
-    # 2. Add Field: 添加新字段
+    # ========== 字段管理 ==========
     parser_add = subparsers.add_parser('add_field', help='添加新的信息字段')
     parser_add.add_argument('name', type=str, help='字段名称 (英文)')
     parser_add.add_argument('--type', type=str, default='TEXT', help='字段类型 (TEXT, INTEGER, REAL)')
 
-    # 3. Check Missing: 检查缺失项
-    parser_miss = subparsers.add_parser('check', help='检查某字段缺失的项')
-    parser_miss.add_argument('field', type=str, help='要检查的字段名')
+    parser_del = subparsers.add_parser('delete_field', help='删除指定的字段')
+    parser_del.add_argument('name', type=str, help='要删除的字段名')
 
-    # 4. Update Single: 单个更新
+    parser_rename = subparsers.add_parser('rename_field', help='重命名指定的字段')
+    parser_rename.add_argument('old_name', type=str, help='原字段名')
+    parser_rename.add_argument('new_name', type=str, help='新字段名')
+
+    subparsers.add_parser('info', help='查看当前所有字段')
+
+    # ========== 数据编辑 ==========
     parser_upd = subparsers.add_parser('update', help='更新单个文件的字段')
     parser_upd.add_argument('sha', type=str, help='文件 SHA 前几位')
     parser_upd.add_argument('field', type=str, help='字段名')
     parser_upd.add_argument('value', type=str, help='值')
 
-    # 5. Batch Update: 批量更新
     parser_batch = subparsers.add_parser('batch_write', help='批量写入字段')
     parser_batch.add_argument('field', type=str, help='字段名')
     parser_batch.add_argument('value', type=str, help='值')
     parser_batch.add_argument('--where', type=str, default=None, help='SQL WHERE 条件 (可选，例如 "author IS NULL")')
 
-    # 6. Show Columns: 查看字段
-    subparsers.add_parser('info', help='查看当前所有字段')
-
-    # 7. Delete Field: 删除字段
-    parser_del = subparsers.add_parser('delete_field', help='删除指定的字段')
-    parser_del.add_argument('name', type=str, help='要删除的字段名')
-
-    # 8. Rename Field: 重命名字段
-    parser_rename = subparsers.add_parser('rename_field', help='重命名指定的字段')
-    parser_rename.add_argument('old_name', type=str, help='原字段名')
-    parser_rename.add_argument('new_name', type=str, help='新字段名')
-
-    # 9. Search: 搜索数据库
+    # ========== 数据查询 ==========
     parser_search = subparsers.add_parser('search', help='搜索数据库中的项')
     parser_search.add_argument('field', type=str, help='要搜索的字段名')
     parser_search.add_argument('target', type=str, help='搜索目标值')
     parser_search.add_argument('-r', '--regex', action='store_true', help='使用正则表达式模式')
 
-    # 10. Backup: 备份和恢复数据库
+    parser_show = subparsers.add_parser('show', help='根据SHA前缀显示完整信息')
+    parser_show.add_argument('sha', type=str, help='SHA前缀（至少12位）')
+
+    # ========== 数据维护 ==========
+    parser_miss = subparsers.add_parser('check', help='检查某字段缺失的项')
+    parser_miss.add_argument('field', type=str, help='要检查的字段名')
+
     parser_backup = subparsers.add_parser('backup', help='数据库备份和恢复')
     backup_group = parser_backup.add_mutually_exclusive_group(required=True)
     backup_group.add_argument('-s', '--save', action='store_true', help='保存数据库备份')
     backup_group.add_argument('-l', '--load', action='store_true', help='从备份恢复数据库')
     parser_backup.add_argument('-d', '--dir', type=str, default=None, help='自定义备份目录路径')
 
-    # 11. Export: 导出CSV
     parser_export = subparsers.add_parser('export', help='导出数据库到CSV文件')
     parser_export.add_argument('-d', '--dir', type=str,
                              default='../docs/mods_metadata.csv',
@@ -881,6 +945,8 @@ def main():
             output_path=args.dir,
             table_name=args.table
         )
+    elif args.command == 'show':
+        manager.show_by_sha(args.sha)
     else:
         parser.print_help()
 

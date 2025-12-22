@@ -7,6 +7,37 @@ allowed-tools: Write, Edit, Bash(python D:\games\MC\.minecraft\versions\Create-D
 # 搜索模组信息并总结建档
 你的目标是正确的为**没有建档**的模组进行建档，这需要你进行搜索和总结。
 
+## 文件结构
+```
+Create-Delight-Remake
+├── .claude/skills/search-mods-info/
+│   ├── SKILL.md                           # 本技能配置文件
+│   ├── configs/                           # 配置和数据文件
+│   │   ├── updated_SHA.txt                # 已更新SHA列表
+│   │   ├── updated_info.csv               # 更新信息CSV（用于批量更新）
+│   │   ├── updated_missing_names.txt      # 缺失名称列表
+│   │   ├── updated_missing_sha.txt        # 缺失SHA列表
+│   │   └── updated_names.txt              # 已更新名称列表
+│   ├── references/                        # 参考文档
+│   │   ├── how-to-search-mod-info.md      # 搜索模组信息指南
+│   │   ├── mod_ecosystems.md              # 模组生态说明
+│   │   └── mod_manager_README.md          # 模组管理器说明
+│   └── scripts/                           # 辅助脚本
+│       ├── check_missing_fields.py        # 检查缺失字段
+│       ├── classify_statistics.py         # 分类统计
+│       ├── get_sha_from_names.py          # 从名称获取SHA
+│       └── reset_updated_info.py          # 重置更新信息
+│
+├── docs/
+│   └── mods_metadata.db                  # 模组元数据库 (SQLite)
+│
+└── scripts/
+    ├── MC 整合包更新工具.bat
+    ├── batch_update_manager.py           # 批量更新管理
+    ├── mods_manager.py                   # 模组管理器主程序
+    └── update_from_modlist.py            # 从模组列表更新
+```
+
 ## 注意事项
 - 你应该优先使用 `exa` MCP 工具进行搜索
 - 你应该尽量调用 agent 完成搜索，并将使用 `exa` 的信息提示给他
@@ -20,7 +51,7 @@ allowed-tools: Write, Edit, Bash(python D:\games\MC\.minecraft\versions\Create-D
 ## 模组建档完整流程
 
 ### 第一步：准备工作
-1. **阅读模组使用指南** - 了解模组管理器的使用方法 `references/how-to-use-mods-manager.md`
+1. **阅读模组使用指南** - 了解模组管理器的使用方法 `../../../docs/how-to-use-mods-manager.md`
 
 ### 第二步：初始化工作环境
 1. **重置更新信息文件** - 清空之前的更新记录
