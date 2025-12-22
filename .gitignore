@@ -1,6 +1,5 @@
 /*
 
-!/mods
 !.claude
 !scripts
 !docs
@@ -9,6 +8,7 @@
 !CLAUDE.md
 !.gitignore
 !MC git 仓库连接.bat
+!Uploader.py
 # 不允许配置文件
 /.claude/settings.local.json
 

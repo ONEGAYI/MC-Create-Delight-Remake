@@ -1,5 +1,5 @@
 ---
-name: search-mods-and-summarize
+name: buid-archive-for-mod
 description: 当用户需要为(游戏)模组建档、搜索时，使用该技能。典型提示词:"请为模组建档"
 allowed-tools: Write, Edit, Bash(python D:\games\MC\.minecraft\versions\Create-Delight-Remake\scripts\mods_manager.py:*), Bash(python mods_manager.py:*)
 ---
@@ -68,7 +68,11 @@ allowed-tools: Write, Edit, Bash(python D:\games\MC\.minecraft\versions\Create-D
    - `updated_at` 可以不填，将自动生成
    - 示例：`a1b2c3d4,2025-12-19 18:18:46,mod.jar,客户端,#工具,<safely-jump>`
 
-2. **执行批量更新** - 使用批量更新脚本
+2. **确保信息符合规范:**
+   - 标签的选择范围只有:
+     工业自动化、库与依赖、食物与农业、装备与战斗、装饰与建筑、世界扩展、交通与运输、性能优化、界面增强、辅助工具、魔法与特殊、整合与联动
+
+3. **执行批量更新** - 使用批量更新脚本
    ```bash
    python scripts/batch_update_manager.py
    ```
