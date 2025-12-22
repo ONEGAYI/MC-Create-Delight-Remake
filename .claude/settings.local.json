@@ -5,7 +5,8 @@
       "Skill(table-converter)",
       "Bash(python scripts/check_missing_fields.py:*)",
       "Bash(python:*)",
-      "Skill(operate-mod-manager)"
+      "Skill(operate-mod-manager)",
+      "Skill(build-archive-for-mod)"
     ]
   }
 }

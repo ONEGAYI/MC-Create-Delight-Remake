@@ -1,2 +1,2 @@
 sha,updated_at,filename,env,tags,description
-d4f22942888438f7fabf40e16f47d2e454ece7585a262cdfb7d20b4b13683013,,InventoryProfilesNext-forge-1.20-1.10.19.jar,客户端,#辅助工具,背包物品栏整理管理工具，一键整理、自动替换、批量操作,
+cb96fa15eddc74c243677f7f5b6e3ecaa87bb33f4854ae0353646f304058add6,,libIPN-forge-1.20-4.0.2.jar,客户端,#库与依赖,一键背包整理 Next 的前置，为其提供 GUI/配置文件库

@@ -6,7 +6,7 @@
 import csv
 
 # 输出文件路径
-output_path = r"D:\games\MC\.minecraft\versions\Create-Delight-Remake\.claude\skills\search-mods-info\configs\updated_info.csv"
+output_path = r"D:\games\MC\.minecraft\versions\Create-Delight-Remake\.claude\skills\build-archive-for-mod\configs\updated_info.csv"
 
 # 写入标题行和一行空行
 with open(output_path, 'w', encoding='utf-8', newline='') as f:
