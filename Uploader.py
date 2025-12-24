@@ -330,13 +330,48 @@ def main():
         else:
             print(f"\n=== 阶段 2: 无需清理 ===")
 
+    # === 阶段 3: 更新清单 (修复 SSL 报错版) ===
     print(f"\n正在更新 {MANIFEST_FILENAME} ...")
     with open(MANIFEST_FILENAME, "w", encoding='utf-8') as f:
         json.dump(new_manifest, f, indent=None, separators=(',', ':'))
     
-    s3.upload_file(MANIFEST_FILENAME, BUCKET_NAME, MANIFEST_FILENAME)
+    # 强制休眠 1 秒，等待高并发后的 Socket 释放
+    import time
+    time.sleep(1)
+
+    # 使用重试逻辑 + 全新客户端来上传清单
+    success = False
+    for attempt in range(5):
+        try:
+            print(f"正在上传清单 (尝试 {attempt + 1}/5)...")
+            
+            # 创建一个新的、干净的客户端，不复用之前的连接池
+            final_s3 = boto3.client('s3',
+                endpoint_url=R2_ENDPOINT,
+                aws_access_key_id=ACCESS_KEY,
+                aws_secret_access_key=SECRET_KEY,
+                config=Config(
+                    retries={'max_attempts': 3},
+                    connect_timeout=30,
+                    read_timeout=30
+                )
+            )
+            
+            final_s3.upload_file(MANIFEST_FILENAME, BUCKET_NAME, MANIFEST_FILENAME)
+            print(f"√ 清单更新成功！")
+            success = True
+            break
+        except Exception as e:
+            print(f"[警告] 上传清单失败: {e}")
+            if attempt < 4:
+                print("等待 3 秒后重试...")
+                time.sleep(3)
     
-    print(f"\n=== 完成: 上传 {upload_count} / 跳过 {skip_count} / 删除 {delete_count} ===")
+    if not success:
+        print("\n❌ 严重错误: 清单文件未能上传到云端。")
+        print("请检查网络连接，然后手动重新运行脚本。")
+    else:
+        print(f"\n=== 完成: 上传 {upload_count} / 跳过 {skip_count} / 删除 {delete_count} ===")
 
 if __name__ == "__main__":
     main()
