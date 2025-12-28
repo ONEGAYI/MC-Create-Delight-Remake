@@ -93,17 +93,22 @@ Create-Delight-Remake
    - 自己负责信息整理和总结
 
 ### 第六步：更新数据库
-1. **准备更新数据** - 将搜集到的信息填入 `configs/updated_info.csv`
+1. **生成更新表格** - 生成预填充SHA和filename的干净更新表格
+   - 使用 `reset_updated_info.py` 重置表格为干净状态
+   - 使用 `check_missing_fields.py` 预填充待更新文件基本信息
+   - **该步骤完成前不应进行后续步骤**
+
+2. **准备更新数据** - 将搜集到的信息填入 `configs/updated_info.csv`
    - 表头格式：`sha,updated_at,filename,env,tags,description`
    - 使用 `<safely-jump>` 占位符跳过不需要更新的字段 (若用户指定)
    - `updated_at` 可以不填，将自动生成
    - 示例：`a1b2c3d4,2025-12-19 18:18:46,mod.jar,客户端,#工具,<safely-jump>`
 
-2. **确保信息符合规范:**
+3. **确保信息符合规范:**
    - 标签的选择范围只有:
      工业自动化、库与依赖、食物与农业、装备与战斗、装饰与建筑、世界扩展、交通与运输、性能优化、界面增强、辅助工具、魔法与特殊、整合与联动
 
-3. **执行批量更新** - 使用批量更新脚本
+4. **执行批量更新** - 使用批量更新脚本
    ```bash
    python scripts/batch_update_manager.py
    ```

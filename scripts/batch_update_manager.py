@@ -418,8 +418,24 @@ class BatchUpdateManager:
         return True
 
 
+def find_default_csv_path():
+    """智能查找默认 CSV 文件路径"""
+    # 可能的技能文件夹名称
+    skill_dirs = ['build-archive-for-mod', 'search-mods-info']
+
+    for skill_dir in skill_dirs:
+        csv_path = os.path.normpath(os.path.join(script_dir, f'../.claude/skills/{skill_dir}/configs/updated_info.csv'))
+        if os.path.exists(csv_path):
+            return csv_path
+
+    # 如果都找不到，返回第一个作为默认值
+    return os.path.normpath(os.path.join(script_dir, f'../.claude/skills/{skill_dirs[0]}/configs/updated_info.csv'))
+
+
 def parse_arguments():
     """解析命令行参数"""
+    default_csv = find_default_csv_path()
+
     parser = argparse.ArgumentParser(
         description='批量更新模组数据库信息',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -435,8 +451,8 @@ def parse_arguments():
 
     parser.add_argument(
         '--csv',
-        default='../.claude/skills/search-mods-info/configs/updated_info.csv',
-        help='CSV 文件路径 (默认: ../.claude/skills/search-mods-info/configs/updated_info.csv)'
+        default=default_csv,
+        help=f'CSV 文件路径 (默认: {default_csv})'
     )
 
     parser.add_argument(

@@ -1,2 +1,3 @@
 sha,updated_at,filename,env,tags,description
-cb96fa15eddc74c243677f7f5b6e3ecaa87bb33f4854ae0353646f304058add6,,libIPN-forge-1.20-4.0.2.jar,客户端,#库与依赖,一键背包整理 Next 的前置，为其提供 GUI/配置文件库
+4ace663c812e3af58106f6956443a0d5d1504c9afb262db49a633571d54bf1ee,,pipez-forge-1.20.1-1.2.21.jar,客户端,#工业自动化,添加了既简单又可配置的管道，尽可能地减少延迟。只有抽取管道有方块实体；管道不会加载不必要的区块；对服务器友好，能高效地进行渲染；当装有通用机械模组时，增加气体管道
+5badcc891b9f8565933244e44eb2c2fd9bf16f3085c14432e40cf20f47696d4b,,creeperfireworks-1.20.1-1.0.1.3-FORGE.jar,客户端,#魔法与特殊,用高度可配置的爆炸效果取代了普通的苦力怕爆炸效果。可配置禁用方块/物品破坏、烟花生成几率、颜色、高度、形状效果等
