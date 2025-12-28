@@ -34,13 +34,11 @@ def get_missing_items(manager, field):
     return missing_items
 
 def save_missing_to_csv(missing_items, output_path):
-    """保存缺失项到 CSV 格式"""
+    """保存缺失项到 CSV 格式（updated_at 由 batch_update_manager.py 自动生成）"""
     with open(output_path, 'a', encoding='utf-8') as f:
-        # # 写入表头
-        # f.write("sha,updated_at,filename,env,tags,description\n")
-        # 写入数据
+        # 写入数据（sha, filename, env, tags, description）
         for item in missing_items:
-            f.write(f"{item['sha']},{item['filename']},,,,\n")
+            f.write(f"{item['sha']},{item['filename']},,,\n")
 
 def main():
     # 初始化数据库管理器
