@@ -395,7 +395,11 @@ class BatchUpdateManager:
         # 确认执行
         if not dry_run and not force:
             print(f"\n准备更新 {len(csv_data)} 条记录")
-            confirm = input("确认执行吗? (输入 'yes' 确认): ")
+            try:
+                confirm = input("确认执行吗? (输入 'yes' 确认): ")
+            except (EOFError, KeyboardInterrupt):
+                print("\n🚫 操作取消（非交互环境或用户中断）")
+                return False
             if confirm.lower() != 'yes':
                 print("🚫 操作取消")
                 return False
