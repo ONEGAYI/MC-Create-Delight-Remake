@@ -17,5 +17,6 @@
 *bak
 docs/backups
 /.claude/skills/search-mods-info/configs
+docs/mods_metadata.db
 
 *__pycache__*
