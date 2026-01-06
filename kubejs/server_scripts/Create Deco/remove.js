@@ -13,7 +13,9 @@ ServerEvents.recipes(e => {
         "createdeco:pressing/coins/copper_coin",
         "createdeco:pressing/coins/iron_coin",
         "createdeco:pressing/coins/gold_coin",
-        "createdeco:pressing/coins/netherite_coin"
+        "createdeco:pressing/coins/netherite_coin",
+        "createdeco:industrial_iron_ingot_from_industrial_iron_block",
+        "createdeco:industrial_iron_block"
     ])
     remove_recipes_output(e, [
         'createdeco:netherite_nugget',
@@ -26,12 +28,15 @@ ServerEvents.recipes(e => {
         'createdeco:industrial_iron_coin',
         'createdeco:industrial_iron_coinstack',
         'createdeco:zinc_coin',
-        'createdeco:zinc_coinstack',
-        'createdeco:andesite_hull',
-        'createdeco:brass_hull',
-        'createdeco:iron_hull',
-        'createdeco:copper_hull',
-        'createdeco:industrial_iron_hull',
-        'createdeco:zinc_hull'
+        'createdeco:zinc_coinstack'
     ])
+    e.replaceInput({}, "#createdeco:internal/plates/zinc_plates", "createaddition:zinc_sheet")
+    e.replaceInput({}, "#createdeco:internal/plates/andesite_plates", "vintageimprovements:andesite_sheet")
+    e.replaceInput({}, "#createdeco:internal/plates/netherite_plates", "vintageimprovements:netherite_sheet")
+    const {create, minecraft} = e.recipes
+    create.compacting(
+        'createdeco:industrial_iron_ingot',
+        "minecraft:iron_ingot"
+    ).heated().id("createdeco:compacting/industrial_iron_ingot")
 })
+

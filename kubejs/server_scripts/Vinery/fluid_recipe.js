@@ -6,20 +6,21 @@ ServerEvents.recipes(e => {
         let recipe = r.getOriginalRecipe()
         let res = recipe.getResultItem(null)
         let resFluid = Fluid.of(`createdelight:${res.id.toString().split(":")[1]}`, 1000)
-        e.recipes.create.filling(res, ["vinery:wine_bottle", resFluid])
+        let resFluid_250 = Fluid.of(`createdelight:${res.id.toString().split(":")[1]}`, 250)
+        e.recipes.create.filling(res, ["vinery:wine_bottle", resFluid_250])
             .id(`createdelight:filling/${res.id.toString().split(":")[1]}`)
-        e.recipes.create.emptying(["vinery:wine_bottle", resFluid], res)
+        e.recipes.create.emptying(["vinery:wine_bottle", resFluid_250], res)
             .id(`createdelight:emptying/${res.id.toString().split(":")[1]}`)
         pouring(e, res, resFluid.id, "vinery:wine_bottle")
         let fluid = recipe.getJuiceType().split("_")
         let fluidId = ""
         let prefix = fluid[0]
         if (fluid[1] == "general") {
-            prefix = "doaddonfluids:" + fluid[0]
+            prefix = "createdelightcore:" + fluid[0]
             fluidId = prefix + "_grapejuice"
         }
         else if (fluid[1] == "warped" || fluid[1] == "crimson") {
-            prefix = "doaddonfluids:" + fluid[1]
+            prefix = "createdelightcore:" + fluid[1]
             fluidId = prefix + "_grapejuice"
         }
         else if (fluid[0] == "apple") {
@@ -27,7 +28,7 @@ ServerEvents.recipes(e => {
         }
         else if (fluid[1]) {
             prefix = `${fluid[1]}_${prefix}`
-            prefix = "doaddonfluids:" + prefix
+            prefix = "createdelightcore:" + prefix
             fluidId = prefix + "_grapejuice"
         }
         let ingrs = [Fluid.of(fluidId, 1000)]
@@ -62,4 +63,5 @@ ServerEvents.recipes(e => {
         .id("vinery:filling/apple_juice")
     e.recipes.create.emptying(["vinery:wine_bottle", Fluid.of("createdelight:apple_juice", 250)], "vinery:apple_juice")
         .id("vinery:emptying/apple_juice")
+    pouring(e, 'vinery:apple_juice', "createdelight:apple_juice", "vinery:wine_bottle", 250)
 })

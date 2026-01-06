@@ -56,7 +56,8 @@ ServerEvents.tags("minecraft:item", e => {
         "oceanic_delight:sea_grape",
         "vinery:dark_cherry_sapling",
         "createcafe:coffee_beans",
-        "miners_delight:cave_carrot"
+        "miners_delight:cave_carrot",
+        'alexscaves:fiddlehead'
     )    
     e.add("eclipticseasons:crops/average_humid",
         "farmersrespite:tea_seeds"
@@ -81,5 +82,11 @@ ServerEvents.tags("minecraft:item", e => {
         "vinery:jungle_grape_seeds_white",
         "vinery:jungle_grape_seeds_red",
         "youkaishomecoming:mandrake_root"
+    )
+    e.add("eclipticseasons:crops/arid_average",
+        "minecraft:crimson_fungus",
+        "minecraft:warped_fungus",
+        "mynethersdelight:crimson_fungus_colony",
+        "mynethersdelight:warped_fungus_colony"
     )
 })

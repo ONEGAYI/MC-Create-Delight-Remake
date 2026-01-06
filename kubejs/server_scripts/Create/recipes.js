@@ -8,10 +8,12 @@ ServerEvents.recipes(e => {
         "create_connected:crafting/kinetics/empty_fan_catalyst_from_seething",
         "quark:tweaks/crafting/utility/bent/paper",
         "create:pressing/sugar_cane",
-        "design_decor:stonecutting/industrial_plating",
         "create:splashing/iceandfire/crushed_raw_silver",
         "create:mixing/brass_ingot",
         "create:filling/compat/neapolitan/milk_bottle",
+    ])
+    remove_recipes_output(e, [
+        "create:pulp"
     ])
     // 闪长岩合成配方优化
     e.recipes.create.mixing(
@@ -21,6 +23,15 @@ ServerEvents.recipes(e => {
             'minecraft:quartz'
         ]
     ).id("create:mixing/diorite")
+    // 方解石压块塑形配方
+    e.recipes.create.compacting(
+        'minecraft:calcite',
+        [
+            'minecraft:flint', 
+            'minecraft:bone_block', 
+            Fluid.of('minecraft:lava', 100)
+        ]
+    ).id("createdelight:compacting/calcite")
     // 黑曜石粉末粉碎
     e.recipes.create.milling(
         Item.of("create:powdered_obsidian").withChance(0.3),
@@ -36,15 +47,6 @@ ServerEvents.recipes(e => {
         "4x redstone",
         "quartz"
     ])
-
-    e.recipes.minecraft.stonecutting(
-        "4x design_decor:cast_iron_boiler",
-        "createbigcannons:cast_iron_block"
-    ).id("design_decor:stonecutting/cyllinder/cast_iron_cyllinder")
-    e.recipes.minecraft.stonecutting(
-        "design_decor:cast_iron_boiler_large",
-        "createbigcannons:cast_iron_block"
-    ).id("design_decor:stonecutting/cyllinder/cast_iron_cyllinder_large")
     // 玫瑰石英
     e.recipes.create.sandpaper_polishing(
         'create:polished_rose_quartz',
@@ -55,6 +57,24 @@ ServerEvents.recipes(e => {
         "create:polished_rose_quartz",
         "create:rose_quartz"
     ).id("create:cutting/polished_rose_quartz")
+    // 解决玫瑰石英配方冲突
+    e.remove({ type: 'minecraft:stonecutting', output: 'create:rose_quartz_block', input: 'create:rose_quartz' })
+    e.remove({ type: 'minecraft:stonecutting', output: 'create:rose_quartz_tiles', input: 'create:polished_rose_quartz' })
+    e.remove({ type: 'minecraft:stonecutting', output: 'create:small_rose_quartz_tiles', input: 'create:polished_rose_quartz' })
+    // 玫瑰石英块/砖
+    e.shaped('8x create:rose_quartz_block', [
+        'AA',
+        'AA'
+    ], {
+        A: 'create:rose_quartz'
+    }).id('create:crafting/rose_quartz_block')
+    
+    e.shaped('8x create:rose_quartz_tiles', [
+        'AA',
+        'AA'
+    ], {
+        A: 'create:polished_rose_quartz'
+    }).id('create:crafting/rose_quartz_tiles')
     // 动力锯切割：磨制紫水晶
     e.recipes.create.cutting(
         'createutilities:polished_amethyst',
@@ -283,16 +303,14 @@ ServerEvents.recipes(e => {
         "ABA",
         " A "
     ], {
-        A: "#forge:plates/cast_iron",
+        A: "createdeco:industrial_iron_sheet",
         B: "minecraft:netherrack"
     }).id("create:empty_blaze_burner_from_cast_iron")
-    //deco和create的工业铁块互切
-    e.recipes.minecraft.stonecutting("design_decor:industrial_plating_block", "create:industrial_iron_block")
-        .id("industrial_plating_block_from_industrial_iron_block")
-    e.recipes.minecraft.stonecutting("create:industrial_iron_block", "design_decor:industrial_plating_block")
-        .id("industrial_iron_block_from_industrial_plating_block")
+    
     e.recipes.minecraft.stonecutting("6x create:industrial_iron_block", "createmetallurgy:steel_ingot")
-        .id("industrial_iron_block_from_steel_ingot")
+        .id("create:industrial_iron_block_from_steel_ingot")
+    e.recipes.minecraft.stonecutting("6x create:industrial_iron_block", "createmetallurgy:steel_ingot")
+        .id("create:weathered_iron_block_from_steel_ingot")
     // 甜甜圈
     e.recipes.create.filling(
         "create:sweet_roll",
@@ -339,23 +357,23 @@ ServerEvents.recipes(e => {
     e.recipes.createmetallurgy.melting(Fluid.of("createmetallurgy:molten_iron", 360), "minecraft:iron_trapdoor")
         .heatRequirement("heated").processingTime(180)
     let andesiteOutputList = [
-        '4x create:andesite_funnel',
-        '4x create:andesite_tunnel',
-        '4x create:depot',
-        '2x create:mechanical_plough',
-        '2x create:mechanical_harvester',
-        '4x create:portable_storage_interface',
-        'create:mechanical_mixer', 
-        'create:mechanical_press', 
-        'create:mechanical_saw', 
-        'create:mechanical_drill', 
-        'create:encased_fan',
-        'createaddition:rolling_mill',
-        'vintageimprovements:spring_coiling_machine', 
-        'vintageimprovements:vibrating_table', 
-        'vintageimprovements:centrifuge',
-        'vintageimprovements:curving_press',
-        '8x create:gearbox'
+        '5x create:andesite_funnel',
+        '5x create:andesite_tunnel',
+        '5x create:depot',
+        '3x create:mechanical_plough',
+        '3x create:mechanical_harvester',
+        '5x create:portable_storage_interface',
+        '2x create:mechanical_mixer', 
+        '2x create:mechanical_press', 
+        '2x create:mechanical_saw', 
+        '2x create:mechanical_drill', 
+        '2x create:encased_fan',
+        '2x createaddition:rolling_mill',
+        '2x vintageimprovements:spring_coiling_machine', 
+        '2x vintageimprovements:vibrating_table', 
+        '2x vintageimprovements:centrifuge',
+        '2x vintageimprovements:curving_press',
+        '8x create:gearbox',
     ].forEach(res => {
         e.recipes.vintageimprovements.pressurizing([
             res,
@@ -363,28 +381,34 @@ ServerEvents.recipes(e => {
             [
                 Fluid.of("createdelightcore:molten_andesite", 450),
                 "create_sa:heat_engine",
-                "art_of_forging:nano_insectoid"
+                "art_of_forging:nano_insectoid",
+                Item.of(res, 1)
             ].concat(multi_item("createdieselgenerators:wood_chip", 9))
         )
             .secondaryFluidInput(0)
             .id(`createdelight:pressurizing/${res.split(":")[1]}_from_nano_insectoid`)
     })
     let brassOutputList = [
-        '4x create:brass_tunnel', 
-        'create:mechanical_crafter', 
-        'create:rotation_speed_controller', 
-        'create:mechanical_arm', 
-        '4x create:brass_funnel',
-        'create:deployer'
+        '5x create:brass_tunnel', 
+        '2x create:mechanical_crafter', 
+        '2x create:rotation_speed_controller', 
+        '2x create:mechanical_arm', 
+        '5x create:brass_funnel',
+        '2x create:deployer',
+        '2x fluid:pipette',
+        '3x create_fantasizing:transporter',
+        '3x fluid:smart_fluid_interface',
+        '5x createaddition:portable_energy_interface',
+        '2x create_bic_bit:mechanical_fryer'
     ].forEach(res => {
         e.recipes.vintageimprovements.pressurizing([
             res,
             'art_of_forging:nano_insectoid'],
             [
-                Fluid.of("createdelightcore:molten_brass", 450),
-                "create:precision_mechanism",
+                Fluid.of("createmetallurgy:molten_brass", 450),
+                "create_sa:steam_engine",
                 "art_of_forging:nano_insectoid",
-                "create:electron_tube"
+                Item.of(res, 1)
             ].concat(multi_item("createdieselgenerators:wood_chip", 9))
         )
             .secondaryFluidInput(0)
@@ -393,18 +417,70 @@ ServerEvents.recipes(e => {
     let copperOutputList = [
         '3x create:item_drain', 
         '3x create:spout', 
-        '3x create:portable_fluid_interface'
+        '3x create:portable_fluid_interface',
+        '2x fluid:centrifugal_pump', 
+        '3x fluid:copper_tap', 
+        '3x fluid:fluid_interface'
     ].forEach(res => {
         e.recipes.vintageimprovements.pressurizing([
             res,
             'art_of_forging:nano_insectoid'],
             [
-                Fluid.of("createdelightcore:molten_copper", 450),
+                Fluid.of("createmetallurgy:molten_copper", 450),
                 "create_sa:hydraulic_engine",
-                "art_of_forging:nano_insectoid"
+                "art_of_forging:nano_insectoid",
+                Item.of(res, 1)
             ].concat(multi_item("createdieselgenerators:wood_chip", 9))
         )
             .secondaryFluidInput(0)
             .id(`createdelight:pressurizing/${res.split(":")[1]}_from_nano_insectoid`)
     })
+    e.recipes.create.mixing(
+        "create:pulp", 
+        Fluid.of("createdelight:paper_pulp", 250))
+        .heated()
+        .id("createdelight:mixing/pulp")
+    let stone_milling = [
+        ['minecraft:cobbled_deepslate', 'minecraft:deepslate'],
+        ['minecraft:cobblestone', 'minecraft:stone'],
+        ['ad_astra:moon_cobblestone', 'ad_astra:moon_stone'],
+        ['ad_astra:mars_cobblestone', 'ad_astra:mars_stone'],
+        ['ad_astra:venus_cobblestone', 'ad_astra:venus_stone'],
+        ['ad_astra:mercury_cobblestone', 'ad_astra:mercury_stone'],
+        ['ad_astra:glacio_cobblestone', 'ad_astra:glacio_stone'],
+    ]
+    stone_milling.forEach(stone => {
+        e.recipes.create.milling(
+            stone[0],
+            stone[1]
+        ).id(`create:milling/${stone[1].split(":")[1]}_to_${stone[0].split(":")[1]}`)
+    })
+    e.recipes.create.crushing(
+        'ad_astra:moon_sand',
+        'ad_astra:moon_stone'
+    ).id("create:crushing/moon_sand_to_moon_stone")
+    e.recipes.create.crushing(
+        'ad_astra:mars_sand',
+        'ad_astra:mars_stone'
+    ).id("create:crushing/mars_sand_to_mars_stone")
+    e.recipes.create.crushing(
+        'ad_astra:venus_sand',
+        'ad_astra:venus_stone'
+    ).id("create:crushing/venus_sand_to_venus_stone")
+    e.recipes.create.cutting(
+        "2x ratatouille:sausage_casing",
+        "minecraft:slime_ball"
+    ).id("create:cutting/sausage")
+
+    // 海绵压块塑形配方
+    e.recipes.create.compacting(
+        '2x minecraft:sponge',
+        [
+            'minecraft:sponge',
+            '4x alexscaves:ping_pong_sponge',
+            Fluid.of("minecraft:water",50),
+        ]
+    )
+    .heated()
+    .id("createdelight:compacting/sponge")
 })

@@ -104,7 +104,17 @@ ServerEvents.tags("item", e => {
         'createdelightcore:pomegranate_ice_cream_scoop',
         'createdelightcore:lime_ice_cream_scoop',
     ])
+    e.add("curios:belt", [
+        'alexscaves:sack_of_sating',
+    ])
     e.removeAll("alexscaves:restricted_biome_locators")
+    e.remove("alexscaves:ferns", [
+        'alexscaves:fiddlehead'
+    ])
+    e.removeAllTagsFrom([
+        "vintageimprovements:sulfur_chunk",
+        'vintageimprovements:sulfur',
+    ])
 })
 
 ServerEvents.tags("minecraft:block", e => {
@@ -128,4 +138,11 @@ ServerEvents.tags("minecraft:block", e => {
         'collectorsreap:lime_ice_cream_block',
         'collectorsreap:pomegranate_ice_cream_block',
     ])
+})
+
+ServerEvents.tags("minecraft:fluid", e => {
+    e.add("forge:molten_neodymium", 
+        "createdelightcore:molten_scarlet_neodymium",
+        "createdelightcore:molten_azure_neodymium"
+    )
 })

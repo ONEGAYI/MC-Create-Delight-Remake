@@ -80,7 +80,7 @@ ServerEvents.recipes(e => {
     // 模具
     vintageimprovements.curving(
         'bakeries:mould',
-        'vintageimprovements:cast_iron_sheet'
+        'createdeco:industrial_iron_sheet'
     ).mode(4).id("bakeries:mould")
     // 粗盐块
     kubejs.shapeless(
@@ -636,6 +636,13 @@ ServerEvents.recipes(e => {
     )
         .mode(2)
         .id("vintageimprovements:curving/mould_pound_cake")
+    kubejs.shaped('4x bakeries:paper_cup', [
+        "   ",
+        "A A",
+        " A "
+    ], {
+        A: "bakeries:silicone_paper"
+    }).id("bakeries:paper_cup")
 })
 ServerEvents.tags("item", e => {
     e.removeAllTagsFrom('bakeries:cheese_cube')

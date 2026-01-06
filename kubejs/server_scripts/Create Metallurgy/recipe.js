@@ -3,6 +3,7 @@ ServerEvents.recipes(e => {
         "vintageimprovements:craft/grinder_belt",
         "vintageimprovements:craft/belt_grinder"
     ])
+    e.replaceInput({id: "createmetallurgy:crafting/materials/tungsten_wire_spool"}, "minecraft:stick", "createaddition:spool")
     const { createmetallurgy, create, minecraft, vintageimprovements, kubejs } = e.recipes
     kubejs.shaped(
         'createmetallurgy:sandpaper_belt',
@@ -82,7 +83,7 @@ ServerEvents.recipes(e => {
         "createmetallurgy:alloying/brass"
     ])
 
-    e.replaceInput({ mod: "createmetallurgy", not: "createmetallurgy:alloying/obdurium" }, "create:andesite_alloy", "createbigcannons:cast_iron_ingot")
+    e.replaceInput({ mod: "createmetallurgy", not: "createmetallurgy:alloying/obdurium" }, "create:andesite_alloy", "createdeco:industrial_iron_ingot")
     e.replaceInput({ id: "createmetallurgy:alloying/obdurium" }, "create:andesite_alloy", "createmetallurgy:steel_ingot")
     e.replaceInput({ output: "createmetallurgy:coke" }, "#forge:ores/coal", "#minecraft:coals")
     kubejs.shapeless("createmetallurgy:refractory_mortar", ["minecraft:water_bucket", "6x #minecraft:sand", "2x minecraft:clay_ball"])

@@ -36,13 +36,15 @@ ServerEvents.tags("block", e => {
         'oceanic_delight:sponge_cake', 
         'oceanic_delight:stuffed_pufferfish', 
         'oceanic_delight:paella_plate', 
-        'silentsdelight:sculk_catalyst_pie'
+        'silentsdelight:sculk_catalyst_pie',
+        'ad_astra:cheese_block'
     )
     Ingredient.of([
         "@vintagedelight",
         "@culturaldelights",
         "@fruitsdelight",
         "@collectorsreap",
+        "@cratedelight",
         "@neapolitan",
         "@mynethersdelight",
         "@oceanic_delight",
@@ -59,6 +61,7 @@ ServerEvents.tags("block", e => {
         }
     })
     e.add("createdelight:quality_crops",
+        "#farmersdelight:wild_crops",
         "neapolitan:vanilla_vine",
         "neapolitan:strawberry_bush",
         "neapolitan:small_banana_frond",
@@ -92,15 +95,12 @@ ServerEvents.tags("block", e => {
         'fruitsdelight:peach_leaves',
         'fruitsdelight:orange_leaves', 
         'fruitsdelight:apple_leaves',
-        'fruitsdelight:mangosteen_leaves'
-    )
-    e.add("quality_food:quality_blocks", 
-        "#createdelight:quality_crops",
-        "minecraft:sea_pickle",
-        "minecraft:moss_block",
-        'mynethersdelight:powdery_cane',
-        'mynethersdelight:powdery_cannon',
-        'mynethersdelight:bullet_pepper',
+        'fruitsdelight:mangosteen_leaves',
+        'farmersdelight:brown_mushroom_colony',
+        'farmersdelight:red_mushroom_colony',
+        'mynethersdelight:crimson_fungus_colony',
+        'mynethersdelight:warped_fungus_colony',
+        'collectorsreap:portobello_colony',
         'minecraft:sweet_berry_bush',
         "nethervinery:crimson_grape_bush",
         "nethervinery:warped_grape_bush",
@@ -108,7 +108,15 @@ ServerEvents.tags("block", e => {
         "collectorsreap:lime_bush",
         "fruitsdelight:lemon_tree",
         "fruitsdelight:blueberry_bush",
-        "fruitsdelight:cranberry_bush"
+        "fruitsdelight:cranberry_bush",
+        'mynethersdelight:powdery_cane',
+        'mynethersdelight:powdery_cannon',
+        'mynethersdelight:bullet_pepper'
+    )
+    e.add("quality_food:quality_blocks", 
+        "#createdelight:quality_crops",
+        "minecraft:sea_pickle",
+        "minecraft:moss_block"
     )
 })
 
@@ -133,9 +141,9 @@ ServerEvents.tags("item", e => {
         'createdelight:corn_flour', 
         'bakeries:foamed_cream',
         'createdelight:board_noodles', 
+        'createdelight:wafer_dough',
         'createdelight:vermicelli', 
         'createdelight:raw_cheese_pizza', 
-        'alexcaves_delight:pearldust', 
         'bakeries:sweet_dough', 
         'bakeries:whole_wheat_dough', 
         'bakeries:bagel_dough', 

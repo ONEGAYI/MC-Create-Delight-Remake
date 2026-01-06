@@ -1,5 +1,5 @@
 ServerEvents.recipes(e => {
-    const { create, farmersdelight, youkaishomecoming, kubejs } = e.recipes
+    const { create, farmersdelight, youkaishomecoming, kubejs, ratatouille } = e.recipes
     create.compacting('supplementaries:ash', 'create:limestone')
         .heated()
         .id("create:compacting/ash")
@@ -48,7 +48,12 @@ ServerEvents.recipes(e => {
         "youkaishomecoming:black_grape_crate",
         "youkaishomecoming:black_grape_from_black_grape_crate",
         "youkaishomecoming:coffee_powder",
-        "youkaishomecoming:straw_from_wheat_drying"
+        "youkaishomecoming:straw_from_wheat_drying",
+        "youkaishomecoming:doughnut",
+        "youkaishomecoming:sake_bottle_from_glass_stonecutting",
+        "youkaishomecoming:white_grape_juice",
+        "youkaishomecoming:black_grape_juice",
+        "youkaishomecoming:red_grape_juice",
     ])
     remove_recipes_type(e, [
         "youkaishomecoming:moka_pot",
@@ -74,6 +79,13 @@ ServerEvents.recipes(e => {
     ]}, "minecraft:cherry_leaves", "trailandtales_delight:cherry_petal")
     e.replaceInput({}, "youkaishomecoming:tea_leaves", "#forge:tea_leaves/green")
     e.replaceInput({id: "youkaishomecoming:longevity_noodles"}, "#forge:pasta", 'createdelight:vermicelli')
+
+    e.forEachRecipe({type: "youkaishomecoming:drying_rack"}, recipe => {
+        ratatouille.baking(recipe.getOriginalRecipeResult(), recipe.getOriginalRecipeIngredients())
+        .processingTime(200)
+        .id(`ratatouille:baking/${recipe.getOriginalRecipeResult().getId().split(":")[1]}`)
+    })
+
     //饭团
     kubejs.shapeless(
         '2x youkaishomecoming:onigili',
@@ -103,6 +115,12 @@ ServerEvents.recipes(e => {
         "trailandtales_delight:dried_cherry_petal",
         "trailandtales_delight:cherry_petal"
     ).id("youkaishomecoming:dried_cherry_petal_drying")
+    ratatouille.baking(
+        "trailandtales_delight:dried_cherry_petal",
+        "trailandtales_delight:cherry_petal"
+    )
+    .processingTime(200)
+    .id("youkaishomecoming:baking/dried_cherry_petal")
     create.pressing("youkaishomecoming:clay_saucer", "minecraft:clay_ball")
         .id("youkaishomecoming:pressing/clay_saucer")
 
@@ -238,25 +256,13 @@ ServerEvents.recipes(e => {
             "createcafe:coffee_grounds"
         ]
     ).id("youkaishomecoming:deploying/ristretto")
-
-    e.custom({
-        type: "create:filling",
-        ingredients: [
-            {
-                item: "youkaishomecoming:espresso"
-            },
-            {
-                amount: 250,
-                fluidTag: "forge:milk"
-            }
-        ],
-        results: [
-            {
-                item: "youkaishomecoming:latte",
-                count: 1
-            }
+    create.filling(
+        "youkaishomecoming:latte",
+        [
+            "youkaishomecoming:espresso",
+            FluidIngredients("forge:milk", 250)
         ]
-    }).id("youkaishomecoming:filling/latte")
+    ).id("youkaishomecoming:filling/latte")
 
     create.filling(
         "youkaishomecoming:con_panna",
@@ -435,6 +441,13 @@ ServerEvents.recipes(e => {
             "youkaishomecoming:white_tea_leaves",
         ]
     ).id("youkaishomecoming:mixing/white_tea")
+    create.mixing(
+        Fluid.of("createdelight:espresso_fluid", 1000),
+        [
+            Fluid.of("createdelight:americano_fluid", 1000),
+            "createcafe:coffee_grounds"
+        ]
+    ).heated().id("youkaishomecoming:mixing/espresso_fluid")
     create.crushing(
         [
             '3x youkaishomecoming:ice_cube',
@@ -442,4 +455,24 @@ ServerEvents.recipes(e => {
         ],
         "minecraft:ice"
     ).id("create:crushing/compat/neapolitan/ice")
+    create.compacting(
+        'youkaishomecoming:tamagoyaki',
+        [
+            Fluid.of("createdelight:egg_yolk", 500),
+            FluidIngredients("forge:milk", 250),
+            "minecraft:sugar"
+        ]
+    ).heated().id("youkaishomecoming:compacting/tamagoyaki")
+    farmersdelight.cutting(
+        "youkaishomecoming:salmon_futomaki",
+        "#forge:tools/knives",
+        "3x youkaishomecoming:salmon_futomaki_slice"
+    ).id("youkaishomecoming:salmon_futomaki_cutting")
+    farmersdelight.cutting('youkaishomecoming:california_roll', "#forge:tools/knives", "3x youkaishomecoming:california_roll_slice").id("youkaishomecoming:california_roll_cutting")
+    farmersdelight.cutting('youkaishomecoming:volcano_roll', "#forge:tools/knives", "3x youkaishomecoming:volcano_roll_slice").id("youkaishomecoming:volcano_roll_cutting")
+    farmersdelight.cutting('youkaishomecoming:roe_california_roll', "#forge:tools/knives", "3x youkaishomecoming:roe_california_roll_slice").id("youkaishomecoming:roe_california_roll_cutting")
+    farmersdelight.cutting('youkaishomecoming:salmon_lover_roll', "#forge:tools/knives", "3x youkaishomecoming:salmon_lover_roll_slice").id("youkaishomecoming:salmon_lover_roll_cutting")
+    farmersdelight.cutting("youkaishomecoming:rainbow_roll", "#forge:tools/knives", "3x youkaishomecoming:rainbow_roll_slice").id("youkaishomecoming:rainbow_roll_cutting")
+    farmersdelight.cutting("youkaishomecoming:egg_futomaki", "#forge:tools/knives", "3x youkaishomecoming:egg_futomaki_slice").id("youkaishomecoming:egg_futomaki_cutting")
+    farmersdelight.cutting('youkaishomecoming:rainbow_futomaki', "#forge:tools/knives", "3x youkaishomecoming:rainbow_futomaki_slice").id("youkaishomecoming:rainbow_futomaki_cutting")
 })

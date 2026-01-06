@@ -1,5 +1,6 @@
 ServerEvents.recipes(e => {
     remove_recipes_id(e, [
+        "protection_pixel:platformloot",
         "protection_pixel:plagueloot",
         "protection_pixel:lancerloot",
         "protection_pixel:hammerloot",
@@ -23,13 +24,27 @@ ServerEvents.recipes(e => {
         "protection_pixel:nightdemonloot",
         "protection_pixel:chestplatelingingloot",
     ])
-    e.replaceInput({output: "protection_pixel:steelcorecannonshell"}, "create:andesite_alloy", "#forge:ingots/cast_iron")
-    e.replaceInput({id: "protection_pixel:cannonshellloot"}, "createbigcannons:cast_iron_ingot", "#forge:ingots/steel")
-    e.replaceInput({id: "protection_pixel:cannonshellloot"}, "minecraft:iron_ingot", 'createmetallurgy:tungsten_ingot')
+    e.replaceInput({output: "protection_pixel:steelcorecannonshell"}, "create:andesite_alloy", "createdeco:industrial_iron_ingot")
     e.recipes.create.cutting(
         '2x protection_pixel:smallnetheritesheet',
         "#forge:plates/netherite"
     ).id("protection_pixel:smallnetheritesheetloot")
+    e.recipes.create.mechanical_crafting("protection_pixel:armorloadplatform",
+        [
+            "AB BA",
+            "AB BA",
+            "AD DA",
+            " CEC ",
+        ],
+        {
+            A: "create:andesite_alloy",
+            B: "create:cogwheel",
+            C: "create:brass_casing",
+            D: "create:fluid_tank",
+            E: "create_sa:heat_engine"
+        }
+    )
+    .id("protection_pixel:platformloot")
     e.recipes.create.mechanical_crafting("protection_pixel:plague_helmet",
         [
             " ABA ",
@@ -265,17 +280,18 @@ ServerEvents.recipes(e => {
     e.recipes.create.mechanical_crafting("protection_pixel:hellsnake_chestplate",
         [
             "ABABA",
-            "DAEAD",
+            "DHEHD",
             "FGCGF"
         ],
         {
             A: "create:brass_ingot",
             B: "create:fluid_pipe",
-            C: "create_sa:flamethrower",
+            C: "createdieselgenerators:lighter",
             D: "create:cogwheel",
             E: "create_sa:brass_exoskeleton_chestplate",
             F: "ad_astra:fan",
-            G: "create:mechanical_pump"
+            G: "create:mechanical_pump",
+            H: "create_sa:small_fueling_tank"
         }
     )
         .id("protection_pixel:hellsnakeloot")

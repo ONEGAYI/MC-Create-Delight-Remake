@@ -19,21 +19,9 @@
     },
     {
         "matchItems": [
-            "createbigcannons:molten_bronze_bucket"
-        ],
-        "resultItems": "createmetallurgy:molten_bronze_bucket"
-    },
-    {
-        "matchItems": [
             "iceandfire:copper_nugget"
         ],
         "resultItems": "create:copper_nugget"
-    },
-    {
-        "matchItems": [
-            "createbigcannons:molten_steel_bucket"
-        ],
-        "resultItems": "createmetallurgy:molten_steel_bucket"
     },
     {
         "matchItems": [
@@ -62,9 +50,9 @@
     },
     {
         "matchItems": [
-            "createdeco:andesite_sheet"
+            "vintageimprovements:andesite_sheet"
         ],
-        "resultItems": "vintageimprovements:andesite_sheet"
+        "resultItems": "createdeco:andesite_sheet"
     },
     {
         "matchItems": [
@@ -80,8 +68,14 @@
     },
     {
         "matchItems": [
-            "createaddition:electrum_block"
+            "ae2omnicells:ender_ingot_block"
         ],
-        "resultItems": "createdelightcore:electrum_block"
+        "resultItems": "createutilities:void_steel_block"
+    },
+    {
+        "matchItems": [
+            "ae2omnicells:ender_ingot"
+        ],
+        "resultItems": "createutilities:void_steel_ingot"
     }
 ]

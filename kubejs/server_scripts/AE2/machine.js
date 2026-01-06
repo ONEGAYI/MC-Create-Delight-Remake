@@ -16,7 +16,8 @@ ServerEvents.recipes((event) => {
     "expatternprovider:assembler_matrix_frame",
     "expatternprovider:assembler_matrix_pattern",
     "expatternprovider:assembler_matrix_speed",
-    "expatternprovider:assembler_matrix_wall"
+    "expatternprovider:assembler_matrix_wall",
+    "ae2:network/blocks/pattern_providers_interface"
   ])
 
   const { kubejs, vintageimprovements, create, minecraft } = event.recipes
@@ -92,16 +93,29 @@ ServerEvents.recipes((event) => {
     .id("createdelight:quantum_bridge_card")
 
   // ME样板供应器
+  kubejs.shaped("ae2:pattern_provider", [
+    "ABA",
+    "CDC",
+    "AEA"
+  ], {
+    A: "#forge:plates/iron",
+    B: "ae2:annihilation_core",
+    C: "#createdelight:plates/ad_astra",
+    D: "create:factory_gauge",
+    E: "ae2:formation_core"
+  })
+    .id("createdelight:pattern_provider")
+
   let iner_4 = "createdelight:incomplete_pattern_provider"
   create.sequenced_assembly("2x ae2:pattern_provider", "createdelight:iron_casing", [
-    create.deploying(iner_4, [iner_4, "minecraft:crafting_table"]),
+    create.deploying(iner_4, [iner_4, "create:factory_gauge"]),
     create.deploying(iner_4, [iner_4, "ae2:annihilation_core"]),
     create.deploying(iner_4, [iner_4, "ae2:formation_core"]),
+    create.deploying(iner_4, [iner_4, "#createdelight:plates/ad_astra"]),
   ])
     .loops(1)
     .transitionalItem(iner_4)
-    .id("createdelight:pattern_provider")
-  event.replaceInput({ id: "ae2:network/blocks/pattern_providers_interface" }, "#forge:ingots/iron", "#forge:plates/iron")
+    .id("createdelight:pattern_provider_1")
 
   // 分子装配室
   let iner_5 = "createdelight:incomplete_molecular_assembler"
@@ -262,8 +276,10 @@ ServerEvents.recipes((event) => {
   event.replaceInput({ id: "expatternprovider:ex_molecular_assembler" }, "#forge:gems/fluix", "createdelight:bleak_electron_tube")
 
   // ME无线连接器
-  event.replaceInput({ id: "expatternprovider:wireless_connector" }, "ae2:sky_dust", "ae2:smooth_sky_stone_block")
+  event.replaceInput({ id: "expatternprovider:wireless_connector" }, "ae2:sky_dust", "createutilities:void_casing")
   event.replaceInput({ id: "expatternprovider:wireless_connector" }, "ae2:engineering_processor", "ae2:controller")
+  //电路切片机
+  event.replaceInput({id: "expatternprovider:circuit_cutter"}, "#ae2:inscriber_presses", "createdelight:ultimate_universal_press")
 
   // 压印器
   create
@@ -333,6 +349,11 @@ ServerEvents.recipes((event) => {
     .transitionalItem("createdelight:incomplete_energy_cell")
     .loops(1)
     .id("createdelight:energy_cell_1");
+  event.recipes.create_new_age.energising(
+    "ae2:energy_cell",
+    Item.of('ae2:energy_cell', { internalCurrentPower: 200000 }).weakNBT(),
+    400000
+  ).id("create:energising/energy_cell")
 
   // 致密能源元件
   create
@@ -347,6 +368,11 @@ ServerEvents.recipes((event) => {
     .transitionalItem("createdelight:incomplete_dense_energy_cell")
     .loops(4)
     .id("createdelight:dense_energy_cell");
+  event.recipes.create_new_age.energising(
+    "ae2:dense_energy_cell",
+    Item.of('ae2:dense_energy_cell', { internalCurrentPower: 1600000 }).weakNBT(),
+    3200000
+  ).id("create:energising/dense_energy_cell")
 
   // 超密能源元件
   create
@@ -361,6 +387,12 @@ ServerEvents.recipes((event) => {
     .transitionalItem("createdelight:incomplete_mega_energy_cell")
     .loops(4)
     .id("createdelight:mega_energy_cell");
+  
+  event.recipes.create_new_age.energising(
+    "megacells:mega_energy_cell",
+    Item.of('megacells:mega_energy_cell', { internalCurrentPower: 12800000 }).weakNBT(),
+    25600000
+  ).id("create:energising/mega_energy_cell")
 
   // 水晶修复器
   create

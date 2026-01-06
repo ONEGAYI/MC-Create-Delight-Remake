@@ -4,7 +4,13 @@ ServerEvents.recipes(e => {
         "create:crushing/raw_uranium",
         "create_new_age:thorium/thorium_crushing",
         "create_new_age:thorium_multiplication",
-        "alexscaves:nuclear_furnace_component"
+        "alexscaves:nuclear_furnace_component",
+        "vintageimprovements:craft/sulfur_item_to_nuggets",
+        "vintageimprovements:craft/sulfur_block_to_items",
+        "vintageimprovements:craft/sulfur_items_to_block",
+        "vintageimprovements:craft/sulfur_nuggets_to_item",
+        "vintageimprovements:pressurizing/compat/sulfur_dioxide_from_dust",
+        "vintageimprovements:pressurizing/sulfuric_acid"
     ])
   // 辐鳃鱼（和桶）量产
   vintageimprovements
@@ -55,8 +61,7 @@ ServerEvents.recipes(e => {
     e.recipes.vintageimprovements.pressurizing(
         [
             Fluid.of("createdelight:light_crude_oil", 100),
-            Fluid.of("createdelight:ethylene_fluid", 50),
-            Item.of("vintageimprovements:vanadium_nugget").withChance(0.9)
+            Fluid.of("createdelight:ethylene_fluid", 50)
         ],
         [
             Fluid.of("createdieselgenerators:crude_oil", 100),
@@ -103,7 +108,7 @@ ServerEvents.recipes(e => {
         .id("createdelight:pressurizing/ethylene_fluid_from_ethanol")
     //润滑油合成
     e.recipes.vintageimprovements.pressurizing(
-       Fluid.of("createdelight:lubricating_oil", 100), 
+       Fluid.of("createdelight:lubricating_oil", 250), 
        [
             Fluid.of("vintageimprovements:sulfuric_acid", 100),
             Fluid.of("createdelight:ethylene_fluid", 250),
@@ -161,13 +166,6 @@ ServerEvents.recipes(e => {
             .id("create_new_age:thorium/nuclear_fuel")
     }
     //硫磺，硫磺晶簇->硫粉
-    e.recipes.create.crushing(
-        [
-            'alexscaves:sulfur_dust',
-            Item.of('alexscaves:sulfur_dust').withChance(0.25)
-        ],
-        'vintageimprovements:sulfur'
-    ).id("alexscaves:crushing/sulfur_dust_2")
     //硫磺晶体生长
     make_growing_cluster(e, [
         "alexscaves:sulfur_dust",
@@ -175,8 +173,33 @@ ServerEvents.recipes(e => {
         "alexscaves:sulfur_bud_medium",
         "alexscaves:sulfur_bud_large",
         "alexscaves:sulfur_cluster"
-    ], "alexscaves:acid", 50)
+    ], "vintageimprovements:sulfuric_acid", 50)
 
+    e.recipes.vintageimprovements.pressurizing(
+        Fluid.of("vintageimprovements:sulfur_dioxide", 500),
+        "alexscaves:sulfur_dust"
+    )
+    .processingTime(100)
+    .secondaryFluidOutput(0)
+    .heated()
+    .id("vintageimprovements:pressurizing/compat/sulfur_dioxide_from_dust")
+
+    e.recipes.vintageimprovements.pressurizing(
+        Fluid.of("vintageimprovements:sulfuric_acid", 500),
+        [Fluid.water(500), Fluid.of("vintageimprovements:sulfur_trioxide", 500)]
+    )
+    .processingTime(100)
+    .secondaryFluidInput(0)
+    .id("vintageimprovements:pressurizing/sulfuric_acid")
+
+    e.recipes.vintageimprovements.pressurizing(
+        Fluid.of("vintageimprovements:sulfur_dioxide", 500),
+        ["alexscaves:sulfur_dust", "ad_astra:ostrum_nugget"]
+    )
+    .secondaryFluidOutput(0)
+    .processingTime(40)
+    .heated()
+    .id("vintageimprovements:pressurizing/compat/sulfur_dioxide_from_dust_using_ostrum_nugget")
     //烂泥再生
     e.recipes.vintageimprovements.pressurizing(
         "27x alexscaves:toxic_paste",
@@ -189,11 +212,34 @@ ServerEvents.recipes(e => {
         .heated()
         .id("alexscaves:pressurizing/toxic_paste")
     //硫芯蛋糕卷
-    e.recipes.create.deploying(
-        '2x alexscaves:spelunkie',
+    {
+        let iner = "bakeries:cut_cake_base"
+        e.recipes.create.sequenced_assembly('alexscaves:spelunkie', iner, [
+            e.recipes.create.deploying(iner, [iner, "alexscaves:sulfur_dust"]),
+            e.recipes.create.pressing(iner, iner),
+            e.recipes.create.deploying(iner, [iner, "#forge:cream"]),
+        ])
+            .loops(1)
+            .transitionalItem(iner)
+            .id("alexcaves:sequenced_assembly/spelunkie")
+    }
+    {
+        let iner = "bakeries:cut_cake_base"
+        e.recipes.create.sequenced_assembly('alexscaves:spelunkie', iner, [
+            e.recipes.create.deploying(iner, [iner, "alexscaves:sulfur_dust"]),
+            e.recipes.create.pressing(iner, iner),
+            e.recipes.create.filling(iner, [iner, Fluid.of("cosmopolitan:cream", 250)]),
+        ])
+            .loops(1)
+            .transitionalItem(iner)
+            .id("alexcaves:sequenced_assembly/spelunkie_2")
+    }
+    e.recipes.kubejs.shapeless(
+        "alexscaves:spelunkie",
         [
-            'minecraft:bread',
-            'alexscaves:sulfur_dust'
+            'bakeries:cut_cake_base',
+            "#forge:cream",
+            "alexscaves:sulfur_dust"
         ]
     ).id("alexscaves:spelunkie")
     //猛汉午餐肉
@@ -262,16 +308,38 @@ ServerEvents.recipes(e => {
     //氡气相关
     e.recipes.vintageimprovements.pressurizing(
         [
-            Fluid.of("createdelight:radon", 100),
-            Fluid.of("vintageimprovements:sulfuric_acid", 100)
+            Fluid.of("createdelight:radon", 25),
+            Fluid.of("vintageimprovements:sulfuric_acid", 25)
         ],
-        Fluid.of("alexscaves:acid", 200)
+        Fluid.of("alexscaves:acid", 50)
     )
         .secondaryFluidOutput(0)
         .heated()
-        .id("alexscaves:pressurizing/radon")
+        .id("alexscaves:pressurizing/sulfuric_acid")
+    e.recipes.vintageimprovements.pressurizing(
+        [
+            Fluid.of("createdelight:radon", 250),
+            Fluid.of("vintageimprovements:sulfuric_acid", 250)
+        ],
+        [
+            Fluid.of("alexscaves:acid", 500),
+            "ad_astra:ostrum_nugget"
+        ]
+    )
+        .secondaryFluidOutput(0)
+        .heated()
+        .id("alexscaves:pressurizing/sulfuric_acid_using_ostrum")
     e.recipes.create.filling("alexscaves:radon_bottle", ["minecraft:glass_bottle", Fluid.of("createdelight:radon").withAmount(250)])
         .id("alexscaves:filling/radon_bottle")
     e.recipes.create.emptying(["minecraft:glass_bottle", Fluid.of("createdelight:radon").withAmount(250)], "alexscaves:radon_bottle")
         .id("alexscaves:emptying/radon")
+
+    e.recipes.vintageimprovements.pressurizing(
+        Item.of("alexscaves:uranium_shard", 1).withChance(0.1),
+        Fluid.of("alexscaves:acid", 500),
+        160
+    )
+    .superheated()
+    .id("alexscaves:pressurizing/uranium_shard")
+    
 })

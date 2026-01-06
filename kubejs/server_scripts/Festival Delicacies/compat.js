@@ -19,15 +19,17 @@ ServerEvents.recipes(e => {
             "minecraft:bowl"
         ]
     ).heated().id("festival_delicacies:mixing/red_bean_paste")
-    e.recipes.create.mixing(
-        Fluid.of("hotbath:herbal_bath_fluid", 1000),
-        [
-            Fluid.of("hotbath:hot_water_fluid", 1000),
-            "2x festival_delicacies:artemisia_argyi"
-        ]
-    ).id("create:mixing/herbal_bath_fluid_2")
     threshing(e, 'festival_delicacies:artemisia_argyi', [
         'createdelight:artemisia_argyi_seed',
         Item.of('createdelight:artemisia_argyi_seed').withChance(0.5)
     ], 200)
+    e.recipes.farmersdelight.cooking(
+        [
+            'festival_delicacies:artemisia_argyi',
+            'festival_delicacies:red_bean_paste',
+            'farmersdelight:rice'
+        ],
+        'festival_delicacies:qingtuan',
+        1.0, 200,
+    ).id("festival_delicacies:farmersdelight/qingtuan")
 })

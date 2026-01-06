@@ -678,7 +678,7 @@ class AssetManager:
             # 构建查询语句 - 针对files表的特殊处理
             if table_name == 'files':
                 query = """
-                SELECT COALESCE(number, '') as number,
+                SELECT COALESCE(modname, '') as modname,
                        filename,
                        COALESCE(env, '') as env,
                        COALESCE(tags, '') as tags,
@@ -686,13 +686,13 @@ class AssetManager:
                 FROM files
                 ORDER BY
                     CASE
-                        WHEN number IS NULL THEN 2
+                        WHEN modname IS NULL OR modname = '' THEN 2
                         ELSE 1
                     END,
-                    number,
+                    modname,
                     filename
                 """
-                headers = ['编号', '名称', '环境', '标签', '描述']
+                headers = ['模组名', '文件名', '环境', '标签', '描述']
             else:
                 # 通用表处理
                 column_names = [col[1] for col in columns]
@@ -719,14 +719,14 @@ class AssetManager:
                     # 转换数据
                     if table_name == 'files':
                         # files表的特殊处理
-                        number = row[0] if row[0] else ''
+                        modname = row[0] if row[0] else ''
                         filename = row[1] if row[1] else ''
                         env = row[2] if row[2] else ''
                         tags = row[3] if row[3] else ''
                         description = row[4] if row[4] else ''
 
                         # 处理包含逗号的字段 - 使用双引号包围
-                        data_row = [number, filename, env, tags, description]
+                        data_row = [modname, filename, env, tags, description]
                         formatted_row = []
 
                         for value in data_row:

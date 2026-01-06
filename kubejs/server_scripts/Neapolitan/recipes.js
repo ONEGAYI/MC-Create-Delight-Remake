@@ -2,7 +2,9 @@ ServerEvents.recipes(e => {
     remove_recipes_id(e, [
         "neapolitan:adzuki/adzuki_crate",
         "neapolitan:milk/milk_bottles_from_bucket",
-        "neapolitan:adzuki/adzuki_crate_uncompress"
+        "neapolitan:adzuki/adzuki_crate_uncompress",
+        "neapolitan:vanilla/vanilla_fudge",
+        "create_central_kitchen:mixing/vanilla_fudge"
     ])
     remove_recipes_output(e, [
         "neapolitan:chocolate_strawberries",
@@ -57,7 +59,7 @@ ServerEvents.recipes(e => {
         ["neapolitan:banana", 1, 0.25]
     ])
     cutting_2(e, "neapolitan:banana_bundle", [
-        ["neapolitan:banana", 9]
+        ["neapolitan:banana_bunch", 9]
     ])
 
     e.recipes.farmersdelight.cooking([
@@ -75,5 +77,14 @@ ServerEvents.recipes(e => {
         "#forge:pumpkins"
     ], "neapolitan:adzuki_curry", 10.0, 200, "minecraft:bowl")
     .id("neapolitan:cooking/adzuki_curry")
-
+    
+    e.recipes.create.deploying([
+        "neapolitan:banana_bundle", 
+        Item.of("neapolitan:banana").withChance(0.05), 
+        Item.of("neapolitan:banana_bunch").withChance(0.02)], [
+            "neapolitan:banana_bundle",
+            "neapolitan:chimpanzee_head"
+        ])
+        .keepHeldItem()
+        .id("neapolitan:deploying/banana")
 })

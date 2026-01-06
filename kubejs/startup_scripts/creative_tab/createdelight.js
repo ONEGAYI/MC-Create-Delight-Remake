@@ -19,6 +19,7 @@ StartupEvents.modifyCreativeTab("createdelightcore:food", e => {
     // 面团及其直接产物
     'createdelight:dry_yeast',
     'createdelight:oil_dough',
+    'createdelight:wafer_dough',
     'createdelight:puff_pastry',
     'createdelight:board_noodles',
     'createdelight:vermicelli',
@@ -48,13 +49,16 @@ StartupEvents.modifyCreativeTab("createdelightcore:food", e => {
     'createdelight:raw_calamari',
     'createdelight:raw_ghast_calamari',
     'createdelight:raw_cheese_pizza',
+    'createdelight:raw_potato_pancake',
     // 食物
     'createdelight:wrapped_fries_ghasta',
     'createdelight:oat_bread',
     'createdelight:ketchup_corn_dog',
     'createdelight:mayo_corn_dog',
     'createdelight:salami',
+    'createdelight:deep_sea_sushi_roll_slice',
     'createdelight:fugu_roll',
+    "createdelight:radgill_sushi",
     'createdelight:empty_riceball',
     'createdelight:yorkshire_pudding_and_beef',
     'createdelight:boiling_water_cabbage',
@@ -62,6 +66,7 @@ StartupEvents.modifyCreativeTab("createdelightcore:food", e => {
     'createdelight:empty_popsicle',
     'createdelight:enchanted_golden_lantern_fruit',
     'createdelight:enchanted_golden_carrot',
+    'createdelight:enchanted_golden_arbutus_berries',
   ])
 })
 StartupEvents.modifyCreativeTab("createdelightcore:misc", e => {
@@ -106,6 +111,7 @@ StartupEvents.modifyCreativeTab("createdelightcore:misc", e => {
       'createdelight:blood_collection_device',
       'createdelight:needle',
       'createdelight:dread_upgrade_smithing_template',
+      "createdelight:guncotton",
       // 构件
       'createdelight:magnetic_mechanism',
       //火箭部件
@@ -170,22 +176,6 @@ StartupEvents.modifyCreativeTab("createdelightcore:fluid", e => {
     'createdelight:nut_milk_bucket',
     'createdelight:vinegar_bucket',
     'createdelight:yeast_bucket',
-    // 奶昔及对应冰激凌
-    'createdelight:vanilla_milkshake_bucket',
-    'createdelight:chocolate_milkshake_bucket',
-    'createdelight:strawberry_milkshake_bucket',
-    'createdelight:banana_milkshake_bucket',
-    'createdelight:mint_milkshake_bucket',
-    'createdelight:adzuki_milkshake_bucket',
-    'createdelight:lime_milkshake_bucket',
-    'createdelight:pomegranate_milkshake_bucket',
-    'createdelight:sweetberry_milkshake_bucket',
-    'createdelight:pumpkin_milkshake_bucket',
-    'createdelight:beetroot_milkshake_bucket',
-    'createdelight:apple_milkshake_bucket',
-    'createdelight:carrot_milkshake_bucket',
-    'createdelight:glow_berry_milkshake_bucket',
-    'createdelight:enhanced_fruit_milkshake_bucket',
     // 特殊流体
     'createdelight:malice_solution_bucket',
   ])
@@ -193,14 +183,9 @@ StartupEvents.modifyCreativeTab("createdelightcore:fluid", e => {
 StartupEvents.registry("creative_mode_tab", e => {
   e.create("createdelight:machine")
     .translationKey("itemGroup.createdelight.machine")
-    .icon(() => Item.of("createdelight:electrolyzer"))
+    .icon(() => Item.of("createdelight:centrifuge_rotor"))
     .content(() => [
-      "createdelight:emergency_industrial_platform",
-      "createdelight:emergency_industrial_platform_block",
-      "createdelight:emergency_industrial_platform_lime",
-      "createdelight:emergency_industrial_platform_lime_block",
-      "createdelight:emergency_industrial_platform_dark",
-      "createdelight:emergency_industrial_platform_dark_block",
       'mbd2:mbd_gadgets',
+      'createdelight:order_deliverer_item'
     ])
 })

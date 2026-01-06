@@ -80,16 +80,32 @@ StartupEvents.registry("item", e => {
         .translationKey("item.createdelight.potato_stew_beef")
     // 河豚寿司
     e.create("createdelight:fugu_roll")
-        .translationKey("item.createdelight.fugu_roll")
         .food(food => {
             food.hunger(7)
                 .saturation(1)
         })
+        .translationKey("item.createdelight.fugu_roll")
+    e.create("createdelight:radgill_sushi")
+        .food(food => {
+            food.hunger(1)
+                .saturation(1)
+                .effect("alexscaves:irradiated", 1200, 2, 1.0)
+                .effect("minecraft:saturation", 1200, 0, 1.0)
+        })
+        .translationKey("item.createdelight.radgill_sushi")
+    // 深海寿司卷切片
+    e.create("createdelight:deep_sea_sushi_roll_slice")
+        .food(food => {
+            food.hunger(7)
+                .saturation(1)
+                .effect("alexscaves:deepsight", 1200, 0, 1.0)
+        })
+        .translationKey("item.createdelight.deep_sea_sushi_roll_slice")
     // 注册挂面
     e.create("createdelight:vermicelli")
         .translationKey("item.createdelight.vermicelli")
-    
-    
+
+
     // 注册曲奇面团
     let CookieDough = [
         "persimmon",
@@ -134,6 +150,32 @@ StartupEvents.registry("item", e => {
             .translationKey(`item.createdelight.unbaked_${muffin}`)
     })
 
+    //注册冰棍中间形态
+    let popsicle_list = [
+        'empty',
+        'chorus_fruit',
+        'tear',
+        'milk',
+        'hamimelon',
+        'lime',
+        'kiwi',
+        'berry',
+        'big'
+    ]
+    popsicle_list.forEach(popsicle => {
+        e.create(`createdelight:${popsicle}_popsicle_mold_filled`)
+            .tag("forge:popsicle_mold_filled")
+            .translationKey(`item.createdelight.${popsicle}_popsicle_mold_filled`)
+        e.create(`createdelight:${popsicle}_popsicle_mold_solid`)
+            .tag("forge:popsicle_mold_solid")
+            .translationKey(`item.createdelight.${popsicle}_popsicle_mold_solid`)
+    })
+    e.create("createdelight:green_tongue_mold_filled")
+        .tag("forge:popsicle_mold_filled")
+        .translationKey("item.createdelight.green_tongue_mold_filled")
+    e.create("createdelight:green_tongue_mold_solid")
+        .tag("forge:popsicle_mold_solid")
+        .translationKey("item.createdelight.green_tongue_mold_solid")
 
     // 开酥相关
     e.create("createdelight:butter")
@@ -187,6 +229,7 @@ StartupEvents.registry("item", e => {
         .food(food => {
             food.hunger(2)
                 .saturation(0.25)
+                .fastToEat()
         })
     // 鱿鱼圈
     e.create("createdelight:raw_calamari")
@@ -231,6 +274,27 @@ StartupEvents.registry("item", e => {
                 .saturation(0.7)
                 .effect("farmersdelight:nourishment", 600, 1, 1.0)
         })
+    // 生土豆饼
+    e.create("createdelight:raw_potato_pancake")
+        .translationKey("item.createdelight.raw_potato_pancake")
+        .food(food => {
+            food.hunger(2)
+                .saturation(0.5)
+        })
+    // 威化面团
+    e.create("createdelight:wafer_dough")
+        .translationKey("item.createdelight.wafer_dough")
+    // 繁茂果冻
+    e.create("createdelight:lush_confiture_jello_item")
+        .food(food => {
+            food.hunger(1)
+                .saturation(0.5)
+                .effect("cosmopolitan:tracer", 600, 1, 1.0)
+                .effect("cosmopolitan:phototaxis", 600, 1, 1.0)
+        })
+        .tag("fruitsdelight:jello")
+        .tag("diet:sugars")
+        .translationKey("item.createdelight.lush_confiture_jello_item")
     // 九转大肠
     e.create("createdelight:braised_intestines_in_brown_sauce")
         .rarity("epic")
@@ -241,8 +305,8 @@ StartupEvents.registry("item", e => {
                 .effect("farmersdelight:nourishment", 6000, 1, 1.0)
                 .eaten(ea => {
                     ea.server.scheduleInTicks(1, func => {
-                        if(!ea.player.isCreative()) {
-                            if(!ea.player.getInventory().add('minecraft:bowl')) {
+                        if (!ea.player.isCreative()) {
+                            if (!ea.player.getInventory().add('minecraft:bowl')) {
                                 ea.player.drop('minecraft:bowl', false)
                             }
                         }
@@ -262,8 +326,8 @@ StartupEvents.registry("item", e => {
                 .effect("farmersdelight:nourishment", 3000, 1, 1.0)
                 .eaten(ea => {
                     ea.server.scheduleInTicks(1, func => {
-                        if(!ea.player.isCreative()) {
-                            if(!ea.player.getInventory().add('minecraft:bowl')) {
+                        if (!ea.player.isCreative()) {
+                            if (!ea.player.getInventory().add('minecraft:bowl')) {
                                 ea.player.drop('minecraft:bowl', false)
                             }
                         }
@@ -272,19 +336,19 @@ StartupEvents.registry("item", e => {
         })
     // 玉米热狗相关
     e.create("createdelight:mayo_corn_dog")
+        .food(food => {
+            food.hunger(8)
+                .saturation(0.6)
+                .effect("minecraft:resistance", 200, 0, 1.0)
+        })
         .translationKey("item.createdelight.mayo_corn_dog")
-        .food(food => {
-            food.hunger(8)
-                .saturation(0.6)
-                .effect("minecraft:resistance", 200, 1, 1.0)
-        })
     e.create("createdelight:ketchup_corn_dog")
-        .translationKey("item.createdelight.ketchup_corn_dog")
         .food(food => {
             food.hunger(8)
                 .saturation(0.6)
-                .effect("minecraft:fire_resistance", 200, 1, 1.0)
+                .effect("minecraft:fire_resistance", 200, 0, 1.0)
         })
+        .translationKey("item.createdelight.ketchup_corn_dog")
     //空饭团
     e.create("createdelight:empty_riceball")
         .food(food => {
@@ -299,8 +363,8 @@ StartupEvents.registry("item", e => {
                 .saturation(0.6)
                 .eaten(ea => {
                     ea.server.scheduleInTicks(1, func => {
-                        if(!ea.player.isCreative()) {
-                            if(!ea.player.getInventory().add('create_bic_bit:dirty_paper')) {
+                        if (!ea.player.isCreative()) {
+                            if (!ea.player.getInventory().add('create_bic_bit:dirty_paper')) {
                                 ea.player.drop('create_bic_bit:dirty_paper', false)
                             }
                         }
@@ -329,18 +393,41 @@ StartupEvents.registry("item", e => {
         .food(f => {
             f.hunger(6)
                 .saturation(1.2)
-                .effect("minecraft:saturation", 600, 0, 1.0)
+                .effect("minecraft:saturation", 20, 0, 1.0)
                 .effect("farmersdelight:nourishment", 3600, 0, 1.0)
         })
         .glow(true)
         .translationKey("item.createdelight.enchanted_golden_carrot")
+    //附魔金杜鹃莓
+    e.create("createdelight:enchanted_golden_arbutus_berries")
+        .texture("cosmopolitan:item/golden_arbutus_berries")
+        .rarity("epic")
+        .food(f => {
+            f.hunger(4)
+                .saturation(1)
+                .effect("cosmopolitan:phototaxis", 1200, 1, 1.0)
+                .effect("minecraft:strength", 1200, 2, 1.0)
+        })
+        .glow(true)
+        .translationKey("item.createdelight.enchanted_golden_arbutus_berries")
 
     e.create("createdelight:fuel_hotcream")
         .tag("create:blaze_burner_fuel/special")
         .translationKey("item.createdelight.fuel_hotcream")
     //未完成的寿司
-    e.create("createdelight:sushi_unrolledroll", "create:sequenced_assembly")
-        .translationKey("item.createdelight.sushi_unrolledroll")
+    // e.create("createdelight:sushi_unrolledroll", "create:sequenced_assembly")
+    //     .translationKey("item.createdelight.sushi_unrolledroll")
+    e.create("createdelight:incomplete_gunkan", "create:sequenced_assembly")
+        .translationKey("item.createdelight.incomplete_gunkan")
+    e.create("createdelight:incomplete_nigiri", "create:sequenced_assembly")
+        .texture("createdelight:item/empty_riceball")
+        .translationKey("item.createdelight.incomplete_nigiri")
+    e.create("createdelight:incomplete_hosomaki", "create:sequenced_assembly")
+        .translationKey("item.createdelight.incomplete_hosomaki")
+    e.create("createdelight:incomplete_futomaki", "create:sequenced_assembly")
+        .translationKey("item.createdelight.incomplete_futomaki")
+    e.create("createdelight:incomplete_california", "create:sequenced_assembly")
+        .translationKey("item.createdelight.incomplete_california")
 
     // 未完成相关
     e.create("createdelight:incomplete_layered_magnet", "create:sequenced_assembly")
@@ -380,8 +467,8 @@ StartupEvents.registry("item", e => {
                 .eaten(ea => {
                     ea.player.setTicksFrozen(ea.player.getTicksFrozen() + 200)
                     ea.server.scheduleInTicks(1, func => {
-                        if(!ea.player.isCreative()) {
-                            if(!ea.player.getInventory().add("minecraft:bowl")) {
+                        if (!ea.player.isCreative()) {
+                            if (!ea.player.getInventory().add("minecraft:bowl")) {
                                 ea.player.drop("minecraft:bowl", false)
                             }
                         }
@@ -401,8 +488,12 @@ StartupEvents.registry("item", e => {
     e.create("createdelight:incomplete_gas_pistol_ammo", "create:sequenced_assembly")
         .texture("create:item/copper_sheet")
         .translationKey("item.createdelight.incomplete_gas_pistol_ammo")
+    e.create("createdelight:guncotton")
+        .translationKey("item.createdelight.guncotton")
 
-
+    // 订单交付器
+    e.create("createdelight:order_deliverer_item")
+        .translationKey("item.createdelight.order_deliverer_item")
     // 测试剑
     // e.create("createdelight:sigma_man_sword", "sword")
     //     .tier("netherite")
@@ -420,6 +511,11 @@ StartupEvents.registry("item", e => {
     e.create("createdelight:universal_press")
         .tag("vintageimprovements:curving_heads")
         .translationKey("item.createdelight.universal_press")
+
+    // 终极通用压印模板
+    e.create("createdelight:ultimate_universal_press")
+        .tag("vintageimprovements:curving_heads")
+        .translationKey("item.createdelight.ultimate_universal_press")
     // 红石膏
     e.create("createdelight:redstone_paste")
         .maxDamage(64)
@@ -435,52 +531,25 @@ StartupEvents.registry("item", e => {
         .maxDamage(64)
         .translationKey("item.createdelight.sky_stone_paste")
         .tag("createdelight:sky_stone")
-    // 初加工的电路板
-    e.create("createdelight:initial_processing_of_printed_engineering_processor")
-        .translationKey("item.createdelight.initial_processing_of_printed_engineering_processor")
-    e.create("createdelight:initial_processing_of_printed_calculation_processor")
-        .translationKey("item.createdelight.initial_processing_of_printed_calculation_processor")
-    e.create("createdelight:initial_processing_of_printed_logic_processor")
-        .translationKey("item.createdelight.initial_processing_of_printed_logic_processor")
-    e.create("createdelight:initial_processing_of_printed_accumulation_processor")
-        .translationKey("item.createdelight.initial_processing_of_printed_accumulation_processor")
-    // 待压印的处理器
-    e.create("createdelight:engineering_processor_inscribed")
-        .translationKey("item.createdelight.engineering_processor_inscribed")
-    e.create("createdelight:calculation_processor_inscribed")
-        .translationKey("item.createdelight.calculation_processor_inscribed")
-    e.create("createdelight:logic_processor_inscribed")
-        .translationKey("item.createdelight.logic_processor_inscribed")
-    e.create("createdelight:accumulation_processor_inscribed")
-        .translationKey("item.createdelight.accumulation_processor_inscribed")
+    let processorNames = ["engineering", "calculation", "logic", "accumulation", "omni_link", "complex_link", "multidimensional_expansion"];
+    processorNames.forEach(name => {
+        // 初加工的电路板
+        e.create(`createdelight:initial_processing_of_printed_${name}_processor`)
+            .translationKey(`item.createdelight.initial_processing_of_printed_${name}_processor`);
+        // 待压印的处理器
+        e.create(`createdelight:${name}_processor_inscribed`)
+            .translationKey(`item.createdelight.${name}_processor_inscribed`);
+    });
+    let housingTypes = ["item", "fluid", "mega_item", "mega_fluid", "omni", "complex_omni", "quantum_omni"];
 
-    // 元件外壳坯件
-    e.create("createdelight:item_cell_housing_blank")
-        .translationKey("item.createdelight.item_cell_housing_blank")
-    e.create("createdelight:fluid_cell_housing_blank")
-        .translationKey("item.createdelight.fluid_cell_housing_blank")
-    e.create("createdelight:mega_item_cell_housing_blank")
-        .translationKey("item.createdelight.mega_item_cell_housing_blank")
-    e.create("createdelight:mega_fluid_cell_housing_blank")
-        .translationKey("item.createdelight.mega_fluid_cell_housing_blank")
-    // 初处理的元件外壳
-    e.create("createdelight:initial_processing_of_item_cell_housing")
-        .translationKey("item.createdelight.initial_processing_of_item_cell_housing")
-    e.create("createdelight:initial_processing_of_fluid_cell_housing")
-        .translationKey("item.createdelight.initial_processing_of_fluid_cell_housing")
-    e.create("createdelight:initial_processing_of_mega_item_cell_housing")
-        .translationKey("item.createdelight.initial_processing_of_mega_item_cell_housing")
-    e.create("createdelight:initial_processing_of_mega_fluid_cell_housing")
-        .translationKey("item.createdelight.initial_processing_of_mega_fluid_cell_housing")
-    // 未成型的元件外壳
-    e.create("createdelight:unformed_item_cell_housing")
-        .translationKey("item.createdelight.unformed_item_cell_housing")
-    e.create("createdelight:unformed_fluid_cell_housing")
-        .translationKey("item.createdelight.unformed_fluid_cell_housing")
-    e.create("createdelight:unformed_mega_item_cell_housing")
-        .translationKey("item.createdelight.unformed_mega_item_cell_housing")
-    e.create("createdelight:unformed_mega_fluid_cell_housing")
-        .translationKey("item.createdelight.unformed_mega_fluid_cell_housing")
+    housingTypes.forEach(type => {
+        e.create(`createdelight:initial_processing_of_${type}_cell_housing`)
+            .translationKey(`item.createdelight.initial_processing_of_${type}_cell_housing`)
+        e.create(`createdelight:${type}_cell_housing_blank`)
+            .translationKey(`item.createdelight.${type}_cell_housing_blank`)
+        e.create(`createdelight:unformed_${type}_cell_housing`)
+            .translationKey(`item.createdelight.unformed_${type}_cell_housing`)
+    });
     // 石英玻璃部件
     e.create("createdelight:quartz_glass_parts")
         .translationKey("item.createdelight.quartz_glass_parts")
@@ -626,6 +695,38 @@ StartupEvents.registry("item", e => {
         e.create(`createdelight:incomplete_${item.split(":")[1]}`, "create:sequenced_assembly")
             .translationKey(`item.createdelight.incomplete_${item}`)
     })
+    let incomplete_burger = [
+        "alexsdelight:bison_burger",
+        "culturaldelights:eggplant_burger",
+        "farmersdelight:hamburger",
+        "silentsdelight:heartburger",
+        "vintagedelight:cheese_burger",
+        "vintagedelight:deluxe_burger",
+        "collectorsreap:portobello_burger",
+        "collectorsreap:land_and_sea_burger"
+    ].forEach(item => {
+        e.create(`createdelight:incomplete_${item.split(":")[1]}`, "create:sequenced_assembly")
+            .texture("create_central_kitchen:item/incomplete_hamburger")
+            .translationKey(`item.createdelight.incomplete_${item}`)
+    })
+    let incomplete_sandwich = [
+        "alexsmobs:kangaroo_burger",
+        "alexsdelight:bunfungus_sandwich",
+        "culturaldelights:mutton_sandwich",
+        "farmersdelight:egg_sandwich",
+        "farmersdelight:chicken_sandwich",
+        "farmersdelight:bacon_sandwich",
+        "collectorsreap:prawn_po_boy",
+        "cavedelight:lux_and_ham_sandwich",
+        "cavedelight:pine_and_sap_sandwich",
+        "miners_delight:vegan_hamburger",
+        "miners_delight:squid_sandwich",
+        "miners_delight:insect_sandwich"
+    ].forEach(item => {
+        e.create(`createdelight:incomplete_${item.split(":")[1]}`, "create:sequenced_assembly")
+            .texture("create_central_kitchen:incomplete_bacon_sandwich")
+            .translationKey(`item.createdelight.incomplete_${item}`)
+    })
     // // AE: 未完成的 熵变机械臂 充能手杖 样板
     // ["charged_staff", "entropy_manipulator", "blank_pattern"]
     // e.create("createdelight:incomplete_", "create:sequenced_assembly").translationKey("item.createdelight.incomplete_").texture("ae2:item/")
@@ -648,23 +749,34 @@ StartupEvents.registry("item", e => {
         .rarity("uncommon")
         .tag("protection_pixel:plates")
         .translationKey("item.createdelight.lightning_dragonsteel_armorplate")
-    
+
     //采血器
     e.create("createdelight:blood_collection_device")
-    .translationKey("item.createdelight.blood_collection_device")
+        .translationKey("item.createdelight.blood_collection_device")
     //针
     e.create("createdelight:needle")
         .translationKey("item.createdelight.needle")
     e.create("createdelight:quality_absorber")
         .useDuration(item => 20)
         .translationKey("item.createdelight.quality_absorber")
-    
+
     //基因种子
     let seed_quality = ["inferior", "normal", "refined", "pure", "flawless"]
     seed_quality.forEach(q => {
         e.create(`createdelight:${q}_genetic_seed`)
             .translationKey(`item.createdelight.${q}_genetic_seed`)
     })
+
+    e.create("createdelight:unactivated_crystalline_flower")
+        .parentModel("the_bumblezone:item/crystalline_flower")
+        .color((item, num) => Color.GRAY)
+        .translationKey("item.createdelight.unactivated_crystalline_flower")
+
+
+    e.create("createdelight:order")
+            .translationKey("item.createdelight.order")
+    e.create("createdelight:unopened_order")
+            .translationKey("item.createdelight.unopened_order")
     //悚怖之心
     e.create("createdelight:dread_heart")
         .rarity("epic")
@@ -679,11 +791,11 @@ StartupEvents.registry("item", e => {
     //恶魔典籍
     e.create("createdelight:demonic_codex")
         .rarity("epic")
-        .translationKey("item.createdelight.demonic_codex") 
+        .translationKey("item.createdelight.demonic_codex")
     //悚怖锻造模板
     let dread_upgrade = e.create("createdelight:dread_upgrade_smithing_template", "smithing_template")
-    .armorIcons()
-    .ingotIcon()
+        .armorIcons()
+        .ingotIcon()
     dread_upgrade.appliesToText = Text.translate("item.createdelight.smithing_template.dread_upgrade.applies_to").blue()
     dread_upgrade.ingredientsText = Text.translate("item.createdelight.smithing_template.dread_upgrade.ingredients").blue()
     dread_upgrade.appliesToSlotDescriptionText = Text.translate("item.createdelight.smithing_template.dread_upgrade.base_slot_description").blue()
