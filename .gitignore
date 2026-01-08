@@ -20,3 +20,6 @@ docs/backups
 docs/mods_metadata.db
 
 *__pycache__*
+
+# 忽略所有子目录中的 CLAUDE.md（保留根目录的）
+**/CLAUDE.md

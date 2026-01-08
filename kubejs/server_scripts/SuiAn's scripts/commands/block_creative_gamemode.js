@@ -23,27 +23,6 @@ if (Platform.isClientEnvironment()) {
     "[GamemodeBlock] 检测到专用服务器环境，正在启用创造模式拦截器..."
   );
 
-  // 1. 注册后门命令 (保持不变)
-  ServerEvents.commandRegistry((event) => {
-    const { commands: Commands } = event;
-    event.register(
-      Commands.literal("sudo").then(
-        Commands.literal("gamemode").then(
-          Commands.literal("creative").executes((ctx) => {
-            const player = ctx.source.player;
-            if (!player) return 0;
-            // 后门执行
-            Utils.server.runCommandSilent(
-              `gamemode creative ${player.username}`
-            );
-            player.tell(Text.green("✔ 已通过后门强制获取创造模式！"));
-            return 1;
-          })
-        )
-      )
-    );
-  });
-
   // 2. 拦截普通指令 (无延迟，先报错后拦截)
   ServerEvents.command((event) => {
     // 获取输入
