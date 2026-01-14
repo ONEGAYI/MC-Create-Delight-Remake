@@ -19,4 +19,8 @@ EntityEvents.spawned((e) => {
   if (e.entity.type == "alexsmobs:cockroach_egg") {
     e.cancel();
   }
+  // 悬熊生成
+  if (e.entity.type == "alexsmobs:dropbear") {
+    e.cancel();
+  }
 });

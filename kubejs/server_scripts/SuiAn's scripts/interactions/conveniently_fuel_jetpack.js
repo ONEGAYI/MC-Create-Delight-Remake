@@ -2,7 +2,7 @@
 // 统一的日志前缀
 const LOG_PREFIX = "[JetpackFuel]";
 // Debug 模式开关（设为 true 启用日志输出）
-const debugMode = true;
+const debugMode = false;
 // 基础容量和每级扩容增量
 const BASE_AIR = 1800;
 const INCREASE_AIR_PER_LVL = 300;
