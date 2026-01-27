@@ -50,7 +50,8 @@ class BatchUpdateManager:
         self.error_records = []
 
         # 可更新的字段（sha 和 filename 仅用于识别，不更新）
-        self.updatable_fields = {'env', 'tags', 'description', 'updated_at'}
+        # 注意：数据库中没有 updated_at 字段，所以不包含在可更新字段中
+        self.updatable_fields = {'env', 'tags', 'description'}
 
         # 特殊占位符
         self.skip_placeholder = '<safely-jump>'
@@ -96,14 +97,8 @@ class BatchUpdateManager:
                         continue
 
                     # 清理数据
-                    updated_at = row.get('updated_at', '').strip()
-                    # 如果 updated_at 为空，则自动填充当前时间戳
-                    if not updated_at:
-                        updated_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
                     cleaned_row = {
                         'sha': sha,
-                        'updated_at': updated_at,
                         'filename': row.get('filename', '').strip(),
                         'env': row.get('env', '').strip(),
                         'tags': row.get('tags', '').strip(),

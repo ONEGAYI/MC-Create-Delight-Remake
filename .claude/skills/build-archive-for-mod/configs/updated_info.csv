@@ -1,2 +1,90 @@
 sha,filename,env,tags,description
-f70e2a8f1170fe87d212588ccf5a96d2a2aa21d6c01f5d584c53b226203bc57e,[服务端]createendertransmission-2.1.1-1.20.1.jar,双端类,#工业自动化,实现无空间限制的能量/物品/流体传输，包含区块加载功能
+f574c856ed26333824109b061664b1642aca05bd8c8d93ba6d6a488bcdd89cd9,amendments-1.20-2.2.3.jar,双端类,辅助工具,为Minecraft添加了各种游戏机制改进和小型功能增强
+232addee9673ce00ee0d6113434d716df4852661651f5bead851878ccac10fa9,[服务端]extendedae_plus-1.5.1.jar,双端类,工业自动化,为应用能源2添加扩展功能和额外物品
+1920e76ea53733586bc6c2af85a3d5b86291295c5dd9bf13157bd811bcfc600b,create_fantasizing-1.20.1-1.0.3.jar,双端类,装饰与建筑,为Create机械动力模组添加更多幻想风格的内容和装饰物品
+19a7c884ac777c51936d7ccd753dc2cd20aec21c63f4bdcde51947ea442423cb,kaleidoscopedoll-1.2.3-forge+mc1.20.1.jar,双端类,装饰与建筑,添加万花筒娃娃装饰物品,具有视觉变化效果
+5cc813aefdce7a344e0929f77bf73e17a2412b24cade068255f5e457d1a499d4,shadowizardlib-1.20.1-1.2.8.jar,双端类,库与依赖,Shadowizard开发的模组使用的依赖库
+ca204897174ede4c61cb5a74974a7d636f5ab81cb7445c69ea5f9b7d28094485,ad_astra_more_structures-1.0.0.jar,双端类,世界扩展,为Ad Astra星际探索模组添加更多结构和生成物
+26f3da1974cd0737c3b61704fb975d356529ee04f2e00a07c2860d4ac4c4596f,[客户端]moefarsight-1.0.1.jar,客户端,性能优化,增加玩家视野距离的渲染优化模组
+c0160d378f5f00da72e7235a62caa615a5274a2346541101311b24442366ab71,entityculling-forge-1.9.3-mc1.20.1.jar,客户端,性能优化,不渲染视野外或被方块遮挡的实体,提升帧率
+8d45dc713998e5b8690b8a6d98af7260dfe4b5febffd0b391538a7bac2037f3d,extra_gauges-2.0.7.jar,双端类,工业自动化,为Create机械动力模组添加更多仪表和计量装置
+eba663e985b5bdf42ceedf38a53c1bdc57e900c16fc739fb13ddd480ad32da69,[服务端]meplacementtool-2.1.1-forge1.20.1.jar,双端类,工业自动化,为应用能源2添加便捷的ME线缆和部件放置工具
+f4a58b77ced2641260e20de6a45aa9d866b68a7bb82d830abcc8d58537701083,lootr-forge-1.20-0.7.35.93.jar,双端类,辅助工具,改进战利品箱系统,使战利品为每个玩家独立生成,避免被其他玩家拿走
+cccc6d006ec7095b5bc400b68a053293c732cb55cceee1a96d9000740860d180,[客户端]fakesight-1.0.2.jar,双端类,装饰与建筑,添加虚假/装饰性方块和物品
+aef7bcc7250a05e1de4a1e78d77edd16a7cb5d18c71a48e37454bffe9d519026,Create-Delight-Core-1.20.1-2.2.4c.jar,双端类,整合与联动,Create机械动力与农夫乐事的联动核心模组
+627857dbfbabaa2c0cf5d7a1d4a3ef7692efde0ab69cc7efd3c1623fbafda85c,createultimine-1.20.1-forge-1.1.2.jar,双端类,工业自动化,为Create添加类似VeinMiner的连锁挖掘功能
+ff3531adba026a5891e098e791a8ac7a1efa5c800657216548867befd26ace51,[服务端]chalk-1.20.1-1.6.7.jar,双端类,装饰与建筑,添加粉笔,可以在地面上绘制图案和标记
+e0851ec1214aae3f781cac3f42ec37fb30061b668bd97f9dae465eb2a578c161,lightmanscurrency-1.20.1-2.2.6.4.jar,双端类,辅助工具,添加完整的货币系统和交易机制,包括自动售货机等
+a8ce6b46a77419b3b2552d4b77de6c433603fd743f6e02264b628e1c2448c5ab,biomespy-1.3.1-all.jar,客户端,界面增强,显示当前生物群系信息的界面增强模组
+328852f25fa87c8631fd81a503d87b6b62e729949507e670c502aaebee8e0b7c,Krypton FNP-forge-1.20.1-0.2.25-1.20.1.jar,服务端,性能优化,优化网络协议和性能的服务器端模组
+9af2c90bd0f54a79918ad15fe24bdb4d1786dac87a0903c07379b365cf18e54e,ShoulderSurfing-Forge-1.20.1-4.17.0.jar,客户端,界面增强,添加第三人称视角,并支持视角切换和调整
+e805d60693a48a00b4f0fc07c8339b8d7a5f5807807754e6964678d150cb6066,fragmentum-forge-1.20.1-1.0.8.jar,双端类,装饰与建筑,添加粒子效果增强和粒子系统扩展
+abb3d8b8198d116417fea3eb4b61e8b078a66fc8eb2e9b873dc7c9306e1448e5,the_bumblezone-7.9.2+1.20.1-forge.jar,双端类,世界扩展,添加蜜蜂主题的维度,包含新生物、物品和机制
+c1c9eb05c0bb34555a3d12b9dec05cf959d99fbffb30a10320a175aeeb73fd6e,sophisticatedbackpackscreateintegration-1.20.1-0.1.4.24.jar,双端类,整合与联动,Sophisticated Backpacks精致背包与Create机械动力的联动整合
+b5b0c7db58a59ea14e687fe511885793b50d90da0c076ca9272eb98e050fd6fb,ldlib-forge-1.20.1-1.0.45.jar,双端类,库与依赖,LDLib是LDTTeam开发的模组依赖库,提供共享功能和工具
+4fb6d6fdf86868ddbf3fcaa07ef46e4aac93020acc3abd493806b5540751b6f7,netmusic-1.2.0-forge+mc1.20.1.jar,双端类,辅助工具,允许在游戏中播放网络音乐的模组
+55a8351bffc41b0d4a520d004c05561d4d76c1a1128f364bd4a44251c00f1de9,[服务端]exposure-1.20.1-1.7.16-forge.jar,双端类,装饰与建筑,添加相机系统,可以拍摄照片并制作相册
+65c20588ef3cedd770e96f0f1c015841418a043811690455b33d5ebd8a8e137d,[客户端]DistantHorizons-2.3.6-b-1.20.1-fabric-forge.jar.disabled,客户端,界面增强,渲染远处的地形,大幅提升视野距离和视觉体验
+b3484b9254e1f409d1b1402d3ad7ac751833e22d9dc069017bbaa405760b77fc,CustomSkinLoader_ForgeV2-14.26.1.jar,客户端,界面增强,允许加载自定义皮肤和披风,支持多种皮肤源
+c5042f2baf8acfe61ef82ad96052ea0954e7b851d486154490570e99c047627f,lctech-1.20.1-0.2.2.5a.jar,双端类,工业自动化,为Create机械动力添加更多科技相关的机器和装置
+950c0eace29f5277499f78a8781ba9a7aca78de84abf5f6fa9ff22868156c007,justenoughbreeding-forge-1.20-1.20.1-2.4.0.jar,客户端,界面增强,JEI插件,显示动物繁殖条件和配方
+83f4ddf94e4c9084cce15b57ad63731959e8acd00fbd028f7ba193c2eca6e4b0,Resourcify (1.20.1-forge)-1.7.5.jar,客户端,界面增强,显示资源世界配置的生物群系生成信息,类似JEI的资源显示
+7f10f01866c8316edfc1ffbc49baf1154923beac637e2d7b5399d26508fdd914,balm-forge-1.20.1-7.3.37-all.jar,双端类,库与依赖,Balm是小型库模组,为其他模组提供实用工具和通用功能,包含事件总线、配置系统、GUI辅助工具等
+9ed2151230c31fc6dad27311053b5efcc9a52b5804c84ea1876f65d2619020c2,OELib-forge-0.0.5.jar,双端类,库与依赖,OELib是OEH网络库,用于简化模组之间的网络通信,提供数据包发送、接收和处理的简洁API
+d014a4eeb7d24f9d2839056ad721e119d5fd544e17d241cda05ff4b88ee00e36,[客户端]voxy-0.2.7-alpha.jar,客户端,性能优化,体素化地形渲染优化模组,使用体素技术提升远距离地形渲染性能
+9b140af437581d32e5ee17d20f8fe882000e6a34cba85c152ae5bccc9570cc03,[服务端]fabric-api-0.92.6+1.11.14+1.20.1.jar,双端类,库与依赖,Fabric API是Fabric模组加载器的核心库,为Fabric模组提供基础API和功能支持
+b09a9fd943f49ccaf553c236dd9871901f4c00daf20674528d67c6bbbecb16f0,c2meF-0.2.0+alpha.12-all.jar,服务端,性能优化,C2ME Server优化世界生成性能,通过多线程和算法优化减少区块生成卡顿
+5d7e11f6e2218562ce75d60788fdcfc9ccf59e4532757c18bf37759d5fc739ee,letsdo-vinery-forge-1.4.41.jar,双端类,食物与农业,Let's Do Vinery酒庄模组,添加葡萄种植、酿酒、酒窖管理等葡萄酒制作系统
+743ba0ae107f1445705cb1fed7ebc50d6e19a5b53762895d17e652d8549a76e4,mysterious_mountain_lib-1.5.26-1.20.1.jar,双端类,库与依赖,Mysterious Mountain Library提供通用功能的库模组,包含工具类、辅助方法和注册系统
+1ed474df7dcd5a3847953a232acb981b49008273cc721737f3db4cc41d24cb89,create_central_kitchen-1.20.1-for-create-6.0.6-1.4.3b.jar,双端类,食物与农业,Create Central Kitchen为机械动力添加中央厨房概念,包括大型烤箱、搅拌器等工业级厨房设备
+fef0ecf9cf8bef51843fda0c646ec2d1aff5c0542611a781e955d13670d34a2b,[服务端]itemcollectors-1.1.11-forge-mc1.20.2.jar,双端类,辅助工具,Item Collectors添加自动收集附近物品的机器和设备,帮助玩家自动整理物品
+687e66b8f6d79e973da2781020384afcab6fb4b869eac20f8acac86a44aec7dd,[服务端]scholar-1.20.1-1.1.9-forge.jar,双端类,装饰与建筑,Scholar增强书架和书籍系统,添加更多书籍类型、书架功能和知识管理系统
+fc777fed48bc4ff9141c4e2230dfe1565fe07de8f3c7bbb80cc7fecc141c97a3,vintageimprovements-1.20.1-0.3.5.1.jar,双端类,工业自动化,Vintage Improvements是机械动力的复古风格扩展,添加工业革命时期的机械和装饰方块
+49fea599522316ef7abd8897e8bcad3ed742d935f0a53726eba1f00c9ca8fe4c,ModernUI-Forge-1.20.1-3.12.0.1-universal.jar,客户端,界面增强,ModernUI为游戏添加现代化UI元素和交互体验,包括改进的物品栏、快捷键界面、信息面板等
+d1bab7c998fd95ff928de616866ddb46dfcacc32e056139c76575df5562244c4,create_cyber_goggles-1.20.1-6.7.2-Forge.jar,双端类,辅助工具,Create Cyber Goggles添加赛博朋克风格护目镜,可增强视野、显示机械状态、能量流、材料信息
+e839316b3919b32a9915d4c4b8ed6df96052550f7f5f19165310777200252a13,abnormals_delight-1.20.1-5.0.1.jar,双端类,食物与农业,Abnormals Delight基于Abnormals Core添加新作物、食材和食物配方,与Abnormals系列模组集成
+cb96fa15eddc74c243677f7f5b6e3ecaa87bb33f4854ae0353646f304058add6,[服务端]libIPN-forge-1.20-4.0.2.jar,双端类,库与依赖,libIPN是物品栏网络同步库,提供高效的物品栏位置同步机制,适用于多人协作和同步类模组
+a341b3418fb3ab55e26fe4024919c0e8763d26653ca3f7992a6edad04646e1d0,createstockbridge-1.20-0.1.5.jar,双端类,工业自动化,Create Stockbridge为机械动力添加存储和物流增强,包括新的存储单元、传送带系统和管理界面
+722e5a63c3277a925c69e80bd4cba6d612ca346bdac8e8538d2dc4cefcd374aa,chat_heads-0.14.2-forge-1.20.jar,客户端,界面增强,Chat Heads在聊天消息旁显示玩家头像,增强社交体验,支持自定义头部样式
+c6de479b27cf090510de3f029918afc9fe17226981bd703e0002f7a25f4d8969,tectonic-3.0.17-forge-1.20.1.jar,服务端,性能优化,Tectonic是世界生成优化模组,通过算法优化和缓存机制显著减少世界生成时的卡顿
+009958985786081dad4007f8b4a5899b7aa82951b194d81ec48076d68950a4e8,observable-4.4.2.jar,双端类,辅助工具,Observable是调试和开发工具模组,提供实时观察和调试功能,可监控游戏状态、数据变化和事件触发
+8edf6165d5d23fdffb7254e3c28514fc05aa83e3ce15e148310f8335193c2887,acceleratedrendering-1.0.7-1.20.1-alpha.jar,客户端,性能优化,Accelerated Rendering通过GPU加速和渲染管线优化提升游戏帧率和渲染性能
+4f641e4e204315a55b3f5a33e3039076ba08c95b68ac9280ea0081fb27470c13,packetfixer-3.3.1-1.18-1.20.4-merged.jar,双端类,性能优化,Packet Fixer解决多人游戏中的网络同步问题,检测和修复损坏或丢失的数据包,减少卡顿和同步错误
+f0460cd0f9ba0e701d9dd6c7f57024e994e7f7b354b0e0a7d9baacd2856f3001,smsn-forge-1.3.5-1.20.1.jar,双端类,辅助工具,SMSN是简单Minecraft服务器网络管理模组,提供服务器间通信和管理功能
+149998528e5b98db259c02fa91ec5d76b0390dff70385b7cc2428c9028598e95,forge-dungeonsdelight-1.20.1-1.2.10.jar,双端类,世界扩展,Dungeons Delight添加各种风格的地牢、城堡和地下建筑结构,包含独特宝藏、敌人和挑战
+d39dd4afa464b5c2f52718804d96d6e5f8cd5033b76d62ba3d5ff8904156ff32,dreadsteel-1.20.1-1.2.0.jar,双端类,装备与战斗,Dread Steel添加恐怖风格的钢制装备,具有独特属性和外观,提供更强防护和攻击力
+9c10ab288402b6a01815d58029298fc56dd482f045511ad35104b17e9b6c4393,AE2NetworkAnalyzer-1.20-1.0.6-forge.jar,双端类,工业自动化,AE2 Network Analyzer是应用能源2的网络分析工具,提供网络状态监控、性能分析和优化建议
+c5cd2ba28fe25fa120b242b907de7328c2932f4293075f3f9befc5be663138b4,EclipticSeasons-1.20.1-forge-0.12.0.4-all.jar,双端类,世界扩展,Ecliptic Seasons为Minecraft添加四季系统,每个季节有不同天气模式、植被变化、作物生长特性
+f026ad303cd2c51cda695351d50a2d4cc52a3623ca123bc3963c028e885f70d3,[服务端]pipez-forge-1.20.1-1.2.21.jar,双端类,交通与运输,Pipez管道运输系统添加多种管道类型用于物品流体传输,包括普通、加速、过滤、分裂管道等
+06374cb66b55427f76cf69b94b1d03e69bb22ac926e697661df48aaae4194fde,certain_questing_additions-forge-1.0.7+mc1.20.1.jar,双端类,辅助工具,Certain Questing Additions为模组包添加任务和内容增强,提供更好的任务系统体验
+9ccc961107b75c1a7b48484873468974aeca57142272f873c4b59138b585f068,ae2wtlib-15.3.1-forge.jar,双端类,库与依赖,AE2 Wireless Terminal Library为应用能源2提供无线终端库,允许创建自定义无线终端界面
+f70e2a8f1170fe87d212588ccf5a96d2a2aa21d6c01f5d584c53b226203bc57e,[服务端]createendertransmission-2.1.1-1.20.1.jar,双端类,交通与运输,Create Ender Transmission为机械动力添加末影传输功能,实现长距离物品和能量传输
+e576fcf166d55100e22294420084aee086ac646bbd1bf7a949a3e3f97578525f,sophisticatedbackpacks-1.20.1-3.24.9.1396.jar,双端类,辅助工具,Sophisticated Backpacks高级背包模组,提供多种容量背包,支持升级系统、自动收集物品、过滤物品
+529d45db7f3608801a935b3b740feada3e44f803df668cd80139eb9f4f812e16,[服务端]voicechat-forge-1.20.1-2.6.10.jar,双端类,辅助工具,Simple Voice Chat语音聊天模组,允许玩家在游戏中直接语音交流,支持语音激活、按键激活、音量调节
+d4f22942888438f7fabf40e16f47d2e454ece7585a262cdfb7d20b4b13683013,[服务端]InventoryProfilesNext-forge-1.20-1.10.19.jar,双端类,辅助工具,Inventory Profiles Next物品管理优化模组,提供智能物品整理和自动化管理功能,可自动整理物品栏
+7c3b8a73f70ac2951c5560622c25bbc441805fac4b9a59a4d021d5dabae41e13,biomereplacer-2.2-hippo-forge.jar,双端类,世界扩展,Biome Replacer允许玩家替换或修改世界中的生物群系,支持自定义生物群系分布和世界生成规则
+b15287651f9360f9b0180600b8e9a168b1b7c091de5073726087fd8b483c90bd,dynamiccrosshair-9.10+1.20.1-forge.jar,客户端,界面增强,Dynamic Crosshair动态准星模组,准星会根据玩家交互的对象自动变化颜色和形状,提供直观交互反馈
+e1fda624a5be9d5e45d8fd0804a32fe838418471aa0bf746379b8b6abfd42673,cratedelight-25.09.22-1.20-forge.jar,双端类,整合与联动,Create Delight为机械动力添加食物处理和农业相关机械,将机械系统与食物生产相结合
+06a38aebd698832555ba0b7f2206a3eb7eb48f0b2bc1eafa905e7283c5e20294,displaydelight-1.3.0.jar,双端类,装饰与建筑,Display Delight为机械动力添加物品展示和存储解决方案,包括展示柜、货架等存储设备
+2440260d49f61cf7e6530a2da5c7c38fc11792e4d62f6caf7377b688c066178f,colorwheel-forge-1.1.1+mc1.20.1.jar,客户端,装饰与建筑,Color Wheel提供染色系统,允许对方块、物品进行自定义染色,支持多种颜色组合和渐变效果
+51f6d78dd6c7874657e5757fd2f5d780aa3cd415052ad071077b8894c6430942,[服务端]canary-mc1.20.1-0.3.3.jar.disabled,双端类,性能优化,Canary性能监控和优化模组,用于追踪和优化游戏性能,已被禁用
+3a9aea835f7a4162681d5cf58199c4b1ad735d0c26cc8e903abc4c8254c6cf68,sophisticatedcore-1.20.1-1.2.105.1230.jar,双端类,库与依赖,Sophisticated Core是其他Sophisticated模组系列的核心组件,提供基础功能、API支持和通用工具
+17f0e555a211d93285fe38efd9677efcb782b20f774ccc4ee3196f681eba9191,seasonhud-forge-1.20.1-1.13.15.jar,客户端,界面增强,Season HUD在游戏中显示季节信息、天气状况和时间的HUD界面,增强玩家对游戏环境变化的感知
+afe0822eaae75cf245c247f781c474f0dd3a5016863d1fea6bf4517d285c6f33,obscure_tooltips-forge-1.20.1-3.8.0.jar,客户端,界面增强,Obscure Tooltips修改游戏中的物品提示信息,提供更简洁或更详细的物品描述选项,优化界面体验
+45dd68b6707b3eeae0c958d0242b29ec03cdd0d8fc88af20761661ebf3c456cd,immersive_aircraft-1.4.0+1.20.1-forge.jar,双端类,交通与运输,Immersive Aircraft飞行载具模组,添加多种可驾驶的飞机和航空器,具有真实飞行物理和操控系统
+8e5c7628ce31bb366edb1e1e80d07e19a1f9440177e264ab4cda23bacee8f307,create_compatible_storage-2.8.0-all.jar,双端类,工业自动化,Create Compatible Storage为机械动力添加兼容的存储解决方案,使机械能与各种存储模组无缝集成
+a0ba5a0288dab6e413f1456de8dd162f9479146ee681569837f6d6b17930a0e2,guideme-20.1.14.jar,双端类,辅助工具,Guide Me为玩家提供导航和任务指引功能,包括地图标记、路径规划等,帮助玩家找到目标
+7e3ee454a8cc2998722079b1ebc3262162ab3e6310fc9a585841674fcb82234e,cuisinedelight-1.1.17.jar,双端类,食物与农业,Cuisine Delight扩展游戏的食物系统和烹饪机制,添加新食材、食谱和烹饪设备
+0ae969c7b0041989d2cdb1b0ae03e51d92b7b93cccff30077591bc5bd36bc5b2,Create-Better-Storages-Forge-1.20.1-1.0b.Release.jar,双端类,工业自动化,Create Better Storages为机械动力改进和增强存储系统,提供更高效的存储解决方案
+54cd182e4e4a42396cc8d96acb296640d61ab6c7a842f534bb1d0da49ad43814,createbiggerstoragetocreate6-1.0.jar,双端类,工业自动化,Create Bigger Storage为Create 6.x版本添加大型存储解决方案,提供更大存储容量和更高效存储机制
+5badcc891b9f8565933244e44eb2c2fd9bf16f3085c14432e40cf20f47696d4b,[服务端]creeperfireworks-1.20.1-1.0.1.3-FORGE.jar,双端类,装饰与建筑,Creeper Fireworks将苦力怕与烟花结合,添加苦力怕形状的烟花效果,增加游戏趣味性和视觉效果
+9b7b9613a1fba2498ebfa79c9f8899c32364fd95c6d13615b94af755a48c3b9c,EuphoriaPatcher-1.7.7-r5.6.1-forge.jar,双端类,性能优化,Euphoria Patcher是综合性能优化模组,通过修复游戏引擎问题和优化代码提升启动速度和运行帧率
+336f1b8f1fddbc331d25609f5c9945e313cc9bf33c32a3be5413bfacd7e958d6,createtransmission-1.0.4+forge-create6-1.20.1.jar,双端类,交通与运输,Create Transmission为机械动力添加传输系统,提供高效的物品和能量传输解决方案
+7e88c79a92d2baacadd812d164e3b62316df0e0bd18f10e58fca8703d1d2ebf4,GeneralFeedback-1.0.1.jar,双端类,辅助工具,General Feedback提供玩家反馈和投票系统,让玩家可以对游戏内容进行评价和反馈
+0c9e8a8a0cbeb2f77f9f50a412758e66fb01d638c8b43feef7262d8c2cedd60d,ftb-quests-forge-2001.4.17.jar,双端类,辅助工具,FTB Quests任务模组提供完整任务系统,玩家可完成任务获得奖励,追踪进度,支持团队合作和任务树
+501c86caed789c581c450862582fab6a037b994351fb6c33c7b8dd915a9875b6,flerovium-forge-1.20.1-1.2.16-all.jar,双端类,性能优化,Flerovium是综合性能优化模组,通过多线程和优化算法提升游戏性能,减少卡顿
+5cd66f156fbef031a4df1c3f586192a37a347e581713c62cdd5cefb1cf749993,ae2omnicells-1.0.4-1.20.1.jar,双端类,工业自动化,AE2 Omni Cells为应用能源2添加全能单元,提供更强大的存储和自动化功能
+9cb836b2fd138460e35d890eb448b07cb04b18f9ffe04cd0036cf894350c38b9,moonlight-1.20-2.16.14-forge.jar,双端类,库与依赖,Moonlight库为多个模组提供基础功能和API支持,包含常用工具类和辅助方法
+b52d5b700baf8b574893ee7fb57d0a7566be753ad734b8049874f02abf1e852d,colorwheel_patcher-forge-1.0.3+mc1.20.1.jar,双端类,库与依赖,Colorwheel Patcher为调色板模组提供补丁和兼容性支持,确保与其他模组的兼容性
+4a3ae0f780f68cfe776e82c99252238f277164e5a29772153f9bfe0af2bc3a2e,dsbg-1.0-1.20.1.jar,双端类,装饰与建筑,DSBG装饰模组添加各种装饰方块和物品,用于建筑和装饰
+8b604532f2d8a8daddca5f1ab3f4ccafe7488ae01048c510ace5f60f9e9c1564,MEED-1.20.1-7.5.jar,双端类,辅助工具,MEED是游戏增强和扩展模组,提供多种游戏改进和功能增强

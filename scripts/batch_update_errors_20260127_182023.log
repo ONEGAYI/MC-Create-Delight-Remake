@@ -1,0 +1,207 @@
+批量更新错误日志 - 2026-01-27 18:20:23
+================================================================================
+
+类型: update_error
+文件名: iris_shader_folder-1.2.5-forge.jar
+SHA: f54e9c51f3b75cd2707b5235bc1fe8fe996d43fe5e436228b148db9e81fd448a
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: jei-1.20.1-forge-15.20.0.118.jar
+SHA: 5df4a735f16a67c6dfe7d252467293d8966095f77ccb080a45a37be88d42072c
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: IAS-Forge-1.20.1-9.0.0.jar
+SHA: 0e40bfb197b0bf68ab5eb073d4d6e25d34c568bdbd6ae73d4c2bdbe4f76fafa1
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: advancements_tracker_1.20.1-6.1.0.jar
+SHA: e4967aee7b6ee899d7861bef4826d743c36195a4974522f32b07e91f214ad93b
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: bettercombat-forge-1.9.0+1.20.1.jar
+SHA: 49c69dccf2c641246b4e3deca81ebac21f0ee119e81fc713b838b8e33569eea1
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: ponderjs-1.20.1-2.1.0.jar
+SHA: a3d42dcd63133b7542599b5e12ecb67e0719ea19dc28a1f3e3365a1ad7df5978
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: skinlayers3d-forge-1.9.2-mc1.20.1.jar
+SHA: 7bd16cc4abaadd8936862fd56dd1dd2a6bd3fe7838959cca9578eedf4ae0efe3
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: fluid-1.20-1.1.4.jar
+SHA: 886d0f45a684e581fe7a2cfa1a182e99ee1dafe0c8604d0348566967f77afc45
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: BetterAdvancements-Forge-1.20.1-0.4.2.25.jar
+SHA: 7932d80b8cce7854d0c7b5a42a629a2d2237adb6faec004bf78e4e4920f5f2e0
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: Industrial Platform-1.5.0.jar
+SHA: 97bd4de1b950150c356474a73d20bb7b5b2238d384a6337dbffdfbb996bcd101
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: forge-runiclib-1.20.1-4.3.7.jar
+SHA: 81f9238590f226afaf7c68e7328eeb2bf623140acd8e85dc775a6116fe7784ef
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: appliedenergistics2-forge-15.4.10.jar
+SHA: fbfee05c6674cb6b00fe425e945ca4818d41eb34069b60dcb4a36221a0390fcc
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: modernfix-forge-5.25.2+mc1.20.1.jar
+SHA: 6da98d88031f2f5377c0e66fb7ebfd8da8be64c6e46a2d1b1fcf8c717b040653
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: [服务端]Connector-1.0.0-beta.47+1.20.1.jar
+SHA: 44f7208f5384bc2b5da3957051c701e279d3f6c720b75582ec35274ea8f68cc5
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: IMBlocker-5.4.6-forge+1.17-1.20.4.jar
+SHA: 3f1565033608ec6c2bdd90db76e3bdead217f6b8f6dc484ff4f03f3251c982a2
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: create_structures_arise-166.39.38-forge-1.20.1.jar
+SHA: e86a4848c4fb7e1c7736243a88d0d05966d4af4fc58117bc05836003596e5a86
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: idas_forge-1.12.1+1.20.1.jar
+SHA: c9b7ad678463819ab3d9dec03fb87f26a11d0c9fb90da669f173a4900002fdd3
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: youkaishomecoming-2.4.16.jar
+SHA: a8c4c435bf55e62daf7b2829ac023c91fbe0b8e517dc5fb10db0141cde9474f2
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: simplehats-forge-1.20.1-0.3.2.jar
+SHA: 86758bd8151a2b8ee95151abdc442250fe359c63aa1702cee2b71ce086a32a93
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: SimpleBackups-1.20.1-3.1.22.jar
+SHA: 329d8febffef8bd59edf903b7174e839dc328aa70cd6f8cea9222c9641a6f1f4
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: refurbished_furniture-forge-1.20.1-1.0.20.jar
+SHA: 480546202aa21fa07e6b1571f3e3263e5690e9804afb7c35984642bcf473bc6e
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: ExtendedAE-1.20-1.4.8-forge.jar
+SHA: 785814ba9df44360d2af0f4edfea952fb13eeb338fbee6260411f5f5310bdac2
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: OneEnoughItem-1.0.6.jar
+SHA: 83334c41ef71af252f4a7571412d6dc7e920408cf8bb27821988131a56306a81
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: [客户端]searchonmcmod-forge-1.20.x-0.0.7.jar
+SHA: f21e8e1f9e1c9862bfec077328d617467c343c123274fa6b7d9996327cb82314
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: ae2ct-1.20.1-1.1.1.jar
+SHA: 0996cd736e5a951593f94125c059710800056de8def77995deb7ba6b50099367
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: geckolib-forge-1.20.1-4.8.2.jar
+SHA: a2e4bcc986ce360f4e85d545a86b04c8c9350543ebd17069b6a44c0a8939ffdc
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: [客户端]zergatul.freecam-2.0.1-forge-1.20.1.jar
+SHA: c10ed01385afa76b1b86fd6dbb89dced862bdce05e7372dd73c52523755eaca4
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: [服务端]create_enhanced_schematicannon-1.0.2-6.0+.jar
+SHA: 457ad417658e340614440718b575e11d138c5aa06bfd0e1be0b1d967930dae0c
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: createprism-1.20-1.0.1.jar
+SHA: 9230de0b48b3b3cc59a947e3c623781789459b094731fa81b103004580b53089
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: createfastschematiccannon-1.1-6.0.0-release.jar
+SHA: f547aaaff8c4c6e20c2d2da87ebf8bea632063a7035123b4a2846e21a36e2b29
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: amendments-1.20-2.2.3.jar
+SHA: f574c856ed26333824109b061664b1642aca05bd8c8d93ba6d6a488bcdd89cd9
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: [服务端]extendedae_plus-1.5.1.jar
+SHA: 232addee9673ce00ee0d6113434d716df4852661651f5bead851878ccac10fa9
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: create_fantasizing-1.20.1-1.0.3.jar
+SHA: 1920e76ea53733586bc6c2af85a3d5b86291295c5dd9bf13157bd811bcfc600b
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------
+类型: update_error
+文件名: kaleidoscopedoll-1.2.3-forge+mc1.20.1.jar
+SHA: 19a7c884ac777c51936d7ccd753dc2cd20aec21c63f4bdcde51947ea442423cb
+字段: updated_at
+错误: ❌ 更新失败: no such column: updated_at
+----------------------------------------

@@ -6,6 +6,7 @@ import sys
 import re
 import shutil
 from datetime import datetime
+from pathlib import Path
 
 # ================= 配置区域 =================
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -81,15 +82,17 @@ class AssetManager:
 
         print(f"🔍 正在扫描文件夹: {self.folder_path} ...")
         
-        # 1. 获取磁盘上的现状
+        # 1. 获取磁盘上的现状（只扫描第一层，不递归子文件夹）
         disk_files = {} # {sha: {filepath, filename}}
-        for root, _, files in os.walk(self.folder_path):
-            for file in files:
-                if file.startswith('.'): continue # 跳过隐藏文件
-                path = os.path.join(root, file)
-                sha = self.get_file_sha256(path)
-                if sha:
-                    disk_files[sha] = {'path': path, 'name': file}
+        for file in os.listdir(self.folder_path):
+            # 跳过隐藏文件
+            if file.startswith('.'): continue  # 隐藏文件
+            path = os.path.join(self.folder_path, file)
+            # 只处理文件，跳过子文件夹
+            if not os.path.isfile(path): continue
+            sha = self.get_file_sha256(path)
+            if sha:
+                disk_files[sha] = {'path': path, 'name': file}
 
         # 2. 获取数据库现状
         self.cursor.execute("SELECT sha, filename, filepath FROM files")
